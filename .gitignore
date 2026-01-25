@@ -7,7 +7,8 @@ Obj/
 Settings/
 
 # Module compiler output (generated)
-*/*/Compiler/
+Module/Module/Compiler/
+ModuleLoader/Compiler/
 
 # IAR artifacts
 *.out
