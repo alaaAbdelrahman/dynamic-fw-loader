@@ -1,0 +1,128 @@
+/*******************************************************************************
+* DISCLAIMER
+* This software is supplied by Renesas Electronics Corporation and is only
+* intended for use with Renesas products. No other uses are authorized. This
+* software is owned by Renesas Electronics Corporation and is protected under
+* all applicable laws, including copyright laws.
+* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
+* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT
+* LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+* AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED.
+* TO THE MAXIMUM EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS
+* ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES SHALL BE LIABLE
+* FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR
+* ANY REASON RELATED TO THIS SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE
+* BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+* Renesas reserves the right, without notice, to make changes to this software
+* and to discontinue the availability of this software. By using this software,
+* you agree to the additional terms and conditions found by accessing the
+* following link:
+* http://www.renesas.com/disclaimer
+* Copyright (C) 2015 Renesas Electronics Corporation. All rights reserved.
+*******************************************************************************/
+/*******************************************************************************
+* File Name   : r_flash_lib.h
+*    @version
+*        $Rev: 8167 $
+*    @last editor
+*        $Author: a5089763 $
+*    @date  
+*        $Date:: 2021-12-29 13:39:59 +0900#$
+* Description : 
+******************************************************************************/
+#include "r_bsp_api.h"
+
+#ifndef R_FLASH_LIB_H
+#define R_FLASH_LIB_H
+
+/******************************************************************************
+Macro definitions
+******************************************************************************/
+#if   defined (R_BOARD_EEPROM)
+#define R_FLASH_BASE_ADDR            (0x00000000ul)
+#define R_FLASH_END_ADDR             (0x00002000ul)
+#define R_FLASH_BLOCK_SIZE           (0x00000020ul)      /* 32byte */
+#define R_FLASH_ITEM_SIZE            (0x00000200ul)      /* 512 */
+#define R_FLASH_EEPROM_IIC_CH        (0u)
+#define R_FLASH_EEPROM_DEV_ADDRESS   (0xAEu)
+#else /* (defined R_BOARD_EEPROM) */
+
+#if (defined BSP_MCU_RX231)
+#define R_FLASH_BASE_ADDR            (0x00100000ul)
+#define R_FLASH_END_ADDR             (0x00102000ul)
+#define R_FLASH_BLOCK_SIZE           (0x00000400ul)      /* 1K */
+#define R_FLASH_BLOCK_MASK           (0xFFFFFC00u)
+#define R_FLASH_WRITE_LINE           (1u)
+#define R_FLASH_ITEM_SIZE            (0x00000400ul)      /* 1K */
+
+#elif (defined BSP_MCU_RX631)
+#define R_FLASH_BASE_ADDR            (0x00100000ul)
+#define R_FLASH_END_ADDR             (0x00108000ul)
+#define R_FLASH_BLOCK_SIZE           (0x00000020ul)      /* 32byte */
+#define R_FLASH_BLOCK_MASK           (0xFFFFFFE0u)
+#define R_FLASH_WRITE_LINE           (2u)
+#define R_FLASH_ITEM_SIZE            (0x00000800ul)      /* 2K */
+
+#elif (defined BSP_MCU_RX651) || (defined BSP_MCU_RX65N)
+#if ( MCU_DATA_FLASH_SIZE_BYTES == 0 )
+#define R_FLASH_BASE_ADDR            (0xFFFF0000ul)      /* Code Flash use */
+#define R_FLASH_END_ADDR             (0xFFFF4000ul)
+#define R_FLASH_BLOCK_SIZE           (0x00002000ul)      /* 8K */
+#define R_FLASH_BLOCK_MASK           (0xFFFFE000ul)
+#define R_FLASH_ITEM_SIZE            (0x00000400ul)      /* 1K */
+#else
+#define R_FLASH_BASE_ADDR            (0x00100000ul)
+#define R_FLASH_END_ADDR             (0x00108000ul)
+#define R_FLASH_BLOCK_SIZE           (0x00000020ul)      /* 32byte */
+#define R_FLASH_BLOCK_MASK           (0xFFFFFFE0u)
+#define R_FLASH_WRITE_LINE           (2u)
+#define R_FLASH_ITEM_SIZE            (0x00000800ul)      /* 2K */
+#endif
+
+#elif (defined MCU_RL78G13)
+#define R_FLASH_BASE_ADDR            (0x000F1000ul)
+#define R_FLASH_END_ADDR             (0x000F3000ul)
+#define R_FLASH_BLOCK_SIZE           (0x00000400ul)      /* 1k */
+#define R_FLASH_BLOCK_MASK           (0xFFFFFC00u)
+#define R_FLASH_WRITE_LINE           (2u)
+#define R_FLASH_ITEM_SIZE            (0x00000400ul)      /* 1K */
+
+#elif (defined BSP_MCU_GROUP_RA6M4)
+#define R_FLASH_BASE_ADDR            (0x08000000ul)
+#define R_FLASH_END_ADDR             (0x08002000ul)
+#define R_FLASH_BLOCK_SIZE           (0x00000040ul)      /* 64 */
+#define R_FLASH_BLOCK_MASK           (0xFFFFFFC0u)
+#define R_FLASH_WRITE_LINE           (2u)
+#define R_FLASH_ITEM_SIZE            (0x00000400ul)      /* 1K */
+
+#else /* MCU_RX231 */
+#define R_FLASH_BASE_ADDR            (861*4096)
+#define R_FLASH_END_ADDR             (0x00108000ul)
+#define R_FLASH_BLOCK_SIZE           (2048ul)      /* 32byte */
+#define R_FLASH_BLOCK_MASK           (0xFFFFFFE0u)
+#define R_FLASH_WRITE_LINE           (2u)
+#define R_FLASH_ITEM_SIZE            (2048ul)      /* 2K */
+#endif /* MCU_RX231 */
+
+#endif /* (defined R_BOARD_EEPROM) */
+
+/******************************************************************************
+Typedef definitions
+******************************************************************************/
+typedef enum {
+    DFID_CONFIG = 0,
+    DFID_ADP_SETPARAM,
+    DFID_MAC_SETPARAM,
+    DFID_END_ADDR,
+} r_df_usageid_t;
+
+/******************************************************************************
+Functions prottype
+******************************************************************************/
+uint8_t  r_demo_flash_init( void );
+uint8_t* r_demo_flash_tmp_buff(void);
+uint8_t  r_demo_flash_erase(uint32_t df_dstaddr, uint32_t size_byte);
+uint8_t  r_demo_flash_write(uint32_t df_dstaddr, uint8_t *src_buff, uint32_t size_byte);
+void     r_demo_flash_read(uint8_t **dst_buff, r_size_t df_srcaddr, uint16_t size_byte);
+
+#endif /* R_FLASH_LIB_H */

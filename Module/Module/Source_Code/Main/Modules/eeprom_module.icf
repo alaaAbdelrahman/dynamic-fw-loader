@@ -1,0 +1,30 @@
+/*==========================================================
+   MODULE LINKER SCRIPT
+   - Compiles modules for execution at 0x3C000-0x3FFFF
+   - Matches your main project's execution buffer
+  ==========================================================*/
+
+define memory mem with size = 4G;
+
+/* Execution buffer - MUST match your main project.icf */
+define region EXEC_BUF = mem:[from 0x0003C000 to 0x0003FFFF];
+
+/* Custom sections for module components */
+define block MODULE_HEADER    { section .module_header };
+define block MODULE_CODE      { section .module_code };
+define block MODULE_RODATA    { section .module_rodata };
+define block MODULE_FUNCTIONS { section .module_functions };
+
+/* Place all module content in execution buffer */
+place in EXEC_BUF {
+    block MODULE_HEADER,
+    block MODULE_CODE,
+    block MODULE_RODATA,
+    block MODULE_FUNCTIONS
+};
+
+/* Keep all sections even if unreferenced */
+keep { section .module_header,
+       section .module_code,
+       section .module_rodata, 
+       section .module_functions };

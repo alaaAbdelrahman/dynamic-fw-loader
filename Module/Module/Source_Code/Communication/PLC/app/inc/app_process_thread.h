@@ -1,0 +1,286 @@
+#ifndef app_process_thread_
+#define app_process_thread_
+
+#include "r_typedefs.h"
+#include "r_config.h"
+#include "r_bsp_api.h"
+#include "r_byte_swap.h"
+#include "r_memory_api.h"
+#include "r_queue_api.h"
+
+#include "r_app_timer.h"
+
+/* g3 part */
+#include "r_c3sap_api.h"
+
+/* app part */
+#include "r_demo_app.h"
+#include "r_demo_app_eap.h"
+#include "r_demo_app_thread.h"
+#include "r_demo_api.h"
+
+#include "r_ipv6_headers.h"
+#include "r_udp_headers.h"
+#include "r_demo_tools.h"
+#include "r_demo_api.h"
+#include "r_demo_common.h"
+#include "r_demo_config.h"
+#include "r_demo_statistics.h"
+#include "r_demo_ib_access.h"
+#include "r_demo_app_ver.h"
+#include "r_demo_parameters.h"
+#include "r_demo_os_wrapper.h"
+
+extern r_queue_t            demoAppQueue;                                                       //!< Queue for demo application
+extern r_queue_element_t    demoAppQueueArray[3];                           //!< Array for demo application queue
+extern uint8_t              demoAppMsgsMemory[350 * 3];     //!< Memory for demo application queue
+
+extern r_demo_config_t             g_demo_config;
+extern uint16_t iec_62056_21_isr_index;
+extern uint8_t iec_62056_21_isr_buffer[500];
+uint32_t rcv_packet_cnt = 0;
+volatile uint16_t data_size = 0;
+volatile r_queue_element_t deque;
+r_queue_result_t  queueReturn;
+r_adp_adpd_data_ind_t* ind;
+uint32_t i;
+r_ipv6_hdr_t ipv6Hdr;
+extern uint16_t link_quality;
+/******************************************************************************
+* Function Name: R_DEMO_AppHandleDataIndication
+* Description :
+* Arguments :
+* Return Value :
+******************************************************************************/
+#pragma diag_suppress=Pe940
+#pragma inline = forced // Optimization at HIGH
+inline static void R_DEMO_AppHandleDataIndication (const r_adp_adpd_data_ind_t * ind)
+{
+//    uint32_t     i;
+//    r_ipv6_hdr_t ipv6Hdr;
+
+    if (R_TRUE == g_demo_config.verboseEnabled)
+    {
+      link_quality = ind->linkQualityIndicator;
+#ifdef __PLC__DEBUG__
+        //R_STDIO_Printf ("\n -> Received data frame (length: %d, quality: %d)", (ind->nsduLength) - 48, ind->linkQualityIndicator);
+#endif
+
+#ifdef __PLC__DEBUG__
+        //R_STDIO_Printf ("\n------- Received NSDU ------\n");
+#endif
+        //Delay_ms(10);
+        for (i = 0; i < (ind->nsduLength) - 48; i++)
+        {
+#ifdef __PLC__DEBUG__
+            //R_STDIO_Printf ("%.2X", ind->pNsdu[i+48]);
+#endif
+            iec_62056_21_rx_char_isr(ind->pNsdu[i + 48]);
+        }
+        rcv_packet_cnt++;
+//        memcpy(&iec_62056_21_isr_buffer[iec_62056_21_isr_index],&ind->pNsdu[48],(ind->nsduLength) - 48);
+//        iec_62056_21_isr_index += (ind->nsduLength) - 48;
+//        
+//        if(iec_62056_21_isr_index >= sizeof(iec_62056_21_isr_buffer))
+//        {
+//          iec_62056_21_isr_index = 0;
+//        }
+        //IEC_62056_21_CLR_INT_FLG();
+    }
+
+//    if (R_IPV6_UnpackHeader (ind->pNsdu,
+//                             &ipv6Hdr) == R_RESULT_SUCCESS)
+//    {
+//        if (R_IPV6_NEXT_HDR_ICMPV6 == ipv6Hdr.nextHdr)
+//        {
+//            R_DEMO_ReplyIcmpRequest (ind->pNsdu,
+//                                     &ipv6Hdr);
+//        }
+//        else if (R_IPV6_NEXT_HDR_UDP == ipv6Hdr.nextHdr)
+//        {
+//            R_DEMO_ReplyUdpFrame (ind->pNsdu,
+//                                  &ipv6Hdr);
+//
+//        }
+//        else if (R_IPV6_NEXT_HDR_HOP_BY_HOP == ipv6Hdr.nextHdr)
+//        {
+//            R_DEMO_ReplyIcmpRequestExtHeaders (ind->pNsdu,
+//                                               &ipv6Hdr);
+//        }
+//        else
+//        {
+//            /* Do nothing. */
+//        }
+//    }
+
+} /* R_DEMO_AppHandleDataIndication */
+/******************************************************************************
+   End of function  R_DEMO_AppHandleDataIndication
+******************************************************************************/
+
+
+/******************************************************************************
+* Function Name: app_process_thread
+* Description :
+* Arguments :
+* Return Value :
+******************************************************************************/
+#pragma diag_suppress=Pe940
+#pragma inline = forced // Optimization at HIGH
+inline static void app_process_thread(void)
+{ 
+
+    /* Stop application processing thread. */
+    R_BSP_TimerOff(R_BSP_TIMER_ID_1);
+
+    /* Enable interrupts. */
+    R_BSP_EI();
+
+    /* Check if something has been dequeued */
+    do
+    {
+        /* Try to dequeue a new message. */
+        queueReturn = R_QUEUE_Dequeue(&demoAppQueue, (r_queue_element_t*)&deque);
+        if (R_QUEUE_RESULT_SUCCESS == queueReturn)
+
+        {
+            switch (deque.handle)
+            {
+                case R_DEMO_APP_HANDLE_DATA_IND:
+                    R_DEMO_AppHandleDataIndication((const r_adp_adpd_data_ind_t*) deque.pdata);
+//                    {
+//                      ind = (r_adp_adpd_data_ind_t*) deque.pdata;
+//                      //r_ipv6_hdr_t ipv6Hdr;
+//                      data_size = /*(*((uint16_t*)ind)) - 48*/ 1;
+//                      if (R_TRUE == g_demo_config.verboseEnabled)
+//                      {
+//                  #ifdef __PLC__DEBUG__
+//                          //R_STDIO_Printf ("\n -> Received data frame (length: %d, quality: %d)", (ind->nsduLength) - 48, ind->linkQualityIndicator);
+//                  #endif
+//
+//                  #ifdef __PLC__DEBUG__
+//                          //R_STDIO_Printf ("\n------- Received NSDU ------\n");
+//                  #endif
+//                          //Delay_ms(10);
+//                          for (i = 0; i < data_size; i++)
+//                          {
+//                  #ifdef __PLC__DEBUG__
+//                              //R_STDIO_Printf ("%.2X", ind->pNsdu[i+48]);
+//                  #endif
+//                             // iec_62056_21_rx_char_isr(ind->pNsdu[i]);
+//                              iec_62056_21_isr_buffer[iec_62056_21_isr_index] = ((uint8_t*)ind)[60+i]; 
+//                              iec_62056_21_isr_index++;
+//                              
+//                              if(iec_62056_21_isr_index >= sizeof(iec_62056_21_isr_buffer))
+//                              {
+//                                iec_62056_21_isr_index = 0;
+//                              }
+//                          }
+//                          rcv_packet_cnt++;
+//                  //        memcpy(&iec_62056_21_isr_buffer[iec_62056_21_isr_index],&ind->pNsdu[48],(ind->nsduLength) - 48);
+//                  //        iec_62056_21_isr_index += (ind->nsduLength) - 48;
+//                  //        
+//                  //        if(iec_62056_21_isr_index >= sizeof(iec_62056_21_isr_buffer))
+//                  //        {
+//                  //          iec_62056_21_isr_index = 0;
+//                  //        }
+//                          //IEC_62056_21_CLR_INT_FLG();
+//                      }
+//
+////                      if (R_IPV6_UnpackHeader (ind->pNsdu,
+////                                               &ipv6Hdr) == R_RESULT_SUCCESS)
+////                      {
+////                          if (R_IPV6_NEXT_HDR_ICMPV6 == ipv6Hdr.nextHdr)
+////                          {
+////                              R_DEMO_ReplyIcmpRequest (ind->pNsdu,
+////                                                       &ipv6Hdr);
+////                          }
+////                          else if (R_IPV6_NEXT_HDR_UDP == ipv6Hdr.nextHdr)
+////                          {
+////                              R_DEMO_ReplyUdpFrame (ind->pNsdu,
+////                                                    &ipv6Hdr);
+////
+////                          }
+////                          else if (R_IPV6_NEXT_HDR_HOP_BY_HOP == ipv6Hdr.nextHdr)
+////                          {
+////                              R_DEMO_ReplyIcmpRequestExtHeaders (ind->pNsdu,
+////                                                                 &ipv6Hdr);
+////                          }
+////                          else
+////                          {
+////                              /* Do nothing. */
+////                          }
+////    }
+//                    }
+                    break;
+                case R_DEMO_APP_HANDLE_LEAVE_IND:
+                    R_DEMO_AppHandleLeaveIndication();
+                    break;
+                case R_DEMO_APP_HANDLE_BUFFER_IND:
+                    R_DEMO_AppHandleBufferInd((const r_adp_adpm_buffer_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_KEY_STATE_IND:
+                    R_DEMO_AppHandleKeyStateInd((const r_adp_adpm_key_state_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_STATUS_IND:
+                    R_DEMO_AppHandleStatusInd((const r_adp_adpm_network_status_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_LBP_IND:
+                    break;
+                case R_DEMO_APP_HANDLE_PATH_DIS_IND:
+                    R_DEMO_AppHandlePathDiscInd((r_adp_adpm_path_discovery_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_REBOOT_REQUEST_IND:
+                    R_DEMO_AppHandleSysRebootReqInd((r_sys_rebootreq_ind_t *) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_FRAMECOUNT_IND:
+                    R_DEMO_AppHandleFrameCntInd((r_adp_adpm_framecounter_ind_t*) deque.pdata);
+                    break;
+//                case R_DEMO_APP_HANDLE_EAP_NETWORKJOIN_IND:
+//                    R_DEMO_AppHandleEapNwkJoinInd((r_eap_eapm_network_join_ind_t*) deque.pdata);
+//                    break;
+//                case R_DEMO_APP_HANDLE_EAP_NETWORKLEAVE_IND:
+//                    R_DEMO_AppHandleEapNwkLeaveInd((r_eap_eapm_network_leave_ind_t*) deque.pdata);
+//                    break;
+//                case R_DEMO_APP_HANDLE_EAP_NEWDEVICE_IND:
+//                    R_DEMO_AppHandleEapNewDeviceInd((r_eap_eapm_newdevice_ind_t*) deque.pdata);
+//                    break;
+//                case R_DEMO_APP_HANDLE_EAP_EAP_KEY_IND:
+//                    R_DEMO_AppHandleEapEapKeyInd((r_eap_eapm_eap_key_ind_t*) deque.pdata);
+//                    break;
+                case R_DEMO_APP_HANDLE_MAC_DATA_IND:
+                    R_DEMO_AppHandleMcpsDataInd((r_g3mac_mcps_data_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_ADP_ROUTE_UPDATE_IND:
+                    R_DEMO_AppHandleRouteInd((const r_adp_adpm_route_update_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_ADP_LOAD_SEQ_NUM_IND:
+                    R_DEMO_AppHandleLoadInd((const r_adp_adpm_load_seq_num_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_MAC_TMR_RCV_IND:
+                    R_DEMO_AppHandleMacTmrRcvInd((const r_g3mac_mlme_tmr_receive_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_MAC_TMR_TRANSMIT_IND:
+                    R_DEMO_AppHandleMacTmrTransmitInd((const r_g3mac_mlme_tmr_transmit_ind_t*) deque.pdata);
+                    break;
+                case R_DEMO_APP_HANDLE_ADP_RREP_IND:
+                    R_DEMO_AppHandleRrepInd((const r_adp_adpm_rrep_ind_t*) deque.pdata);
+                    break;
+                default:
+                    break;
+            }
+
+            /* Free memory. */
+            R_MEMORY_Free(R_MEM_INSTANCE_DEMO, deque.pdata);
+        }
+    }
+    while (R_QUEUE_RESULT_SUCCESS == queueReturn);
+
+
+    R_BSP_TimerOn(R_BSP_TIMER_ID_1);
+
+}
+/******************************************************************************
+   End of function  app_process_thread
+******************************************************************************/
+#endif

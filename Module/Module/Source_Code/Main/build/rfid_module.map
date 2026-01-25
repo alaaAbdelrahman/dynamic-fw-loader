@@ -1,0 +1,91 @@
+﻿###############################################################################
+#
+# IAR ELF Linker V8.22.1.15669/W32 for ARM                02/Nov/2025  12:24:47
+# Copyright 2007-2018 IAR Systems AB.
+#
+#    Output file  =  build\rfid_module.out
+#    Map file     =  build\rfid_module.map
+#    Command line =  
+#        build\rfid_module.o --config rfid.icf --no_entry --map
+#        build\rfid_module.map -o build\rfid_module.out
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because no calls to memory allocation
+functions were found in the application outside of system library
+functions, and there are calls to deallocation functions in the
+application.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"P1":  place in [from 0x000fff00 to 0x000fffff] {
+          ro section .text, ro section .rodata, ro section .exec_code };
+
+No sections matched the following patterns:
+
+  ro section .exec_code  in "P1"
+  rw                     in "P2"
+
+
+  Section  Kind        Address  Size  Object
+  -------  ----        -------  ----  ------
+"P1":                           0x3c
+  .text    ro code  0x000fff00  0x28  rfid_module.o [1]
+  .rodata  const    0x000fff28   0xc  rfid_module.o [1]
+  .rodata  const    0x000fff34   0x8  rfid_module.o [1]
+                  - 0x000fff3c  0x3c
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module         ro code  ro data
+    ------         -------  -------
+D:\ModuleLoader-master\ModuleLoader-master\Source_Code\Main\build: [1]
+    rfid_module.o       40       20
+    -------------------------------
+    Total:              40       20
+
+-----------------------------------
+    Grand Total:        40       20
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address  Size  Type      Object
+-----                      -------  ----  ----      ------
+RFID_Init               0x000fff01  0x10  Code  Gb  rfid_module.o [1]
+RFID_Read               0x000fff11  0x18  Code  Gb  rfid_module.o [1]
+__iar_systems$$module {Abs}
+                        0x00000001        Data  Gb  command line/config [2]
+module_header           0x000fff28   0xc  Data  Gb  rfid_module.o [1]
+rfid_api                0x000fff34   0x8  Data  Gb  rfid_module.o [1]
+
+
+[1] = D:\ModuleLoader-master\ModuleLoader-master\Source_Code\Main\build
+[2] = command line
+
+  40 bytes of readonly  code memory
+  20 bytes of readonly  data memory
+
+Errors: none
+Warnings: none

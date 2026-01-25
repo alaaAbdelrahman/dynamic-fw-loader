@@ -1,0 +1,1461 @@
+###############################################################################
+#
+# IAR ELF Linker V8.22.1.15669/W32 for ARM                19/Mar/2020  11:38:37
+# Copyright 2007-2018 IAR Systems AB.
+#
+#    Output file  =  
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Exe\12S.out
+#    Map file     =  
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\List\12S.map
+#    Command line =  
+#        -f C:\Users\IBRAHE~1.MOS\AppData\Local\Temp\EW31D4.tmp
+#        (D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\adc_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\ADE7953.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\AES.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\basic_srv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Bluetooth_cc41.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Cal_Act.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Cal_Evt.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Cal_Get.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Cal_Obj.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Cal_Set.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Channels.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Channels_plat.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\clk_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Clock.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\comm.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Cosem_Main.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\ctrl.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dal_E2p.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dal_Ip.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dal_Phy.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dal_Rs.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dal_Sys.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\disconnector.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\display.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Appli.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Asso.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Gcm.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Hdlc.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Hdlc_plat.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Intf.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_IpWrap.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Main.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_PhyLp.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_PhyRs.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Secur.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_str_tools.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Switch.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_SwitchDl.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_SwitchPhy.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Dlms_Xdr.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\EEPROM.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\file_sys.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Flash.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Flash_app.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\gcm.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\gpio_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\gprs_sys.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\i2c_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\iec62056_21_slave.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Keypad.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\lcd_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\LCD_HQ30774.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\limiter.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Main.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\meter_init.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\MFRC522.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\MODEM.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\mtr.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Os_Error.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Os_Timer.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\pc_plat.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\plat.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Power_modes.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\RF_Link.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\rfid_sys.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\rtc_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\self_test.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\soft_spi_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\soft_spi_intf.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\spi_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\startup_V85XX.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Task_priority.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\TI_CC1120.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\TIMER_hdlc.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\tmr_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\trf_pymt.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\uart_drv.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_adc.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_adc_tiny.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_ana.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_clk.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_CodeRAM.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_comp.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_cortex.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_crypt.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_dma.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_flash.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_gpio.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_i2c.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_iso7816.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_isr.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_lcd.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_LoadNVR.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_misc.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_pmu.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_pwm.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_rtc.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_spi.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_tmr.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_u32k.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_uart.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_version.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\v85xx_wdt.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\V9203.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\V9261f.o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj\Vango85x_lcd.o
+#        -o
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Exe\12S.out
+#        --map
+#        D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\List\12S.map
+#        --config "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\config\linker\VANGO\V85XX_flash.icf" --entry
+#        __iar_program_start --inline --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because no calls to memory allocation
+functions were found in the application outside of system library
+functions, and there are calls to deallocation functions in the
+application.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at 0x00000000 { ro section .intvec };
+"P1":  place in [from 0x00000000 to 0x0003ffff] { ro };
+define block CSTACK with size = 4K, alignment = 8 { };
+define block HEAP with size = 1K, alignment = 8 { };
+"P2":  place in [from 0x20000000 to 0x20007fff] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+No sections matched the following patterns:
+
+  ro section .Reset_Handler_text  in "A1"
+
+
+  Section            Kind        Address     Size  Object
+  -------            ----        -------     ----  ------
+"A0":                                        0xb0
+  .intvec            ro code  0x00000000     0xb0  startup_V85XX.o [1]
+                            - 0x000000b0     0xb0
+
+"P1":                                     0x15e16
+  .text              ro code  0x000000b0   0x2eec  ctrl.o [1]
+  .text              ro code  0x00002f9c    0x308  LCD_HQ30774.o [1]
+  .text              ro code  0x000032a4     0x8c  v85xx_gpio.o [1]
+  .text              ro code  0x00003330    0x2e4  gpio_drv.o [1]
+  .text              ro code  0x00003614    0x120  v85xx_adc.o [1]
+  .text              ro code  0x00003734    0x300  uart_drv.o [1]
+  .text              ro code  0x00003a34     0x1c  v85xx_spi.o [1]
+  .text              ro code  0x00003a50    0x47c  v85xx_i2c.o [1]
+  .text              ro code  0x00003ecc     0x64  ABImemset.o [5]
+  .text              ro code  0x00003f30     0x5c  ABImemcpy.o [5]
+  .text              ro code  0x00003f8c    0x300  basic_srv.o [1]
+  .text              ro code  0x0000428c    0x10e  rtc_drv.o [1]
+  .text              ro code  0x0000439c   0x2c64  trf_pymt.o [1]
+  .text              ro code  0x00007000     0xdc  v85xx_rtc.o [1]
+  .text              ro code  0x000070dc     0x84  v85xx_cortex.o [1]
+  .text              ro code  0x00007160     0xc4  file_sys.o [1]
+  .text              ro code  0x00007224   0x1c44  mtr.o [1]
+  .text              ro code  0x00008e68   0x1c68  rfid_sys.o [1]
+  .text              ro code  0x0000aad0   0x2db4  display.o [1]
+  .text              ro code  0x0000d884    0x2d4  v85xx_pmu.o [1]
+  .text              ro code  0x0000db58     0x14  uwrite4.o [5]
+  .text              ro code  0x0000db6c     0x6a  v85xx_tmr.o [1]
+  .text              ro code  0x0000dbd8     0x6c  Power_modes.o [1]
+  .text              ro code  0x0000dc44     0x20  v85xx_wdt.o [1]
+  .text              ro code  0x0000dc64     0xd0  meter_init.o [1]
+  .text              ro code  0x0000dd34   0x109c  V9261f.o [1]
+  .text              ro code  0x0000edd0    0x1b8  EEPROM.o [1]
+  .text              ro code  0x0000ef88     0xa0  adc_drv.o [1]
+  .text              ro code  0x0000f028    0x9d4  iec62056_21_slave.o [1]
+  .text              ro code  0x0000f9fc     0xe0  I32DivModFast.o [5]
+  .text              ro code  0x0000fadc     0x16  uread4.o [5]
+  .text              ro code  0x0000faf4   0x130c  comm.o [1]
+  .text              ro code  0x00010e00     0xa4  tmr_drv.o [1]
+  .text              ro code  0x00010ea4     0x30  Task_priority.o [1]
+  .text              ro code  0x00010ed4     0x9c  v85xx_lcd.o [1]
+  .text              ro code  0x00010f70     0xac  Vango85x_lcd.o [1]
+  .text              ro code  0x0001101c     0xa4  v85xx_uart.o [1]
+  .text              ro code  0x000110c0    0x288  v85xx_clk.o [1]
+  .text              ro code  0x00011348     0x28  memcmp.o [5]
+  .text              ro code  0x00011370     0xf8  mktime.o [3]
+  .text              ro code  0x00011468     0x1c  difftime.o [4]
+  .text              ro code  0x00011484     0x52  DblToI32.o [4]
+  .text              ro code  0x000114d8    0x530  Flash_app.o [1]
+  .text              ro code  0x00011a08    0x558  Flash.o [1]
+  .text              ro code  0x00011f60     0x6a  I64DivMod.o [5]
+  .text              ro code  0x00011fcc     0x70  IxxToDbl.o [4]
+  .text              ro code  0x0001203c    0x1b4  DblAddSub.o [4]
+  .text              ro code  0x000121f0    0xcdc  AES.o [1]
+  .text              ro code  0x00012ecc    0xb24  MFRC522.o [1]
+  .text              ro code  0x000139f0    0x100  i2c_drv.o [1]
+  .text              ro code  0x00013af0     0x32  I64Mul.o [5]
+  .text              ro code  0x00013b24     0x34  v85xx_ana.o [1]
+  .text              ro code  0x00013b58     0x3a  clk_drv.o [1]
+  .text              ro code  0x00013b94     0x1e  uwrite8.o [5]
+  .text              ro code  0x00013bb4     0x2a  uread8.o [5]
+  .text              ro code  0x00013bde     0xc2  DblDiv.o [4]
+  .text              ro code  0x00013ca0    0x184  DblMul.o [4]
+  .text              ro code  0x00013e24     0x80  DblToI64.o [4]
+  .text              ro code  0x00013ea4     0x20  IxxToFlt.o [4]
+  .text              ro code  0x00013ec4    0x120  FltAddSub.o [4]
+  .text              ro code  0x00013fe4     0xaa  FltDiv.o [4]
+  .text              ro code  0x00014090     0x32  FltToDbl.o [4]
+  .text              ro code  0x000140c2     0xb0  FltMul.o [4]
+  .text              ro code  0x00014172     0x62  DblToFlt.o [4]
+  .text              ro code  0x000141d4     0x3a  FltToS32.o [4]
+  .text              ro code  0x00014210    0xb78  pow64.o [4]
+  .text              ro code  0x00014d88     0x5c  v85xx_LoadNVR.o [1]
+  .text              ro code  0x00014de4     0x6c  xDaysTo.o [3]
+  .text              ro code  0x00014e50    0x118  xttotm.o [3]
+  .text              ro code  0x00014f68     0x54  soft_spi_intf.o [1]
+  .text              ro code  0x00014fbc     0x24  DblCmpEq.o [4]
+  .text              ro code  0x00014fe0     0x32  DblCmpLe.o [4]
+  .text              ro code  0x00015012     0x32  DblCmpGe.o [4]
+  .text              ro code  0x00015044    0x3bc  iar_Exp64.o [4]
+  .text              ro code  0x00015400     0xe0  soft_spi_drv.o [1]
+  .text              ro code  0x000154e0    0x3a2  v85xx_isr.o [1]
+  .rodata            const    0x00015884    0x19c  display.o [1]
+  .rodata            const    0x00015a20    0x10c  AES.o [1]
+  .rodata            const    0x00015b2c     0x80  V9261f.o [1]
+  CHIPINIT           ro code  0x00015bac     0x6c  startup_V85XX.o [1]
+  .text              ro code  0x00015c18     0x58  Main.o [1]
+  .text              ro code  0x00015c70     0x16  self_test.o [1]
+  .rodata            const    0x00015c88     0x4c  ctrl.o [1]
+  .text              ro code  0x00015cd4     0x3c  zero_init3.o [5]
+  .text              ro code  0x00015d10     0x3c  packbits_init_single.o [5]
+  .rodata            const    0x00015d4c     0x38  iec62056_21_slave.o [1]
+  .text              ro code  0x00015d84     0x28  data_init.o [5]
+  .iar.init_table    const    0x00015dac     0x20  - Linker created -
+  .text              ro code  0x00015dcc     0x1e  cmain.o [5]
+  .text              ro code  0x00015dea      0x8  exit.o [3]
+  .text              ro code  0x00015df4      0xa  cexit.o [5]
+  .text              ro code  0x00015e00      0xc  XXexit.o [5]
+  .rodata            const    0x00015e0c     0x10  rfid_sys.o [1]
+  .text              ro code  0x00015e1c     0x10  startup_V85XX.o [1]
+  .text              ro code  0x00015e2c      0xc  cstartup_M.o [5]
+  .rodata            const    0x00015e38      0x8  comm.o [1]
+  .rodata            const    0x00015e40      0x8  mtr.o [1]
+  .rodata            const    0x00015e48      0x8  trf_pymt.o [1]
+  .rodata            const    0x00015e50      0x0  zero_init3.o [5]
+  .rodata            const    0x00015e50      0x0  packbits_init_single.o [5]
+  Initializer bytes  const    0x00015e50     0x76  <for P2-1>
+                            - 0x00015ec6  0x15e16
+
+"P2", part 1 of 3:                          0x18f
+  P2-1                        0x20000000    0x18f  <Init block>
+    .data            inited   0x20000000     0xe0  V9261f.o [1]
+    .data            inited   0x200000e0     0x20  V9261f.o [1]
+    .data            inited   0x20000100     0x26  display.o [1]
+    .data            inited   0x20000128     0x18  iec62056_21_slave.o [1]
+    .data            inited   0x20000140     0x18  mtr.o [1]
+    .data            inited   0x20000158     0x34  rfid_sys.o [1]
+    .data            inited   0x2000018c      0x3  v85xx_isr.o [1]
+                            - 0x2000018f    0x18f
+
+"P2", part 2 of 3:                         0x1998
+  .bss               zero     0x20000190    0x7d0  rfid_sys.o [1]
+  .bss               zero     0x20000960    0x4f4  ctrl.o [1]
+  .bss               zero     0x20000e54    0x420  iec62056_21_slave.o [1]
+  .bss               zero     0x20001274    0x2b0  trf_pymt.o [1]
+  .bss               zero     0x20001524    0x15c  mtr.o [1]
+  .bss               zero     0x20001680    0x104  Flash.o [1]
+  .bss               zero     0x20001784     0x94  rfid_sys.o [1]
+  .bss               zero     0x20001818     0x70  display.o [1]
+  .bss               zero     0x20001888     0x50  Flash_app.o [1]
+  .bss               zero     0x200018d8     0x40  V9261f.o [1]
+  .bss               zero     0x20001918     0x3c  Flash_app.o [1]
+  .bss               zero     0x20001954     0x3c  trf_pymt.o [1]
+  .bss               zero     0x20001990     0x34  mtr.o [1]
+  .bss               zero     0x200019c4     0x30  ctrl.o [1]
+  .bss               zero     0x200019f4     0x2c  xttotm.o [3]
+  .bss               zero     0x20001a20     0x18  file_sys.o [1]
+  .bss               zero     0x20001a38     0x18  mtr.o [1]
+  .bss               zero     0x20001a50     0x18  V9261f.o [1]
+  .bss               zero     0x20001a68     0x14  trf_pymt.o [1]
+  .bss               zero     0x20001a7c     0x10  rfid_sys.o [1]
+  .bss               zero     0x20001a8c     0x10  v85xx_isr.o [1]
+  .bss               zero     0x20001a9c      0xd  display.o [1]
+  .bss               zero     0x20001aa9      0x3  MFRC522.o [1]
+  .bss               zero     0x20001aac      0xd  MFRC522.o [1]
+  .bss               zero     0x20001ab9      0x2  comm.o [1]
+  .bss               zero     0x20001abb      0x1  ctrl.o [1]
+  .bss               zero     0x20001abc      0xc  comm.o [1]
+  .bss               zero     0x20001ac8      0xc  Flash.o [1]
+  .bss               zero     0x20001ad4      0xc  rfid_sys.o [1]
+  .bss               zero     0x20001ae0      0xb  display.o [1]
+  .bss               zero     0x20001aec      0x4  trf_pymt.o [1]
+  .bss               zero     0x20001af0      0x8  tmr_drv.o [1]
+  .bss               zero     0x20001af8      0x8  v85xx_isr.o [1]
+  .bss               zero     0x20001b00      0x8  v85xx_isr.o [1]
+  .bss               zero     0x20001b08      0x4  v85xx_clk.o [1]
+  .bss               zero     0x20001b0c      0x2  ctrl.o [1]
+  .bss               zero     0x20001b0e      0x2  meter_init.o [1]
+  .bss               zero     0x20001b10      0x2  mtr.o [1]
+  .bss               zero     0x20001b12      0x2  Task_priority.o [1]
+  .bss               zero     0x20001b14      0x2  V9261f.o [1]
+  .bss               zero     0x20001b16      0x1  ctrl.o [1]
+  .bss               zero     0x20001b17      0x1  display.o [1]
+  .bss               zero     0x20001b18      0x1  display.o [1]
+  .bss               zero     0x20001b19      0x1  EEPROM.o [1]
+  .bss               zero     0x20001b1a      0x1  file_sys.o [1]
+  .bss               zero     0x20001b1b      0x1  iec62056_21_slave.o [1]
+  .bss               zero     0x20001b1c      0x1  Main.o [1]
+  .bss               zero     0x20001b1d      0x1  mtr.o [1]
+  .bss               zero     0x20001b1e      0x1  mtr.o [1]
+  .bss               zero     0x20001b1f      0x1  mtr.o [1]
+  .bss               zero     0x20001b20      0x1  mtr.o [1]
+  .bss               zero     0x20001b21      0x1  Power_modes.o [1]
+  .bss               zero     0x20001b22      0x1  uart_drv.o [1]
+  .bss               zero     0x20001b23      0x1  uart_drv.o [1]
+  .bss               zero     0x20001b24      0x1  uart_drv.o [1]
+  .bss               zero     0x20001b25      0x1  V9261f.o [1]
+                            - 0x20001b26   0x1996
+
+"P2", part 3 of 3:                         0x1000
+  CSTACK                      0x20001b28   0x1000  <Block>
+    CSTACK           uninit   0x20001b28   0x1000  <Block tail>
+                            - 0x20002b28   0x1000
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x1996:
+          0x20000190  0x1996
+
+Copy/packbits (__iar_packbits_init_single3)
+    1 source range, total size 0x76 (29% of destination):
+          0x00015e50    0x76
+    1 destination range, total size 0x18f:
+          0x20000000   0x18f
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                  ro code  ro data  rw data
+    ------                  -------  -------  -------
+D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj: [1]
+    AES.o                     3 292      268
+    EEPROM.o                    440                 1
+    Flash.o                   1 368               272
+    Flash_app.o               1 328               140
+    LCD_HQ30774.o               776
+    MFRC522.o                 2 852                16
+    Main.o                       88                 1
+    Power_modes.o               108                 1
+    Task_priority.o              48                 2
+    V9261f.o                  4 252      203      347
+    Vango85x_lcd.o              172
+    adc_drv.o                   160
+    basic_srv.o                 768
+    clk_drv.o                    58
+    comm.o                    4 876        8       14
+    ctrl.o                   12 012       76    1 320
+    display.o                11 700      423      176
+    file_sys.o                  196                25
+    gpio_drv.o                  740
+    i2c_drv.o                   256
+    iec62056_21_slave.o       2 516       64    1 081
+    meter_init.o                208                 2
+    mtr.o                     7 236       15      454
+    rfid_sys.o                7 272       32    2 228
+    rtc_drv.o                   270
+    self_test.o                  22
+    soft_spi_drv.o              224
+    soft_spi_intf.o              84
+    startup_V85XX.o             300
+    tmr_drv.o                   164                 8
+    trf_pymt.o               11 364        8      772
+    uart_drv.o                  768                 3
+    v85xx_LoadNVR.o              92
+    v85xx_adc.o                 288
+    v85xx_ana.o                  52
+    v85xx_clk.o                 648                 4
+    v85xx_cortex.o              132
+    v85xx_gpio.o                140
+    v85xx_i2c.o               1 148
+    v85xx_isr.o                 930        1       35
+    v85xx_lcd.o                 156
+    v85xx_pmu.o                 724
+    v85xx_rtc.o                 220
+    v85xx_spi.o                  28
+    v85xx_tmr.o                 106
+    v85xx_uart.o                164
+    v85xx_wdt.o                  32
+    -------------------------------------------------
+    Total:                   80 778    1 098    6 902
+
+command line: [2]
+    -------------------------------------------------
+    Total:
+
+dl6M_tln.a: [3]
+    exit.o                        8
+    mktime.o                    248
+    xDaysTo.o                   108
+    xttotm.o                    280                44
+    -------------------------------------------------
+    Total:                      644                44
+
+m6M_tl.a: [4]
+    DblAddSub.o                 436
+    DblCmpEq.o                   36
+    DblCmpGe.o                   50
+    DblCmpLe.o                   50
+    DblDiv.o                    194
+    DblMul.o                    388
+    DblToFlt.o                   98
+    DblToI32.o                   82
+    DblToI64.o                  128
+    FltAddSub.o                 288
+    FltDiv.o                    170
+    FltMul.o                    176
+    FltToDbl.o                   50
+    FltToS32.o                   58
+    IxxToDbl.o                  112
+    IxxToFlt.o                   32
+    difftime.o                   28
+    iar_Exp64.o                 956
+    pow64.o                   2 936
+    -------------------------------------------------
+    Total:                    6 268
+
+rt6M_tl.a: [5]
+    ABImemcpy.o                  92
+    ABImemset.o                 100
+    I32DivModFast.o             224
+    I64DivMod.o                 106
+    I64Mul.o                     50
+    XXexit.o                     12
+    cexit.o                      10
+    cmain.o                      30
+    cstartup_M.o                 12
+    data_init.o                  40
+    memcmp.o                     40
+    packbits_init_single.o       60
+    uread4.o                     22
+    uread8.o                     42
+    uwrite4.o                    20
+    uwrite8.o                    30
+    zero_init3.o                 60
+    -------------------------------------------------
+    Total:                      950
+
+    Gaps                         24        4        3
+    Linker created                        32    4 096
+-----------------------------------------------------
+    Grand Total:             88 664    1 134   11 045
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address    Size  Type      Object
+-----                      -------    ----  ----      ------
+.iar.init_table$$Base   0x00015dac           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x00015dcc           --   Gb  - Linker created -
+?main                   0x00015dcd          Code  Gb  cmain.o [5]
+ACT_POW                 0x200018e0     0x8  Data  Gb  V9261f.o [1]
+ADC_Cmd                 0x000036b5    0x1e  Code  Gb  v85xx_adc.o [1]
+ADC_DeInit              0x00003615    0x22  Code  Gb  v85xx_adc.o [1]
+ADC_GetADCConversionValue
+                        0x00003719     0x8  Code  Gb  v85xx_adc.o [1]
+ADC_Init                0x00003637    0x6e  Code  Gb  v85xx_adc.o [1]
+ADC_RESDivisionCmd      0x000036f9    0x18  Code  Gb  v85xx_adc.o [1]
+ADC_StartManual         0x000036d5     0xe  Code  Gb  v85xx_adc.o [1]
+ADC_WaitForManual       0x000036e3    0x16  Code  Gb  v85xx_adc.o [1]
+AES_decrypt_block       0x00012eb3    0x1a  Code  Gb  AES.o [1]
+AES_encrypt_block       0x00012e99    0x1a  Code  Gb  AES.o [1]
+ANA_ClearINTStatus      0x00013b35     0x6  Code  Gb  v85xx_ana.o [1]
+ANA_GetINTStatus        0x00013b25     0x2  Code  Gb  v85xx_ana.o [1]
+ANA_INTConfig           0x00013b3b    0x14  Code  Gb  v85xx_ana.o [1]
+ANA_IRQHandler          0x000157af    0x82  Code  Gb  v85xx_isr.o [1]
+Act_pow_error           0x200018e8     0x8  Data  Gb  V9261f.o [1]
+BCDToDecimal            0x0000424f    0x12  Code  Gb  basic_srv.o [1]
+BS_check_all_with_Value
+                        0x00004205    0x20  Code  Gb  basic_srv.o [1]
+BS_check_all_zeros      0x000041e9    0x1c  Code  Gb  basic_srv.o [1]
+BS_check_valid_date     0x0000418d    0x5c  Code  Gb  basic_srv.o [1]
+Boot_loader_flag        0x200019ca     0x1  Data  Gb  ctrl.o [1]
+Boot_loader_timeout     0x20001ac2     0x2  Data  Gb  comm.o [1]
+CLK_ClockConfig         0x000110c1   0x154  Code  Gb  v85xx_clk.o [1]
+CLK_GetHCLKFreq         0x00011215    0xf8  Code  Gb  v85xx_clk.o [1]
+CLK_GetPCLKFreq         0x0001130d    0x14  Code  Gb  v85xx_clk.o [1]
+CORTEX_NVIC_DisableIRQ  0x0000713f     0xe  Code  Gb  v85xx_cortex.o [1]
+CORTEX_NVIC_EnableIRQ   0x00007131     0xe  Code  Gb  v85xx_cortex.o [1]
+CORTEX_SetPriority_ClearPending_EnableIRQ
+                        0x00007119    0x18  Code  Gb  v85xx_cortex.o [1]
+CSTACK$$Base            0x20001b28           --   Gb  - Linker created -
+CSTACK$$Limit           0x20002b28           --   Gb  - Linker created -
+CURR_RATIO_FACTOR       0x20000070     0x4  Data  Gb  V9261f.o [1]
+CURR_RMS                0x200018f0     0x4  Data  Gb  V9261f.o [1]
+Calib_M_value           0x2000007c     0x4  Data  Gb  V9261f.o [1]
+Check_var               0x2000018e     0x1  Data  Gb  v85xx_isr.o [1]
+CtrlParam               0x00015b58    0x54  Data  Gb  V9261f.o [1]
+DMA_IRQHandler          0x000157ab     0x2  Code  Gb  v85xx_isr.o [1]
+DecimalToBCD            0x00004261    0x1c  Code  Gb  basic_srv.o [1]
+Delay_ms                0x00004225    0x2a  Code  Gb  basic_srv.o [1]
+Delay_read              0x20001aa9     0x1  Data  Lc  MFRC522.o [1]
+Display_check_edit_mode
+                        0x0000d621    0x10  Code  Gb  display.o [1]
+Display_check_norm_screen
+                        0x0000aad1    0x52  Code  Lc  display.o [1]
+EEPROM_Failure_Handler  0x0000eee9    0x2c  Code  Gb  EEPROM.o [1]
+EEPROM_Initialize       0x0000edd1     0x4  Code  Gb  EEPROM.o [1]
+EEPROM_read             0x0000eea3    0x46  Code  Gb  EEPROM.o [1]
+EEPROM_write            0x0000ede1    0xc2  Code  Gb  EEPROM.o [1]
+FLASH_Avaliable         0x00011a99    0x22  Code  Gb  Flash.o [1]
+FLASH_Enable_Write      0x00011abb    0x50  Code  Gb  Flash.o [1]
+FLASH_Form_Instruction  0x00011a09    0x2e  Code  Gb  Flash.o [1]
+FLASH_Handle_ReadWriteOperantion
+                        0x00011c05    0x76  Code  Gb  Flash.o [1]
+FLASH_IRQHandler        0x000157ad     0x2  Code  Gb  v85xx_isr.o [1]
+FLASH_Read_Status_Register
+                        0x00011a37    0x62  Code  Gb  Flash.o [1]
+FLASH_Write_Status_Register
+                        0x00011b0b    0x5e  Code  Gb  Flash.o [1]
+FLASH_gEraseSector_ByIndex
+                        0x00011ebd    0x2c  Code  Gb  Flash.o [1]
+FLASH_gInit             0x00011b69    0x2c  Code  Gb  Flash.o [1]
+FLASH_gReadPage         0x00011cd3    0x6c  Code  Gb  Flash.o [1]
+FLASH_gRead_ByIndex     0x00011e65    0x58  Code  Gb  Flash.o [1]
+FLASH_gSectorErase      0x00011ee9    0x64  Code  Gb  Flash.o [1]
+FLASH_gWritePage        0x00011b95    0x68  Code  Gb  Flash.o [1]
+FLASH_gWrite_ByIndex    0x00011c7b    0x58  Code  Gb  Flash.o [1]
+Failure_time            0x20001b19     0x1  Data  Lc  EEPROM.o [1]
+FlASH_SelectOperation   0x00011d49   0x11c  Code  Gb  Flash.o [1]
+FlASH_SelectOperation::datainformation
+                        0x20001ac8     0xc  Data  Lc  Flash.o [1]
+Flash_Image_Info_arr    0x20001918    0x3c  Data  Gb  Flash_app.o [1]
+Flash_Record_ID_arr     0x20001888    0x50  Data  Gb  Flash_app.o [1]
+Flash_app_Get_Image_Info
+                        0x00011609    0x70  Code  Gb  Flash_app.o [1]
+Flash_app_Get_Record_ID_from_flash
+                        0x0001156d    0x60  Code  Gb  Flash_app.o [1]
+Flash_app_Save_Image_Info
+                        0x000115d5    0x34  Code  Gb  Flash_app.o [1]
+Flash_app_Save_Record_ID
+                        0x00011539    0x34  Code  Gb  Flash_app.o [1]
+Flash_app_Set_Default_Record_ID
+                        0x0001167d    0x2a  Code  Gb  Flash_app.o [1]
+Flash_app_clear_Record  0x000117d1    0x12  Code  Gb  Flash_app.o [1]
+Flash_app_event         0x000119ab    0x48  Code  Gb  Flash_app.o [1]
+Flash_app_get_MAX_No_Records
+                        0x00011759    0x60  Code  Gb  Flash_app.o [1]
+Flash_app_get_mlti_rec  0x0001199d     0xe  Code  Gb  Flash_app.o [1]
+Flash_app_get_num_record
+                        0x000117e3    0x1a  Code  Gb  Flash_app.o [1]
+Flash_app_get_record    0x00011809   0x184  Code  Gb  Flash_app.o [1]
+Flash_app_init          0x000114d9    0x5e  Code  Gb  Flash_app.o [1]
+Flash_app_save_record   0x000116a9    0xb0  Code  Gb  Flash_app.o [1]
+GPIOA_Init              0x000032b7     0x2  Code  Gb  v85xx_gpio.o [1]
+GPIOA_ReadInputDataBit  0x000032f9     0x4  Code  Gb  v85xx_gpio.o [1]
+GPIOA_ResetBits         0x00003323     0x8  Code  Gb  v85xx_gpio.o [1]
+GPIOA_SetBits           0x00003313     0x8  Code  Gb  v85xx_gpio.o [1]
+GPIOBToF_Init           0x000032a5    0x12  Code  Gb  v85xx_gpio.o [1]
+GPIOBToF_ReadInputDataBit
+                        0x000032f5     0x4  Code  Gb  v85xx_gpio.o [1]
+GPIOBToF_ResetBits      0x0000331b     0x8  Code  Gb  v85xx_gpio.o [1]
+GPIOBToF_SetBits        0x0000330b     0x8  Code  Gb  v85xx_gpio.o [1]
+GPIO_disable_rfid_board
+                        0x0000333f     0xe  Code  Gb  gpio_drv.o [1]
+GPIO_enable_rfid_board  0x00003331     0xe  Code  Gb  gpio_drv.o [1]
+GPIO_init_Calib_pin_INPUT
+                        0x000035a5    0x16  Code  Gb  gpio_drv.o [1]
+GPIO_lcdpins_OutPut_PWD
+                        0x0000350d    0x98  Code  Gb  gpio_drv.o [1]
+HDLC_Activity_Counter   0x200019ce     0x1  Data  Gb  ctrl.o [1]
+HardFault_Handler       0x000154f3    0x7c  Code  Gb  v85xx_isr.o [1]
+I2C_CheckState          0x00003a51    0x1a  Code  Lc  v85xx_i2c.o [1]
+I2C_ClearBus            0x00003b1d    0x28  Code  Lc  v85xx_i2c.o [1]
+I2C_Cmd                 0x00003eaf    0x18  Code  Gb  v85xx_i2c.o [1]
+I2C_DeInit              0x00003b45    0x14  Code  Gb  v85xx_i2c.o [1]
+I2C_IRQHandler          0x0001564d     0x2  Code  Gb  v85xx_isr.o [1]
+I2C_Inf_RX_frame        0x00013ab9    0x22  Code  Gb  i2c_drv.o [1]
+I2C_Inf_TX_frame        0x00013a99    0x20  Code  Gb  i2c_drv.o [1]
+I2C_Init                0x00003b59    0x1c  Code  Gb  v85xx_i2c.o [1]
+I2C_MasterReadBytes     0x00003b75   0x146  Code  Gb  v85xx_i2c.o [1]
+I2C_MasterWriteBytes    0x00003cd1   0x1de  Code  Gb  v85xx_i2c.o [1]
+I2C_ReceiveByte         0x00003afb    0x22  Code  Lc  v85xx_i2c.o [1]
+I2C_SendByte            0x00003adf    0x1c  Code  Lc  v85xx_i2c.o [1]
+I2C_SendRestart         0x00003a93    0x30  Code  Lc  v85xx_i2c.o [1]
+I2C_SendStart           0x00003a6b    0x28  Code  Lc  v85xx_i2c.o [1]
+I2C_SendStop            0x00003ac3    0x1c  Code  Gb  v85xx_i2c.o [1]
+ID_Records_Page_Index_arr
+                        0x000115cc     0x8  Data  Gb  Flash_app.o [1]
+IEC_DRU_flag            0x20000129     0x1  Data  Gb  iec62056_21_slave.o [1]
+ISO78160_IRQHandler     0x00015711     0x2  Code  Gb  v85xx_isr.o [1]
+ISO78161_IRQHandler     0x00015713     0x2  Code  Gb  v85xx_isr.o [1]
+ISO7816_GetUID          0x000138e1    0xac  Code  Gb  MFRC522.o [1]
+ISO7816_ReadBinary      0x0001380f    0xd2  Code  Gb  MFRC522.o [1]
+ISO7816_SET_DELAY       0x0001398d    0x58  Code  Gb  MFRC522.o [1]
+ISO7816_SelectFile      0x0001368b    0xb4  Code  Gb  MFRC522.o [1]
+ISO7816_WriteBinary     0x0001373f    0xd0  Code  Gb  MFRC522.o [1]
+Info_Image_Page_Index_arr
+                        0x00011678     0x4  Data  Gb  Flash_app.o [1]
+Init_LoadcalibParam     0x0000dfa5   0x12c  Code  Gb  V9261f.o [1]
+LCD_Cmd                 0x00010f4d    0x18  Code  Gb  v85xx_lcd.o [1]
+LCD_DeInit              0x00010f35    0x18  Code  Gb  v85xx_lcd.o [1]
+LCD_Init                0x00010ed5    0x4a  Code  Gb  v85xx_lcd.o [1]
+LCD_StructInit          0x00010f1f    0x16  Code  Gb  v85xx_lcd.o [1]
+LOW_ENERGY_THRESHOLD    0x20000074     0x4  Data  Gb  V9261f.o [1]
+LPM_Config              0x0000dc1d    0x1e  Code  Gb  Power_modes.o [1]
+LPM_status              0x200019c9     0x1  Data  Gb  ctrl.o [1]
+LSB_wh                  0x200000f8     0x8  Data  Gb  V9261f.o [1]
+MCU_disable_all         0x000000b1    0xf2  Code  Gb  ctrl.o [1]
+MTRCalibParam           0x20000024    0x30  Data  Gb  V9261f.o [1]
+NMI_Handler             0x000154e1    0x12  Code  Gb  v85xx_isr.o [1]
+NVIC_SetPriority        0x000070dd    0x3c  Code  Lc  v85xx_cortex.o [1]
+NVR_GetBATOffset        0x00014d89    0x52  Code  Gb  v85xx_LoadNVR.o [1]
+No_of_reiniting_rtc     0x20001b16     0x1  Data  Gb  ctrl.o [1]
+OPTRXBUF                0x20001b22     0x1  Data  Gb  uart_drv.o [1]
+PHDOWN_chk_event        0x20000141     0x1  Data  Gb  mtr.o [1]
+PMU_ClearIOAINTStatus   0x0000d8a3     0x6  Code  Gb  v85xx_pmu.o [1]
+PMU_EnterSleep_LowPower
+                        0x0000d95b    0xfe  Code  Gb  v85xx_pmu.o [1]
+PMU_GetIOAINTStatus     0x0000d899     0xa  Code  Gb  v85xx_pmu.o [1]
+PMU_GetPWRSRCStatus     0x0000db11     0x8  Code  Gb  v85xx_pmu.o [1]
+PMU_GetPowerStatus      0x0000db2b     0x6  Code  Gb  v85xx_pmu.o [1]
+PMU_GetRSTSource        0x0000db19    0x12  Code  Gb  v85xx_pmu.o [1]
+PMU_INTConfig           0x0000d885    0x14  Code  Gb  v85xx_pmu.o [1]
+PMU_IRQHandler          0x00015575    0x88  Code  Gb  v85xx_isr.o [1]
+PMU_MainPowerConfig     0x0000da9d    0x36  Code  Gb  v85xx_pmu.o [1]
+PMU_PowerSWTLevelConfig
+                        0x0000dad3     0xe  Code  Gb  v85xx_pmu.o [1]
+PMU_SleepWKUSRC_Config_RTC
+                        0x0000da5d    0x1e  Code  Gb  v85xx_pmu.o [1]
+PMU_VDCINDetector_Cmd   0x0000dae9    0x18  Code  Gb  v85xx_pmu.o [1]
+PMU_VDDAlarmTHConfig    0x0000da85     0xe  Code  Gb  v85xx_pmu.o [1]
+PMU_WakeUpPinConfig     0x0000d8a9    0xb2  Code  Gb  v85xx_pmu.o [1]
+POW_RATIO_FACTOR        0x20000058     0x8  Data  Gb  V9261f.o [1]
+PWM0_IRQHandler         0x000157a3     0x2  Code  Gb  v85xx_isr.o [1]
+PWM1_IRQHandler         0x000157a5     0x2  Code  Gb  v85xx_isr.o [1]
+PWM2_IRQHandler         0x000157a7     0x2  Code  Gb  v85xx_isr.o [1]
+PWM3_IRQHandler         0x000157a9     0x2  Code  Gb  v85xx_isr.o [1]
+PWR_down_detect         0x20001b21     0x1  Data  Gb  Power_modes.o [1]
+PendSV_Handler          0x00015571     0x2  Code  Gb  v85xx_isr.o [1]
+Power_up                0x00001bf5    0x16  Code  Gb  ctrl.o [1]
+Pwr_ctrl_config         0x0000dbd9    0x44  Code  Gb  Power_modes.o [1]
+RFID_idle_flag          0x2000016a     0x1  Data  Gb  rfid_sys.o [1]
+RFID_task_state         0x20000166     0x1  Data  Lc  rfid_sys.o [1]
+RSRXBUF                 0x20001b23     0x1  Data  Gb  uart_drv.o [1]
+RTC_C_GetRTCDAY         0x0000434f     0x8  Code  Gb  rtc_drv.o [1]
+RTC_C_GetRTCHOUR        0x00004357     0x8  Code  Gb  rtc_drv.o [1]
+RTC_C_GetRTCMIN         0x0000435f     0x8  Code  Gb  rtc_drv.o [1]
+RTC_C_GetRTCMON         0x00004339     0x6  Code  Gb  rtc_drv.o [1]
+RTC_C_GetRTCSEC         0x00004367     0x8  Code  Gb  rtc_drv.o [1]
+RTC_C_GetRTCYEAR        0x00004331     0x8  Code  Gb  rtc_drv.o [1]
+RTC_C_Update            0x0000428d    0x46  Code  Gb  rtc_drv.o [1]
+RTC_C_UpdateDate        0x00004303    0x2e  Code  Gb  rtc_drv.o [1]
+RTC_C_UpdateTime        0x000042d3    0x24  Code  Gb  rtc_drv.o [1]
+RTC_ClearINTStatus      0x00007053     0x6  Code  Gb  v85xx_rtc.o [1]
+RTC_GetINTStatus        0x0000704d     0x6  Code  Gb  v85xx_rtc.o [1]
+RTC_INTConfig           0x00007031    0x1c  Code  Gb  v85xx_rtc.o [1]
+RTC_IRQHandler          0x000155fd    0x4c  Code  Gb  v85xx_isr.o [1]
+RTC_PrescalerConfig     0x0000709d    0x1e  Code  Gb  v85xx_rtc.o [1]
+RTC_WKUSecondsConfig    0x00007065    0x10  Code  Gb  v85xx_rtc.o [1]
+RTC_WaitForSynchro      0x00007015    0x1c  Code  Gb  v85xx_rtc.o [1]
+RTC_WriteProtection     0x00007001    0x14  Code  Gb  v85xx_rtc.o [1]
+RTC_init                0x00004389    0x12  Code  Gb  rtc_drv.o [1]
+Rcon                    0x00015b20     0xc  Data  Gb  AES.o [1]
+Reach_MaxRecalStepFlag  0x2000195f     0x1  Data  Lc  trf_pymt.o [1]
+Records_Sector_End_arr  0x00011990     0xc  Data  Gb  Flash_app.o [1]
+Records_Sector_Start_arr
+                        0x000119fc     0xc  Data  Gb  Flash_app.o [1]
+Region$$Table$$Base     0x00015dac           --   Gb  - Linker created -
+Region$$Table$$Limit    0x00015dcc           --   Gb  - Linker created -
+SPI1_IRQHandler         0x0001564f     0x2  Code  Gb  v85xx_isr.o [1]
+SPI2_IRQHandler         0x00015881     0x2  Code  Gb  v85xx_isr.o [1]
+SPI_Cmd                 0x00003a35    0x16  Code  Gb  v85xx_spi.o [1]
+SVC_Handler             0x0001556f     0x2  Code  Gb  v85xx_isr.o [1]
+Set_New_Tariff          0x00006709   0x220  Code  Gb  trf_pymt.o [1]
+SignDisplay             0x200019bc     0x8  Data  Gb  mtr.o [1]
+SwapEndian16            0x000040fb     0xa  Code  Gb  basic_srv.o [1]
+SwapEndian32            0x000040df    0x1c  Code  Gb  basic_srv.o [1]
+SysTick_Handler         0x00015573     0x2  Code  Gb  v85xx_isr.o [1]
+TMR0_IRQHandler         0x00015715    0x1a  Code  Gb  v85xx_isr.o [1]
+TMR1_IRQHandler         0x0001572f    0x20  Code  Gb  v85xx_isr.o [1]
+TMR2_IRQHandler         0x00015755    0x38  Code  Gb  v85xx_isr.o [1]
+TMR2_IRQHandler::counter_10ms
+                        0x20001b04     0x4  Data  Lc  v85xx_isr.o [1]
+TMR3_IRQHandler         0x000157a1     0x2  Code  Gb  v85xx_isr.o [1]
+TMR_Cmd                 0x0000dbc1    0x16  Code  Gb  v85xx_tmr.o [1]
+TMR_DeInit              0x0000db6d    0x14  Code  Gb  v85xx_tmr.o [1]
+TMR_GetINTStatus        0x0000dbb1    0x10  Code  Gb  v85xx_tmr.o [1]
+TMR_INTConfig           0x0000db9b    0x16  Code  Gb  v85xx_tmr.o [1]
+TMR_Init                0x0000db81    0x1a  Code  Gb  v85xx_tmr.o [1]
+TRF_provious_month_recalculation_for_new_tariff
+                        0x00006dc5   0x19e  Code  Gb  trf_pymt.o [1]
+TaskPriority            0x20001b12     0x2  Data  Lc  Task_priority.o [1]
+ThresholdParam          0x0000e21c     0xc  Data  Gb  V9261f.o [1]
+Timer_internal_init     0x00010e01    0x40  Code  Gb  tmr_drv.o [1]
+U32K0_IRQHandler        0x00015649     0x2  Code  Gb  v85xx_isr.o [1]
+U32K1_IRQHandler        0x0001564b     0x2  Code  Gb  v85xx_isr.o [1]
+UART0_IRQHandler        0x00015651    0x10  Code  Gb  v85xx_isr.o [1]
+UART1_IRQHandler        0x00015661    0x14  Code  Gb  v85xx_isr.o [1]
+UART2_IRQHandler        0x00015675     0xc  Code  Gb  v85xx_isr.o [1]
+UART3_IRQHandler        0x00015681    0x3a  Code  Gb  v85xx_isr.o [1]
+UART4_IRQHandler        0x000156bb    0x34  Code  Gb  v85xx_isr.o [1]
+UART4_IRQHandler::i     0x20001a8c     0x1  Data  Lc  v85xx_isr.o [1]
+UART5_IRQHandler        0x000156ef    0x22  Code  Gb  v85xx_isr.o [1]
+UART_Cmd                0x000110af    0x12  Code  Gb  v85xx_uart.o [1]
+UART_DeInit             0x0001101d    0x1a  Code  Gb  v85xx_uart.o [1]
+UART_GetFlag            0x0001108d     0x4  Code  Gb  v85xx_uart.o [1]
+UART_INTConfig          0x00011091    0x12  Code  Gb  v85xx_uart.o [1]
+UART_Init               0x00011037    0x56  Code  Gb  v85xx_uart.o [1]
+USCI_A0_ISR             0x00003735    0x22  Code  Gb  uart_drv.o [1]
+USCI_A3_ISR             0x00003757    0x18  Code  Gb  uart_drv.o [1]
+V9261f_Actpulse_counter_read
+                        0x0000eb8f     0xe  Code  Gb  V9261f.o [1]
+V9261f_IRQ_isr          0x0000e25d    0x36  Code  Gb  V9261f.o [1]
+V9261f_Init             0x0000e0d1   0x144  Code  Gb  V9261f.o [1]
+V9261f_RMS_Gain_Calib   0x0000e775    0x8e  Code  Gb  V9261f.o [1]
+V9261f_Reactpulse_counter_read
+                        0x0000eb9d     0xe  Code  Gb  V9261f.o [1]
+V9261f_Read_Data::arr   0x20001a5c     0xc  Data  Lc  V9261f.o [1]
+V9261f_Send_TX_Frame::arr
+                        0x20001a50     0xc  Data  Lc  V9261f.o [1]
+V9261f_calib            0x0000e2c9   0x472  Code  Gb  V9261f.o [1]
+V9261f_chkFailure       0x0000e229    0x30  Code  Gb  V9261f.o [1]
+V9261f_clr_ins_reverse  0x0000ebab     0xa  Code  Gb  V9261f.o [1]
+V9261f_comm_err_flag    0x200000e0     0x1  Data  Gb  V9261f.o [1]
+V9261f_data_crpt_flag   0x2000001f     0x1  Data  Gb  V9261f.o [1]
+V9261f_generate_Frame_CheckSum
+                        0x0000dd35    0x2a  Code  Gb  V9261f.o [1]
+V9261f_get_ActEnergy_Accum
+                        0x0000e80d    0x60  Code  Gb  V9261f.o [1]
+V9261f_get_ReactEnergy_Accum
+                        0x0000e879    0x3c  Code  Gb  V9261f.o [1]
+V9261f_get_Reset_Reason
+                        0x0000dd69     0x6  Code  Gb  V9261f.o [1]
+V9261f_get_channel_I    0x0000ea79     0x6  Code  Gb  V9261f.o [1]
+V9261f_get_ins_reverse  0x0000ebb5     0x6  Code  Gb  V9261f.o [1]
+V9261f_get_reg          0x0000de23    0xdc  Code  Gb  V9261f.o [1]
+V9261f_get_rms_current  0x0000e8ed    0x82  Code  Gb  V9261f.o [1]
+V9261f_get_rms_voltage  0x0000e8b5    0x16  Code  Gb  V9261f.o [1]
+V9261f_inst_read        0x0000df05    0x98  Code  Gb  V9261f.o [1]
+V9261f_instant_active_power_read_microW
+                        0x0000e999    0x5c  Code  Gb  V9261f.o [1]
+V9261f_instant_tot_reactive_power_read_milliVAR
+                        0x0000e9fd     0xc  Code  Gb  V9261f.o [1]
+V9261f_instant_total_PF_read
+                        0x0000eb7f    0x10  Code  Gb  V9261f.o [1]
+V9261f_instant_total_PF_read::LocalInstantPF
+                        0x20000068     0x8  Data  Lc  V9261f.o [1]
+V9261f_instant_total_vrms_read
+                        0x0000e981     0xc  Code  Gb  V9261f.o [1]
+V9261f_line_freq_read   0x0000ea53    0x26  Code  Gb  V9261f.o [1]
+V9261f_set_Reset_Reason
+                        0x0000dd5f     0xa  Code  Gb  V9261f.o [1]
+V9261f_set_reg          0x0000dd6f    0xb4  Code  Gb  V9261f.o [1]
+V9261f_task             0x0000ebd5   0x138  Code  Gb  V9261f.o [1]
+VOL_RMS                 0x200018f4     0x4  Data  Gb  V9261f.o [1]
+WDT_Disable             0x0000dc45    0x18  Code  Gb  v85xx_wdt.o [1]
+_Ttotm_ts               0x200019f4    0x2c  Data  Lc  xttotm.o [3]
+__ICFEDIT_region_RAM_end__ {Abs}
+                        0x20007fff          Data  Gb  command line/config [2]
+__ICFEDIT_region_RAM_start__ {Abs}
+                        0x20000000          Data  Gb  command line/config [2]
+__aeabi_cdcmpeq         0x00014fbd          Code  Gb  DblCmpEq.o [4]
+__aeabi_cdcmple         0x00014fe1          Code  Gb  DblCmpLe.o [4]
+__aeabi_cdrcmple        0x00015013          Code  Gb  DblCmpGe.o [4]
+__aeabi_d2f             0x00014173          Code  Gb  DblToFlt.o [4]
+__aeabi_d2iz            0x00011485          Code  Gb  DblToI32.o [4]
+__aeabi_d2lz            0x00013e25          Code  Gb  DblToI64.o [4]
+__aeabi_d2uiz           0x000114a9          Code  Gb  DblToI32.o [4]
+__aeabi_d2ulz           0x00013e51          Code  Gb  DblToI64.o [4]
+__aeabi_dadd            0x0001203d          Code  Gb  DblAddSub.o [4]
+__aeabi_ddiv            0x00013bdf          Code  Gb  DblDiv.o [4]
+__aeabi_dmul            0x00013ca1          Code  Gb  DblMul.o [4]
+__aeabi_dsub            0x00012103          Code  Gb  DblAddSub.o [4]
+__aeabi_f2d             0x00014091          Code  Gb  FltToDbl.o [4]
+__aeabi_f2iz            0x000141d5          Code  Gb  FltToS32.o [4]
+__aeabi_fadd            0x00013ec5          Code  Gb  FltAddSub.o [4]
+__aeabi_fdiv            0x00013fe5          Code  Gb  FltDiv.o [4]
+__aeabi_fmul            0x000140c3          Code  Gb  FltMul.o [4]
+__aeabi_fsub            0x00013f35          Code  Gb  FltAddSub.o [4]
+__aeabi_i2d             0x00012029          Code  Gb  IxxToDbl.o [4]
+__aeabi_idiv            0x0000fa29          Code  Gb  I32DivModFast.o [5]
+__aeabi_idivmod         0x0000fa29          Code  Gb  I32DivModFast.o [5]
+__aeabi_lmul            0x00013af1          Code  Gb  I64Mul.o [5]
+__aeabi_memclr          0x00003f29          Code  Gb  ABImemset.o [5]
+__aeabi_memclr4         0x00003f2d          Code  Gb  ABImemset.o [5]
+__aeabi_memclr8         0x00003f2d          Code  Gb  ABImemset.o [5]
+__aeabi_memcpy          0x00003f31          Code  Gb  ABImemcpy.o [5]
+__aeabi_memcpy4         0x00003f59          Code  Wk  ABImemcpy.o [5]
+__aeabi_memset          0x00003ecd          Code  Gb  ABImemset.o [5]
+__aeabi_memset4         0x00003eed          Code  Gb  ABImemset.o [5]
+__aeabi_memset8         0x00003eed          Code  Gb  ABImemset.o [5]
+__aeabi_ui2d            0x00012009          Code  Gb  IxxToDbl.o [4]
+__aeabi_ui2f            0x00013ea5          Code  Gb  IxxToFlt.o [4]
+__aeabi_uidiv           0x0000fa2f          Code  Gb  I32DivModFast.o [5]
+__aeabi_uidivmod        0x0000fa2f          Code  Gb  I32DivModFast.o [5]
+__aeabi_ul2d            0x00011fcd          Code  Gb  IxxToDbl.o [4]
+__aeabi_uldivmod        0x00011f61          Code  Gb  I64DivMod.o [5]
+__aeabi_uread4          0x0000fadd          Code  Gb  uread4.o [5]
+__aeabi_uread8          0x00013bb5          Code  Gb  uread8.o [5]
+__aeabi_uwrite4         0x0000db59          Code  Gb  uwrite4.o [5]
+__aeabi_uwrite8         0x00013b95          Code  Gb  uwrite8.o [5]
+__cmain                 0x00015dcd          Code  Gb  cmain.o [5]
+__difftime32            0x00011469    0x1c  Code  Gb  difftime.o [4]
+__exit                  0x00015e01          Code  Gb  XXexit.o [5]
+__iar_Daysto32          0x00014de5    0x3a  Code  Gb  xDaysTo.o [3]
+__iar_Exp64             0x00015045   0x3bc  Code  Gb  iar_Exp64.o [4]
+__iar_Memset4_word      0x00003ef9          Code  Gb  ABImemset.o [5]
+__iar_Memset_word       0x00003ed9          Code  Gb  ABImemset.o [5]
+__iar_Pow64             0x00014211   0x6cc  Code  Lc  pow64.o [4]
+__iar_Ttotm32           0x00014e51    0xda  Code  Gb  xttotm.o [3]
+__iar_d2uiz             0x000114ad          Code  Gb  DblToI32.o [4]
+__iar_data_init3        0x00015d85    0x28  Code  Gb  data_init.o [5]
+__iar_packbits_init_single3
+                        0x00015d11    0x3c  Code  Gb  packbits_init_single.o [5]
+__iar_pow64             0x00014959     0xc  Code  Gb  pow64.o [4]
+__iar_pow_medium        0x00014959     0xc  Code  Gb  pow64.o [4]
+__iar_pow_medium64      0x00014959     0xc  Code  Gb  pow64.o [4]
+__iar_pow_mediuml       0x00014959     0xc  Code  Gb  pow64.o [4]
+__iar_program_start     0x00015e2d          Code  Gb  cstartup_M.o [5]
+__iar_systems$$module {Abs}
+                        0x00000001          Data  Gb  command line/config [2]
+__iar_zero_init3        0x00015cd5    0x3c  Code  Gb  zero_init3.o [5]
+__mktime32              0x00011371    0xf8  Code  Gb  mktime.o [3]
+__vector_table          0x00000000          Data  Gb  startup_V85XX.o [1]
+_call_main              0x00015dd9          Code  Gb  cmain.o [5]
+_exit                   0x00015df5          Code  Gb  cexit.o [5]
+_main                   0x00015de7          Code  Gb  cmain.o [5]
+adc_get_Vbat            0x0000efbd    0x56  Code  Gb  adc_drv.o [1]
+adc_init                0x0000ef89    0x34  Code  Gb  adc_drv.o [1]
+addr                    0x2000016e     0x2  Data  Lc  rfid_sys.o [1]
+aes_decr                0x0001286d   0x62c  Code  Gb  AES.o [1]
+aes_encr                0x0001232d   0x43e  Code  Gb  AES.o [1]
+ana_reg3_tmp            0x20001b08     0x4  Data  Gb  v85xx_clk.o [1]
+analyse_negative_number
+                        0x0000ad4d    0x34  Code  Lc  display.o [1]
+apply_actions           0x00000581   0x268  Code  Gb  ctrl.o [1]
+apply_sw_actions_pwr_up
+                        0x000008b1   0x168  Code  Gb  ctrl.o [1]
+arr                     0x20001a90     0xc  Data  Gb  v85xx_isr.o [1]
+arr_RecalHappen         0x20001964     0xc  Data  Lc  trf_pymt.o [1]
+ascii_to_int            0x000040bd    0x22  Code  Gb  basic_srv.o [1]
+authentication_buff     0x20001a7c    0x10  Data  Lc  rfid_sys.o [1]
+bSPI_InfSyncRX          0x00014f89    0x1c  Code  Gb  soft_spi_intf.o [1]
+bSPI_InfSyncRXBuf       0x00014fa5    0x18  Code  Gb  soft_spi_intf.o [1]
+bSPI_InfSyncTxBuf       0x00014f71    0x18  Code  Gb  soft_spi_intf.o [1]
+beep_counter            0x200019da     0x1  Data  Lc  ctrl.o [1]
+blind_hint_period_sec_counter
+                        0x200019d9     0x1  Data  Lc  ctrl.o [1]
+block                   0x20001aab     0x1  Data  Lc  MFRC522.o [1]
+block_counter           0x20000170     0x2  Data  Lc  rfid_sys.o [1]
+bootloader_newsec_event
+                        0x00010c0d     0xa  Code  Gb  comm.o [1]
+bph_record              0x20001864    0x24  Data  Lc  display.o [1]
+bser_calc_day_of_week   0x00004109    0x2a  Code  Gb  basic_srv.o [1]
+btry_prst               0x200019d8     0x1  Data  Lc  ctrl.o [1]
+buffer_index            0x20000136     0x2  Data  Lc  iec62056_21_slave.o [1]
+buzzer_off              0x000003d9    0x40  Code  Gb  ctrl.o [1]
+buzzer_on               0x0000039f    0x34  Code  Gb  ctrl.o [1]
+cal_cmd                 0x0000ed2d    0x40  Code  Gb  V9261f.o [1]
+cal_handler_task        0x0000ed11    0x12  Code  Gb  V9261f.o [1]
+cal_reg_flag            0x20000022     0x2  Data  Lc  V9261f.o [1]
+cal_state               0x0000ed71    0x14  Code  Gb  V9261f.o [1]
+calb_pin_state          0x200019d4     0x1  Data  Lc  ctrl.o [1]
+calc_crc                0x00003f8d    0x7a  Code  Gb  basic_srv.o [1]
+calc_init_rem_day_wh    0x000047ad   0x4da  Code  Gb  trf_pymt.o [1]
+calc_new_bp_bill        0x0000693d   0x24a  Code  Gb  trf_pymt.o [1]
+calc_step_rem_wh        0x00004751    0x4c  Code  Gb  trf_pymt.o [1]
+card_connect_type       0x2000016b     0x1  Data  Gb  rfid_sys.o [1]
+card_uid                0x20000158     0xc  Data  Lc  rfid_sys.o [1]
+card_uid_cpy            0x20001aac     0xc  Data  Lc  MFRC522.o [1]
+casc_anticoll           0x0001326d   0x104  Code  Gb  MFRC522.o [1]
+cfg_struct_size         0x00015cc8     0xc  Data  Gb  ctrl.o [1]
+change_tariff_num       0x20001960     0x1  Data  Lc  trf_pymt.o [1]
+channel_cpy             0x200019cc     0x1  Data  Gb  ctrl.o [1]
+char_mask               0x2000012c     0x1  Data  Lc  iec62056_21_slave.o [1]
+check_Eeprom_Fail       0x0000ef15    0x34  Code  Gb  EEPROM.o [1]
+check_and_reset_ov_load_cntr
+                        0x00002e21    0x20  Code  Gb  ctrl.o [1]
+check_btry              0x00001df5    0xaa  Code  Gb  ctrl.o [1]
+check_cont_press        0x00000a2d    0x88  Code  Gb  ctrl.o [1]
+check_frndly_now        0x00005455    0x36  Code  Gb  trf_pymt.o [1]
+check_last_power_up     0x00001cc9   0x124  Code  Gb  ctrl.o [1]
+check_new_md            0x000046bd    0x94  Code  Gb  trf_pymt.o [1]
+check_pckt_valid        0x0000f0d7   0x128  Code  Gb  iec62056_21_slave.o [1]
+check_relay_save_event  0x200019cd     0x1  Data  Gb  ctrl.o [1]
+check_update_times_event
+                        0x00002c81    0xdc  Code  Gb  ctrl.o [1]
+clk_drv_init            0x00013b59    0x3a  Code  Gb  clk_drv.o [1]
+com_check_size_commands
+                        0x00010c6d    0x94  Code  Gb  comm.o [1]
+comm_disable_zero_command
+                        0x20001ab9     0x1  Data  Gb  comm.o [1]
+comm_handle_rx_bootloader_data
+                        0x00010825    0xdc  Code  Gb  comm.o [1]
+comm_handle_rx_bootloader_data::prev_prev_pct
+                        0x20001ac4     0x4  Data  Lc  comm.o [1]
+comm_handle_rx_bootloader_data::previous_temp_crc
+                        0x20001abd     0x1  Data  Lc  comm.o [1]
+comm_handle_rx_cmd      0x0000faf5   0xcf4  Code  Gb  comm.o [1]
+comm_read_raw_data      0x00010949   0x276  Code  Gb  comm.o [1]
+comm_task               0x00010bcd    0x38  Code  Gb  comm.o [1]
+comp_date               0x00004083    0x2c  Code  Gb  basic_srv.o [1]
+config_struct_size      0x00015e48     0x8  Data  Lc  trf_pymt.o [1]
+cont_byte_screen        0x20000110     0x1  Data  Lc  display.o [1]
+cont_press_counter      0x200019d6     0x1  Data  Lc  ctrl.o [1]
+cont_press_period       0x200019d5     0x1  Data  Lc  ctrl.o [1]
+convertToInt16          0x00004173    0x1a  Code  Gb  basic_srv.o [1]
+convertToLong32         0x00004141    0x32  Code  Gb  basic_srv.o [1]
+convert_times_0         0x20001b15     0x1  Data  Gb  V9261f.o [1]
+convert_times_1         0x20001b14     0x1  Data  Gb  V9261f.o [1]
+copy_flag               0x200017c4     0x2  Data  Lc  rfid_sys.o [1]
+counter_1ms             0x20001b00     0x4  Data  Gb  v85xx_isr.o [1]
+ctr_no_bat_flage        0x20001abb     0x1  Data  Gb  ctrl.o [1]
+ctrl_10ms_timer         0x200019e6     0x2  Data  Gb  ctrl.o [1]
+ctrl_cfg                0x20000e2c    0x28  Data  Gb  ctrl.o [1]
+ctrl_cfg_get            0x00000d31    0x34  Code  Gb  ctrl.o [1]
+ctrl_cfg_set            0x00000bdd   0x146  Code  Gb  ctrl.o [1]
+ctrl_change_tmplt_id    0x000019d1    0x5a  Code  Gb  ctrl.o [1]
+ctrl_check_overload     0x000028f1     0xa  Code  Gb  ctrl.o [1]
+ctrl_check_status       0x00002a51    0x44  Code  Gb  ctrl.o [1]
+ctrl_cmd                0x00001685   0x330  Code  Gb  ctrl.o [1]
+ctrl_default_secondryOption
+                        0x00002b4f    0x1a  Code  Gb  ctrl.o [1]
+ctrl_detach_counter     0x200019e1     0x1  Data  Lc  ctrl.o [1]
+ctrl_event              0x00000e05   0x75a  Code  Gb  ctrl.o [1]
+ctrl_flags              0x200019c8     0x1  Data  Gb  ctrl.o [1]
+ctrl_get_cfg_meter_mlti_rec
+                        0x00000df1    0x10  Code  Gb  ctrl.o [1]
+ctrl_get_cfg_meter_num  0x00000de5     0xc  Code  Gb  ctrl.o [1]
+ctrl_get_evnt_mlti_rec  0x00000d91    0x18  Code  Gb  ctrl.o [1]
+ctrl_get_evnt_num       0x00000d87     0xa  Code  Gb  ctrl.o [1]
+ctrl_get_fetur          0x00000d65    0x14  Code  Gb  ctrl.o [1]
+ctrl_get_selected_meter_status
+                        0x00002645    0xba  Code  Gb  ctrl.o [1]
+ctrl_init               0x000021a1   0x27e  Code  Gb  ctrl.o [1]
+ctrl_load_backup        0x00002bbd    0xb4  Code  Gb  ctrl.o [1]
+ctrl_no_cdt_no_tmpr     0x00002d65    0x50  Code  Gb  ctrl.o [1]
+ctrl_overload_state     0x00002729   0x1c4  Code  Gb  ctrl.o [1]
+ctrl_power_down_event   0x200019cb     0x1  Data  Gb  ctrl.o [1]
+ctrl_read_data          0x00000d79     0xe  Code  Gb  ctrl.o [1]
+ctrl_reset_cfg          0x000001a3   0x10c  Code  Gb  ctrl.o [1]
+ctrl_reset_last_tamper  0x00002f37    0x40  Code  Gb  ctrl.o [1]
+ctrl_rtc_isr            0x00001595    0xc2  Code  Gb  ctrl.o [1]
+ctrl_rtc_reinit_ctr     0x200019ec     0x2  Data  Gb  ctrl.o [1]
+ctrl_save_cfg_meter_rec
+                        0x00001a35    0x40  Code  Gb  ctrl.o [1]
+ctrl_save_evnt_record   0x00000b41    0x4a  Code  Gb  ctrl.o [1]
+ctrl_set_unique_rfid    0x00001657    0x10  Code  Gb  ctrl.o [1]
+ctrl_sys_new_var        0x20000960   0x208  Data  Gb  ctrl.o [1]
+ctrl_sys_var            0x20000de8    0x44  Data  Gb  ctrl.o [1]
+ctrl_sys_var_optional_feature
+                        0x20000c68   0x100  Data  Gb  ctrl.o [1]
+ctrl_sys_var_second_optional_feature
+                        0x20000b68   0x100  Data  Gb  ctrl.o [1]
+ctrl_task               0x0000245d   0x17e  Code  Gb  ctrl.o [1]
+ctrl_test_relay_flag    0x200019e2     0x1  Data  Gb  ctrl.o [1]
+ctrl_test_relay_minutes
+                        0x200019ea     0x2  Data  Gb  ctrl.o [1]
+ctrl_test_relay_second  0x200019f0     0x4  Data  Gb  ctrl.o [1]
+ctrl_test_relay_second_one_shot
+                        0x200019e3     0x1  Data  Gb  ctrl.o [1]
+ctrl_tmr_isr            0x00001569    0x18  Code  Gb  ctrl.o [1]
+ctrl_upsidedown_counter
+                        0x200019e0     0x1  Data  Lc  ctrl.o [1]
+current_adjested_seg    0x20000116     0x1  Data  Lc  display.o [1]
+current_cons_and_bill   0x2000011f     0x1  Data  Gb  display.o [1]
+current_pckt_ID         0x20001abe     0x2  Data  Gb  comm.o [1]
+current_screen          0x20000119     0x1  Data  Lc  display.o [1]
+current_screen_index    0x2000011c     0x1  Data  Lc  display.o [1]
+current_trf_md          0x200019b0     0xc  Data  Lc  mtr.o [1]
+customer_flag           0x20001aba     0x1  Data  Gb  comm.o [1]
+data_pckt_end           0x0000f588     0x4  Data  Gb  iec62056_21_slave.o [1]
+data_size               0x20000174     0x2  Data  Lc  rfid_sys.o [1]
+deduce_actions          0x00000469    0xe8  Code  Gb  ctrl.o [1]
+deduct_money            0x00004e7d    0x52  Code  Gb  trf_pymt.o [1]
+deduct_new_tariff       0x00006b91    0x90  Code  Gb  trf_pymt.o [1]
+difftime                0x00011469    0x1c  Code  Gb  difftime.o [4]
+dis_eep_index           0x20000124     0x2  Data  Gb  display.o [1]
+dis_prev_screen         0x20001ae8     0x1  Data  Gb  display.o [1]
+discount                0x20001aea     0x1  Data  Gb  display.o [1]
+display_config_buf      0x00015960    0xb4  Data  Gb  display.o [1]
+display_configuration_flag
+                        0x200017be     0x1  Data  Gb  rfid_sys.o [1]
+display_counter         0x20000117     0x1  Data  Lc  display.o [1]
+display_ctrl_data       0x20000100     0x8  Data  Gb  display.o [1]
+display_edit_time_date_manually
+                        0x0000d681   0x15e  Code  Gb  display.o [1]
+display_edit_time_date_manually::flag
+                        0x20001aa8     0x1  Data  Lc  display.o [1]
+display_edit_time_date_manually::rtc_update
+                        0x20001a9c     0xc  Data  Lc  display.o [1]
+display_edit_time_date_manually::segments_min_max_threshold
+                        0x00015a14     0xc  Data  Lc  display.o [1]
+display_event           0x0000d239    0xe6  Code  Gb  display.o [1]
+display_flg             0x20000118     0x1  Data  Lc  display.o [1]
+display_flickring_status
+                        0x2000011d     0x1  Data  Lc  display.o [1]
+display_get_ctrl_data   0x0000d0a7     0xe  Code  Gb  display.o [1]
+display_init            0x0000d335   0x154  Code  Gb  display.o [1]
+display_load_default_data
+                        0x0000d60f     0xa  Code  Gb  display.o [1]
+display_message         0x0000d159    0xce  Code  Gb  display.o [1]
+display_mode            0x20000112     0x1  Data  Lc  display.o [1]
+display_number          0x0000ac9f    0x94  Code  Lc  display.o [1]
+display_operator_mode   0x0000d0b9     0xe  Code  Gb  display.o [1]
+display_prev_mode       0x20000113     0x1  Data  Lc  display.o [1]
+display_reset_manual    0x0000d827     0xa  Code  Gb  display.o [1]
+display_save_data_config
+                        0x0000d7df    0x1c  Code  Gb  display.o [1]
+display_set_ctrl_data   0x0000d06d    0x3a  Code  Gb  display.o [1]
+display_set_default_screen
+                        0x0000d811    0x16  Code  Gb  display.o [1]
+display_set_edit_mode   0x0000d631    0x34  Code  Gb  display.o [1]
+display_show_buff_temp  0x20001ae4     0x4  Data  Gb  display.o [1]
+display_show_var        0x20001ae0     0x4  Data  Lc  display.o [1]
+display_state           0x20000111     0x1  Data  Lc  display.o [1]
+display_string          0x0000ad81    0x36  Code  Lc  display.o [1]
+display_sw_pressed_duration
+                        0x20000120     0x2  Data  Gb  display.o [1]
+display_task            0x0000d491   0x17e  Code  Gb  display.o [1]
+display_timeout         0x20000122     0x2  Data  Lc  display.o [1]
+display_update          0x0000d0d5    0x6e  Code  Gb  display.o [1]
+down_volt_flag          0x20001b25     0x1  Data  Gb  V9261f.o [1]
+draw_screen             0x0000b5a1  0x1ac0  Code  Lc  display.o [1]
+eeprom_check_init       0x0000ef5d    0x2c  Code  Gb  EEPROM.o [1]
+eeprom_load_errors_register
+                        0x20001b0e     0x2  Data  Gb  meter_init.o [1]
+eeprom_test_flag        0x20001b18     0x1  Data  Gb  display.o [1]
+end_hint                0x000007fd    0xa6  Code  Gb  ctrl.o [1]
+err_num_map             0x000158fc    0x34  Data  Lc  display.o [1]
+err_num_order           0x00015930    0x30  Data  Lc  display.o [1]
+evnt_flags              0x2000195c     0x1  Data  Gb  trf_pymt.o [1]
+exit                    0x00015deb     0x8  Code  Gb  exit.o [3]
+expandKey               0x000121f1   0x134  Code  Gb  AES.o [1]
+file_sys_clear_log      0x00007193     0x8  Code  Gb  file_sys.o [1]
+file_sys_event          0x000071d9    0x10  Code  Gb  file_sys.o [1]
+file_sys_get_index_record
+                        0x00007189     0xa  Code  Gb  file_sys.o [1]
+file_sys_get_mlti_rec   0x000071b1    0x20  Code  Gb  file_sys.o [1]
+file_sys_get_num_record
+                        0x0000719b     0xa  Code  Gb  file_sys.o [1]
+file_sys_get_record     0x000071a5     0xa  Code  Gb  file_sys.o [1]
+file_sys_init           0x000071e9    0x26  Code  Gb  file_sys.o [1]
+file_sys_read           0x00007161    0x10  Code  Gb  file_sys.o [1]
+file_sys_save_record    0x000071d1     0x8  Code  Gb  file_sys.o [1]
+file_sys_write          0x00007171     0xe  Code  Gb  file_sys.o [1]
+flag_resetApp_ToBoot    0x200019c4     0x1  Data  Gb  ctrl.o [1]
+flags_byte              0x200019c5     0x1  Data  Lc  ctrl.o [1]
+flags_byte1             0x200019c6     0x1  Data  Lc  ctrl.o [1]
+flags_byte2             0x200019c7     0x1  Data  Lc  ctrl.o [1]
+flash_app_get_index_record
+                        0x000117b9    0x14  Code  Gb  Flash_app.o [1]
+form_action             0x00000419    0x40  Code  Gb  ctrl.o [1]
+formed_action           0x200019d3     0x1  Data  Lc  ctrl.o [1]
+fraction_money          0x20001984     0x4  Data  Gb  trf_pymt.o [1]
+get_billing_record      0x0000d841    0x44  Code  Gb  display.o [1]
+get_card_block          0x00009309   0x11e  Code  Gb  rfid_sys.o [1]
+get_cont_flag           0x000025db     0xa  Code  Gb  ctrl.o [1]
+get_day_status          0x00005185    0x5e  Code  Gb  trf_pymt.o [1]
+get_next_screen_no      0x0000adb9   0x308  Code  Lc  display.o [1]
+get_start_date_tamper   0x00002ee5    0x52  Code  Gb  ctrl.o [1]
+get_up_flag             0x000025f9     0xa  Code  Gb  ctrl.o [1]
+get_varying_scr_index   0x0000b0cd    0xc4  Code  Lc  display.o [1]
+gg                      0x200018d8     0x1  Data  Gb  V9261f.o [1]
+go_to_halt              0x00001aad    0xe2  Code  Gb  ctrl.o [1]
+gpio_I2c_Init_Pins_op_Low
+                        0x0000334d    0x2a  Code  Gb  gpio_drv.o [1]
+gpio_init               0x00003377   0x196  Code  Gb  gpio_drv.o [1]
+gpio_wakeUp_Pins_Init   0x000035bb    0x2c  Code  Gb  gpio_drv.o [1]
+hh                      0x20001af8     0x1  Data  Gb  v85xx_isr.o [1]
+hhh                     0x20001af9     0x1  Data  Gb  v85xx_isr.o [1]
+how_manyBytesRxTouart3  0x20001afc     0x4  Data  Gb  v85xx_isr.o [1]
+i2c_init                0x000139f1    0x24  Code  Gb  i2c_drv.o [1]
+i2c_read_eeprom         0x00013a57    0x42  Code  Gb  i2c_drv.o [1]
+i2c_write_eeprom        0x00013a15    0x42  Code  Gb  i2c_drv.o [1]
+i_ch                    0x2000001c     0x1  Data  Gb  V9261f.o [1]
+iec62056_21_lcd_icon_flg
+                        0x20000128     0x1  Data  Gb  iec62056_21_slave.o [1]
+iec62056_21_slave_check_is_idle
+                        0x0000f9d7     0xc  Code  Gb  iec62056_21_slave.o [1]
+iec62056_21_wait_baud_rate_counter
+                        0x2000013c     0x4  Data  Lc  iec62056_21_slave.o [1]
+iec_62056_21_rx_char_isr
+                        0x0000f209   0x100  Code  Gb  iec62056_21_slave.o [1]
+iec_62056_21_slave_event
+                        0x0000f599    0x32  Code  Gb  iec62056_21_slave.o [1]
+iec_62056_21_slave_task
+                        0x0000f621   0x3b6  Code  Gb  iec62056_21_slave.o [1]
+iec_comm_buffer         0x20000e54   0x420  Data  Gb  iec62056_21_slave.o [1]
+index                   0x200017c0     0x2  Data  Lc  rfid_sys.o [1]
+init_sw_scan_res        0x00001a7d    0x1a  Code  Gb  ctrl.o [1]
+int_to_ascii            0x00004047    0x3c  Code  Gb  basic_srv.o [1]
+last_operator_id        0x2000013a     0x2  Data  Lc  iec62056_21_slave.o [1]
+last_tampers            0x20000d68    0x80  Data  Gb  ctrl.o [1]
+latch_long_press_flag   0x20001b17     0x1  Data  Gb  display.o [1]
+lcd_HQ30774_cmd         0x000031b7     0xe  Code  Gb  LCD_HQ30774.o [1]
+lcd_HQ30774_drive_all   0x00010fe3    0x2c  Code  Gb  Vango85x_lcd.o [1]
+lcd_HQ30774_init        0x00002f9d    0x26  Code  Gb  LCD_HQ30774.o [1]
+lcd_HQ30774_set_digit   0x00002fc9   0x1ee  Code  Gb  LCD_HQ30774.o [1]
+lcd_set_segment         0x00010f71    0x72  Code  Gb  Vango85x_lcd.o [1]
+line_period             0x2000018d     0x1  Data  Gb  v85xx_isr.o [1]
+lmos                    0x00014e20    0x18  Data  Lc  xDaysTo.o [3]
+lmos                    0x00014f38    0x18  Data  Lc  xttotm.o [3]
+lnbias                  0x00014968   0x420  Data  Lc  pow64.o [4]
+load_waiting_trf        0x000054a1    0xe0  Code  Gb  trf_pymt.o [1]
+low_power_mode          0x00001b95    0x1a  Code  Gb  ctrl.o [1]
+lp_rec                  0x20001a38    0x18  Data  Lc  mtr.o [1]
+lpm_first_init          0x00001baf    0x40  Code  Gb  ctrl.o [1]
+main                    0x00015c19    0x58  Code  Gb  Main.o [1]
+make_day_calc           0x000045f5    0x8a  Code  Gb  trf_pymt.o [1]
+make_hr_calc            0x00004685    0x24  Code  Gb  trf_pymt.o [1]
+match_array             0x00015c98    0x30  Data  Gb  ctrl.o [1]
+memcmp                  0x00011349    0x28  Code  Gb  memcmp.o [5]
+mfrc522_connect_card    0x00013573    0x9a  Code  Gb  MFRC522.o [1]
+mfrc522_get_reg         0x00012ecd    0x12  Code  Gb  MFRC522.o [1]
+mfrc522_init            0x00013401   0x172  Code  Gb  MFRC522.o [1]
+mfrc522_modify_reg      0x00012edf    0x2a  Code  Gb  MFRC522.o [1]
+mfrc522_power_down      0x00013651    0x3a  Code  Gb  MFRC522.o [1]
+mfrc522_read_block      0x0001360d    0x26  Code  Gb  MFRC522.o [1]
+mfrc522_send_cmd        0x00012f09   0x2d4  Code  Gb  MFRC522.o [1]
+mfrc522_write_block     0x00013633    0x1e  Code  Gb  MFRC522.o [1]
+mktime                  0x00011371    0xf8  Code  Gb  mktime.o [3]
+month_key               0x00004134     0xc  Data  Lc  basic_srv.o [1]
+mos                     0x00014e38    0x18  Data  Lc  xDaysTo.o [3]
+mos                     0x00014f50    0x18  Data  Lc  xttotm.o [3]
+mtr_active_phases       0x20001b10     0x1  Data  Gb  mtr.o [1]
+mtr_ade7953_chip_check  0x000087d9    0x32  Code  Gb  mtr.o [1]
+mtr_avg_readings        0x200018f8    0x20  Data  Lc  V9261f.o [1]
+mtr_cal_state           0x0000856d     0x8  Code  Gb  mtr.o [1]
+mtr_cfg                 0x20001998    0x14  Data  Gb  mtr.o [1]
+mtr_chk_acc_ovr_flow    0x00007db5    0x98  Code  Gb  mtr.o [1]
+mtr_chk_lmt             0x00007389   0x25e  Code  Gb  mtr.o [1]
+mtr_chk_mdw             0x00007721   0x1aa  Code  Gb  mtr.o [1]
+mtr_chk_tmp             0x00008bc9   0x200  Code  Gb  mtr.o [1]
+mtr_clc_mda             0x000075fd   0x114  Code  Gb  mtr.o [1]
+mtr_clear_total_accuracy_test_active_cons
+                        0x00007eff     0xa  Code  Gb  mtr.o [1]
+mtr_cmd                 0x00008849   0x352  Code  Gb  mtr.o [1]
+mtr_config_set          0x00008411    0xe2  Code  Gb  mtr.o [1]
+mtr_config_set_test_time_consumption
+                        0x00007f09    0x42  Code  Gb  mtr.o [1]
+mtr_data                0x20001524   0x118  Data  Gb  mtr.o [1]
+mtr_date_time           0x20001990     0x8  Data  Lc  mtr.o [1]
+mtr_drv_event           0x00008575    0x90  Code  Gb  mtr.o [1]
+mtr_get_acc_reg         0x0000851b     0xe  Code  Gb  mtr.o [1]
+mtr_get_feature         0x00008501    0x18  Code  Gb  mtr.o [1]
+mtr_get_lp              0x0000855f     0xe  Code  Gb  mtr.o [1]
+mtr_get_lp_num          0x00008555     0xa  Code  Gb  mtr.o [1]
+mtr_get_md_reg          0x00008529     0xe  Code  Gb  mtr.o [1]
+mtr_get_mtr_start_accuracy_flag
+                        0x00007ebb     0x6  Code  Gb  mtr.o [1]
+mtr_get_qrt             0x00008537     0x6  Code  Gb  mtr.o [1]
+mtr_get_total_accuracy_test_active_cons
+                        0x00007ef3     0x6  Code  Gb  mtr.o [1]
+mtr_get_total_accuracy_test_time_minute
+                        0x00007ef9     0x6  Code  Gb  mtr.o [1]
+mtr_init                0x00008335    0xd4  Code  Gb  mtr.o [1]
+mtr_init_flag           0x20000142     0x1  Data  Gb  mtr.o [1]
+mtr_inst_readings       0x20000080    0x60  Data  Lc  V9261f.o [1]
+mtr_load_backup         0x00008de1    0x6c  Code  Gb  mtr.o [1]
+mtr_lp_rec              0x00007e4d    0x6e  Code  Gb  mtr.o [1]
+mtr_new_sec             0x0000861d    0xea  Code  Gb  mtr.o [1]
+mtr_pwr_dwn             0x0000876d    0x6c  Code  Gb  mtr.o [1]
+mtr_pwr_up              0x00008715    0x2c  Code  Gb  mtr.o [1]
+mtr_read_en_reg         0x000078dd   0x162  Code  Gb  mtr.o [1]
+mtr_read_inst           0x00007241   0x122  Code  Gb  mtr.o [1]
+mtr_read_inst::read_case
+                        0x20001b1f     0x1  Data  Lc  mtr.o [1]
+mtr_read_phaseVol       0x00007fbd    0x50  Code  Gb  mtr.o [1]
+mtr_read_phaseVol::down_event_count
+                        0x20001b11     0x1  Data  Lc  mtr.o [1]
+mtr_read_rtc            0x00007225    0x1a  Code  Gb  mtr.o [1]
+mtr_reset_md_values     0x00007363    0x12  Code  Gb  mtr.o [1]
+mtr_start_accuracy_flag
+                        0x20000143     0x1  Data  Lc  mtr.o [1]
+mtr_start_accuracy_test
+                        0x00007ec1    0x32  Code  Gb  mtr.o [1]
+mtr_sys_var             0x2000163c    0x44  Data  Lc  mtr.o [1]
+mtr_task                0x00008041   0x2ce  Code  Gb  mtr.o [1]
+mtr_test_accuracy_task  0x00007f59    0x64  Code  Gb  mtr.o [1]
+mtr_test_mode           0x20001b1e     0x1  Data  Gb  mtr.o [1]
+mtr_updt_acc            0x00007a61   0x348  Code  Gb  mtr.o [1]
+new_current_screen      0x2000011a     0x1  Data  Lc  display.o [1]
+new_current_screen_index
+                        0x2000011b     0x1  Data  Lc  display.o [1]
+new_energy_calc         0x000051f9   0x256  Code  Gb  trf_pymt.o [1]
+new_energy_wh_varh_vah  0x20001970     0x8  Data  Lc  trf_pymt.o [1]
+new_hr                  0x00001fad    0x32  Code  Gb  ctrl.o [1]
+new_md_w_va_ma          0x20001978     0xc  Data  Lc  trf_pymt.o [1]
+new_min                 0x00001fe5    0xae  Code  Gb  ctrl.o [1]
+new_sec                 0x0000209d    0xd0  Code  Gb  ctrl.o [1]
+new_tarrif_config_flag  0x2000195d     0x1  Data  Gb  trf_pymt.o [1]
+new_timer_tick          0x00001ec1    0xe2  Code  Gb  ctrl.o [1]
+number_of_data_blocks   0x20000167     0x1  Data  Lc  rfid_sys.o [1]
+old_bill                0x2000198c     0x4  Data  Lc  trf_pymt.o [1]
+optical_sec_counter     0x20001b1b     0x1  Data  Gb  iec62056_21_slave.o [1]
+ovr_load_sec_cntr       0x200019e8     0x2  Data  Lc  ctrl.o [1]
+param_limited_block     0x20001794    0x10  Data  Lc  rfid_sys.o [1]
+pckt_end                0x0000f0bd    0x1a  Code  Gb  iec62056_21_slave.o [1]
+pckt_size               0x20000134     0x2  Data  Lc  iec62056_21_slave.o [1]
+pckt_type               0x2000012d     0x1  Data  Lc  iec62056_21_slave.o [1]
+penalty_tmp             0x200019cf     0x1  Data  Gb  ctrl.o [1]
+pow                     0x00014959     0xc  Code  Gb  pow64.o [4]
+power_going_down        0x00001c0b    0x5a  Code  Gb  ctrl.o [1]
+power_is_up             0x00001c69    0x3a  Code  Gb  ctrl.o [1]
+power_on_minute_counter
+                        0x200019d1     0x1  Data  Lc  ctrl.o [1]
+powl                    0x00014959     0xc  Code  Gb  pow64.o [4]
+prepare_req_data        0x00008edd   0x2f2  Code  Gb  rfid_sys.o [1]
+preread_prewrite_flag   0x20000172     0x2  Data  Lc  rfid_sys.o [1]
+pressed_button          0x20000114     0x1  Data  Lc  display.o [1]
+prev_accuracy_relay_state
+                        0x20000144     0x1  Data  Lc  mtr.o [1]
+prev_pckt_ID            0x20001ac0     0x2  Data  Gb  comm.o [1]
+prev_pressed_button     0x20000115     0x1  Data  Lc  display.o [1]
+publish_event           0x0000452b    0x92  Code  Gb  trf_pymt.o [1]
+pulseCountValues        0x200000e4    0x10  Data  Lc  V9261f.o [1]
+pwr_up_sec_cntr         0x200019d7     0x1  Data  Gb  ctrl.o [1]
+read_write_ptr          0x20000178     0x4  Data  Lc  rfid_sys.o [1]
+readout_mode_object     0x00015d4c    0x38  Data  Gb  iec62056_21_slave.o [1]
+record_control          0x20001a20    0x18  Data  Gb  file_sys.o [1]
+ref_temp                0x20000078     0x4  Data  Gb  V9261f.o [1]
+refactor_power          0x20000060     0x8  Data  Gb  V9261f.o [1]
+relay_state_temp        0x200019e4     0x1  Data  Gb  ctrl.o [1]
+repeat_counter          0x20000169     0x1  Data  Lc  rfid_sys.o [1]
+req_flag                0x20001aaa     0x1  Data  Lc  MFRC522.o [1]
+request                 0x000131dd    0x8a  Code  Gb  MFRC522.o [1]
+reset_cont_flag         0x000025ed     0xc  Code  Gb  ctrl.o [1]
+reset_curr_bp_var       0x00004f35    0xa4  Code  Gb  trf_pymt.o [1]
+reset_md                0x00004ecf    0x2e  Code  Gb  trf_pymt.o [1]
+reset_prev_md           0x00004f01    0x26  Code  Gb  trf_pymt.o [1]
+reset_specific_tamper   0x0000290d   0x12a  Code  Gb  ctrl.o [1]
+reset_state_machine     0x0000f041    0x5c  Code  Gb  iec62056_21_slave.o [1]
+reset_up_flag           0x0000260d     0xc  Code  Gb  ctrl.o [1]
+reset_with_corruption_counter
+                        0x200019dd     0x1  Data  Lc  ctrl.o [1]
+restore_optional_ctrl_data_to_default
+                        0x00002aa5    0xaa  Code  Gb  ctrl.o [1]
+restore_second_optional_ctrl_data_to_default
+                        0x00002b6d    0x3e  Code  Gb  ctrl.o [1]
+retrieval_control_blocks
+                        0x20001784    0x10  Data  Lc  rfid_sys.o [1]
+revers_ins_flag         0x2000001e     0x1  Data  Lc  V9261f.o [1]
+rfid_AES_key            0x2000017c    0x10  Data  Lc  rfid_sys.o [1]
+rfid_buffer             0x20000190   0x7d0  Data  Lc  rfid_sys.o [1]
+rfid_check_idle_state   0x0000a9b5     0x6  Code  Gb  rfid_sys.o [1]
+rfid_commisssioning_flag
+                        0x2000016c     0x1  Data  Gb  rfid_sys.o [1]
+rfid_create_bad_msg     0x00008e69    0x6a  Code  Gb  rfid_sys.o [1]
+rfid_generate_key       0x00009461    0x7a  Code  Gb  rfid_sys.o [1]
+rfid_lcd_icon           0x200017bc     0x1  Data  Gb  rfid_sys.o [1]
+rfid_postdefined_data_buffer
+                        0x0000a9c9    0xda  Code  Lc  rfid_sys.o [1]
+rfid_sec_event          0x0000a9a1     0xa  Code  Gb  rfid_sys.o [1]
+rfid_second_counter     0x20000164     0x1  Data  Lc  rfid_sys.o [1]
+rfid_set_signature      0x00009427    0x1c  Code  Gb  rfid_sys.o [1]
+rfid_task               0x000094dd  0x14b8  Code  Gb  rfid_sys.o [1]
+rfid_uid                0x200017a4     0xc  Data  Lc  rfid_sys.o [1]
+rfid_write_state        0x0000aaa9     0x6  Code  Gb  rfid_sys.o [1]
+rfid_write_status       0x2000016d     0x1  Data  Gb  rfid_sys.o [1]
+rs485_counter           0x20000138     0x2  Data  Lc  iec62056_21_slave.o [1]
+rsbox                   0x00015a20   0x100  Data  Gb  AES.o [1]
+rslt_fault              0x200019ac     0x1  Data  Gb  mtr.o [1]
+rx_char                 0x2000012a     0x1  Data  Lc  iec62056_21_slave.o [1]
+rx_char_state           0x2000012b     0x1  Data  Lc  iec62056_21_slave.o [1]
+save_bp_var_and_record  0x00004fe5   0x198  Code  Gb  trf_pymt.o [1]
+save_char_in_buffer     0x0000f09d    0x20  Code  Gb  iec62056_21_slave.o [1]
+save_ctrl_cfg           0x00002dbd    0x5a  Code  Gb  ctrl.o [1]
+sbox                    0x0001276c   0x100  Data  Gb  AES.o [1]
+scan_result             0x200019d0     0x1  Data  Gb  ctrl.o [1]
+scan_result_cpy         0x200019df     0x1  Data  Lc  ctrl.o [1]
+screen_count            0x20001ae9     0x1  Data  Gb  display.o [1]
+screens_index           0x20001818    0x4c  Data  Gb  display.o [1]
+second_counter          0x2000012f     0x1  Data  Lc  iec62056_21_slave.o [1]
+seconds                 0x2000018c     0x1  Data  Gb  v85xx_isr.o [1]
+segment_location        0x000031c4    0xe0  Data  Lc  LCD_HQ30774.o [1]
+segments                0x20000108     0x8  Data  Lc  display.o [1]
+select                  0x00013385    0x74  Code  Gb  MFRC522.o [1]
+self_test_task          0x00015c71    0x16  Code  Gb  self_test.o [1]
+send_card_block         0x00009229    0xbe  Code  Gb  rfid_sys.o [1]
+send_data_pckt          0x0000f32d   0x25a  Code  Gb  iec62056_21_slave.o [1]
+send_frame              0x0000f029    0x18  Code  Gb  iec62056_21_slave.o [1]
+send_main_data          0x0000f5cb    0x40  Code  Gb  iec62056_21_slave.o [1]
+set_date_time           0x0000b2fd   0x286  Code  Gb  display.o [1]
+set_independent_icons   0x0000b19d   0x110  Code  Gb  display.o [1]
+set_power_down_flag     0x00002629     0xc  Code  Gb  ctrl.o [1]
+set_power_up_flag       0x00002619     0xc  Code  Gb  ctrl.o [1]
+set_read_write          0x000091d5    0x20  Code  Gb  rfid_sys.o [1]
+set_screen_index        0x0000ab23   0x17c  Code  Lc  display.o [1]
+size_of_comm            0x00010d00   0x100  Data  Gb  comm.o [1]
+size_of_record          0x00007218     0xc  Data  Gb  file_sys.o [1]
+spi_soft_init_master    0x00015401    0x60  Code  Gb  soft_spi_drv.o [1]
+spi_soft_read_byte      0x000154a1    0x38  Code  Gb  soft_spi_drv.o [1]
+spi_soft_write_byte     0x00015461    0x40  Code  Gb  soft_spi_drv.o [1]
+sr_ptrn                 0x200019d2     0x1  Data  Lc  ctrl.o [1]
+start_card_uid          0x200017b0     0xc  Data  Lc  rfid_sys.o [1]
+state                   0x2000012e     0x1  Data  Lc  iec62056_21_slave.o [1]
+status                  0x20000165     0x1  Data  Lc  rfid_sys.o [1]
+task_priority_get       0x00010ea5    0x16  Code  Gb  Task_priority.o [1]
+task_priority_release   0x00010ec5     0xa  Code  Gb  Task_priority.o [1]
+task_priority_set       0x00010ebb     0xa  Code  Gb  Task_priority.o [1]
+tech_id_temp            0x20001b0c     0x2  Data  Gb  ctrl.o [1]
+temp_rfid_buffer        0x200017c8    0x50  Data  Lc  rfid_sys.o [1]
+temp_size               0x20000176     0x2  Data  Lc  rfid_sys.o [1]
+temp_trf                0x200014ac    0x78  Data  Gb  trf_pymt.o [1]
+test_accuracy_aftr_finsh_flag
+                        0x20000140     0x1  Data  Gb  mtr.o [1]
+test_accuracy_config_nw_consumption
+                        0x2000014c     0x4  Data  Lc  mtr.o [1]
+test_accuracy_config_second
+                        0x20000148     0x4  Data  Lc  mtr.o [1]
+test_accuracy_variable_nw_consumption
+                        0x20000154     0x4  Data  Gb  mtr.o [1]
+test_accuracy_variable_second
+                        0x20000150     0x4  Data  Gb  mtr.o [1]
+test_sw_sec_counter     0x200019db     0x1  Data  Lc  ctrl.o [1]
+time_now                0x20001aec     0x4  Data  Gb  trf_pymt.o [1]
+timeout_cntr            0x200019dc     0x1  Data  Lc  ctrl.o [1]
+timer1_config           0x00010e41    0x4a  Code  Gb  tmr_drv.o [1]
+timer1_flag             0x20001b1d     0x1  Data  Gb  mtr.o [1]
+timer2_tick_ns          0x20001af0     0x8  Data  Gb  tmr_drv.o [1]
+tmp                     0x20001ad4     0xc  Data  Lc  rfid_sys.o [1]
+tmp_addr                0x200017c2     0x2  Data  Lc  rfid_sys.o [1]
+tmp_crc                 0x20001abc     0x1  Data  Gb  comm.o [1]
+tmp_crc2                0x20000132     0x1  Data  Gb  iec62056_21_slave.o [1]
+tmp_index               0x200017bd     0x1  Data  Lc  rfid_sys.o [1]
+tmp_mny_rec             0x20001a68    0x14  Data  Gb  trf_pymt.o [1]
+toggle_relay            0x00000301    0x9e  Code  Gb  ctrl.o [1]
+trf_check_future_tariff
+                        0x00006f75    0x66  Code  Gb  trf_pymt.o [1]
+trf_find_tariff_step_consumption
+                        0x00006595   0x158  Code  Gb  trf_pymt.o [1]
+trf_getNextRecalcStep   0x00004437    0x58  Code  Gb  trf_pymt.o [1]
+trf_get_TarrifChangedFlag
+                        0x0000448f    0x9c  Code  Gb  trf_pymt.o [1]
+trf_get_current_step    0x00006c25     0xa  Code  Gb  trf_pymt.o [1]
+trf_get_last_recalc_step
+                        0x000045bd    0x30  Code  Gb  trf_pymt.o [1]
+trf_load_backup         0x00005c35    0x76  Code  Gb  trf_pymt.o [1]
+trf_old_activity        0x2000195e     0x1  Data  Gb  trf_pymt.o [1]
+trf_prv_12_month_consumption
+                        0x20001988     0x4  Data  Gb  trf_pymt.o [1]
+trf_pymt_cfg            0x200013e8    0xc4  Data  Gb  trf_pymt.o [1]
+trf_pymt_cmd            0x000058cd   0x1b8  Code  Gb  trf_pymt.o [1]
+trf_pymt_config_get     0x0000573d    0x38  Code  Gb  trf_pymt.o [1]
+trf_pymt_config_set     0x00005589   0x1ac  Code  Gb  trf_pymt.o [1]
+trf_pymt_date_time      0x20001954     0x8  Data  Lc  trf_pymt.o [1]
+trf_pymt_event          0x0000578d   0x122  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_bph_mlti_rec
+                        0x00005acd     0xc  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_bph_num    0x00005ac1     0xc  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_md_a_data  0x00005b15     0xe  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_md_kva_data
+                        0x00005aff     0xe  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_md_kw_data
+                        0x00005af1     0xe  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_mlti_mny_rec
+                        0x00005ae5     0xc  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_num_mny_rec
+                        0x00005ad9     0xc  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_payment_cfg
+                        0x00005aa1     0xe  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_pymt_data  0x00005b23     0xe  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_tariff_cfg
+                        0x00005a93     0xe  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_tariff_data
+                        0x00005a85     0xe  Code  Gb  trf_pymt.o [1]
+trf_pymt_get_tax_cfg    0x00005aaf     0xe  Code  Gb  trf_pymt.o [1]
+trf_pymt_init           0x00005b39    0xf4  Code  Gb  trf_pymt.o [1]
+trf_pymt_read_rtc       0x00004419    0x1e  Code  Gb  trf_pymt.o [1]
+trf_pymt_reset_cfg      0x0000439d    0x7c  Code  Gb  trf_pymt.o [1]
+trf_pymt_task           0x00005cf1   0x884  Code  Gb  trf_pymt.o [1]
+trf_pymt_var            0x20001274   0x174  Data  Gb  trf_pymt.o [1]
+trf_recalculation_prv_month
+                        0x20001b1a     0x1  Data  Gb  file_sys.o [1]
+trf_time_monitoring_grace
+                        0x00006c3d   0x16c  Code  Gb  trf_pymt.o [1]
+tx_instruction_frame    0x20001680   0x104  Data  Lc  Flash.o [1]
+type_of_card            0x20000168     0x1  Data  Lc  rfid_sys.o [1]
+uart_clear_rx_buffer    0x0000386f    0x32  Code  Gb  uart_drv.o [1]
+uart_disable            0x00003a0d    0x18  Code  Gb  uart_drv.o [1]
+uart_init               0x00003901   0x106  Code  Gb  uart_drv.o [1]
+uart_parity_temp        0x20001b24     0x1  Data  Lc  uart_drv.o [1]
+uart_receive_byte       0x00003853    0x1c  Code  Gb  uart_drv.o [1]
+uart_rx_frame           0x000038a1    0x4c  Code  Gb  uart_drv.o [1]
+uart_send_byte          0x0000376f    0x62  Code  Gb  uart_drv.o [1]
+uart_send_frame         0x000037d1    0x82  Code  Gb  uart_drv.o [1]
+uid_type                0x20001ab8     0x1  Data  Lc  MFRC522.o [1]
+uncorrect_freq_counter  0x20001b20     0x1  Data  Gb  mtr.o [1]
+unpress_flag            0x2000011e     0x1  Data  Gb  display.o [1]
+up_down_sw_flag         0x200019de     0x1  Data  Lc  ctrl.o [1]
+update_last_operator_ids
+                        0x00000b8b    0x4a  Code  Gb  ctrl.o [1]
+update_rem_crdt         0x00004c95   0x1e4  Code  Gb  trf_pymt.o [1]
+update_sr_switches_state
+                        0x00000ac1    0x80  Code  Gb  ctrl.o [1]
+update_technician_function
+                        0x00002e5d    0x7c  Code  Gb  ctrl.o [1]
+v9261_Calib_values      0x20000000    0x1c  Data  Lc  V9261f.o [1]
+v9261_reset_reason      0x2000001d     0x1  Data  Lc  V9261f.o [1]
+v9261f_check_line_or_Netural
+                        0x0000ea91    0xee  Code  Gb  V9261f.o [1]
+vDelay_HW               0x00004023    0x24  Code  Gb  basic_srv.o [1]
+vDelay_SW               0x00004007    0x1c  Code  Gb  basic_srv.o [1]
+vMC_DriversInit         0x0000dc65    0x44  Code  Gb  meter_init.o [1]
+vMeter_Init             0x0000dca9    0x74  Code  Gb  meter_init.o [1]
+vSPI_InfInit            0x00014f69     0x8  Code  Gb  soft_spi_intf.o [1]
+vvv                     0x20001b1c     0x1  Data  Gb  Main.o [1]
+wait_baud_rate_flag     0x20000130     0x1  Data  Lc  iec62056_21_slave.o [1]
+wait_baud_rate_readout_flag
+                        0x20000131     0x1  Data  Lc  iec62056_21_slave.o [1]
+zx                      0x20000020     0x1  Data  Gb  V9261f.o [1]
+
+
+[1] = D:\reda_Things\SVN\Vango\UniMeter_local3ph\Compiler\Release\Obj
+[2] = command line
+[3] = dl6M_tln.a
+[4] = m6M_tl.a
+[5] = rt6M_tl.a
+
+  88 664 bytes of readonly  code memory
+   1 134 bytes of readonly  data memory
+  11 045 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
