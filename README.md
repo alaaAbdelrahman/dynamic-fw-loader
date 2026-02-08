@@ -1,232 +1,363 @@
-# Dynamic Firmware Loading – Phase-1 Architecture and Achievements
+External Flash Module Loader
+Prepaid Meter – V94 (Cortex-M0)
+1. Purpose
 
-## 1. Introduction
+The VX94 microcontroller has limited internal flash.
 
-This document describes the design, implementation, and current achievements of a Phase-1 dynamic firmware loading system developed for a prepaid electric meter.
+The prepaid meter firmware contains:
 
-The goal of this phase was not feature completeness, but to establish a **correct, deterministic, and scalable foundation** that overcomes internal flash limitations while remaining compatible with a deeply embedded, safety-conscious environment.
+core features (always running)
 
----
+optional features (used occasionally like keypad, display tools, printer, bootloader, etc.)
 
-## 2. Application Context
+Keeping all features permanently in internal flash wastes space and may exceed memory.
 
-The target system is a prepaid electric meter with the following characteristics:
+To solve this, optional features are stored in external flash and loaded into a small internal flash execution area only when needed.
 
-- Limited internal flash memory (256 KB)
-- External flash available (4 MB)
-- Long operational lifetime
-- Strict reliability and determinism requirements
-- A mix of always-used and rarely-used functionality
+2. Approach Used
 
-Examples of rarely-used functionality include:
+This system uses:
 
-- Bootloader and firmware update logic
-- RFID card handling
-- Factory calibration and diagnostics
-- Service and maintenance features
+Code Overlay / Dynamic Module Loading
 
-In traditional monolithic firmware designs, these features permanently consume internal flash despite being used infrequently.
+Meaning:
 
----
+modules are stored outside (external flash)
 
-## 3. Problem Statement
+copied to internal flash when required
 
-The main challenges addressed in this work are:
+executed
 
-1. Internal flash is too small to permanently hold all current and future features
-2. Rarely-used functionality wastes valuable internal flash
-3. Traditional dynamic loading approaches rely on Position Independent Code (PIC)
-4. PIC introduces complexity, overhead, and toolchain challenges
-5. Existing application code should remain unchanged to reduce risk
+replaced later by another module
 
-The objective was to solve these problems **without introducing runtime unpredictability**.
+Only one module is active at a time.
 
----
+3. Memory Layout
+Internal Flash
++----------------------------------+
+| Main firmware (core + loader)    |
+| Drivers / services               |
+|----------------------------------|
+| Execution buffer (16 KB)         |  <-- modules copied here
+| 0x0003C000 – 0x0003FFFF          |
++----------------------------------+
 
-## 4. Core Architectural Idea
+External Flash
++----------------------------------+
+| Keypad module image              |
+| Display module image             |
+| Printer module image             |
+| Bootloader module (future)       |
++----------------------------------+
 
-The central idea of the solution is:
+4. System Components
+4.1 Loader (loader.c)
 
-- Store rarely-used functionality as standalone modules in external flash
-- Load these modules into a reserved internal flash execution window only when needed
-- Execute module code directly from internal flash
-- Reuse the same execution window for different modules
+Responsible for:
 
-Only one module is active at any given time.
+reading module from external flash
 
-This approach shifts firmware growth pressure from internal flash to external flash.
+validating header
 
----
+CRC check
 
-## 5. Avoiding Position Independent Code (PIC)
+erasing internal flash
 
-### 5.1 The PIC Challenge
+copying code to execution buffer
 
-Dynamic code execution is often implemented using PIC so that code can run at arbitrary memory locations. However, in a deeply embedded system, PIC causes:
+building function pointer table
 
-- Larger code size
-- Additional runtime overhead
-- Complex relocation handling
-- Reduced transparency during debugging
-- Limited or non-intuitive support in some embedded toolchains (including IAR)
+giving access to module functions
 
-Given the safety and determinism requirements of a prepaid meter, PIC was deemed unsuitable for Phase-1.
+Main APIs
+loader_init()
+loader_load_module()
+loader_unload_current()
+loader_get_function()
+loader_is_loaded()
 
----
+Loading steps
 
-### 5.2 The Chosen Alternative
+When loader_load_module(id) is called:
 
-Instead of PIC, this design uses **absolute addressing with a fixed execution window**:
+Read module header
 
-- A fixed address range in internal flash is reserved for module execution
-- All modules are linked as if they permanently reside at this address
-- At runtime, the loader copies the module code to this exact address
-- Link-time addresses and runtime execution addresses are identical
+Check magic number
 
-Because the CPU executes the code exactly where the linker expects it to be, no relocation or PIC support is required.
+Check size and function count
 
----
+Erase execution buffer
 
-## 6. Loader Design and Responsibilities
+Copy code in chunks
 
-The loader is part of the main firmware and performs the following tasks:
+Calculate CRC
 
-1. Read the module header from external flash
-2. Validate module identity and integrity
-3. Erase the internal flash execution window
-4. Copy module executable code into the execution window
-5. Read the module function table
-6. Build absolute function pointers
-7. Allow execution through a controlled interface
+Verify CRC
 
-The loader ensures that execution is safe, bounded, and predictable.
+Read function table
 
----
+Build function pointer list
 
-## 7. Preserving the Main Firmware Codebase
+After this, functions are ready to call.
 
-### 7.1 The Challenge
+4.2 Stub Layer (example: keypad_stub.c)
 
-A common drawback of modular systems is that they require widespread changes to application code, increasing maintenance effort and risk.
+The application never calls module code directly.
 
----
+Instead it calls stub functions.
 
-### 7.2 Stub-Based Solution
+Example:
 
-To avoid this, a stub-based access model is used:
+void Keypad_Init(void)
 
-- Application code calls normal-looking functions
-- Stub functions transparently handle module loading
-- Function signatures remain unchanged
-- The application layer is unaware of dynamic loading
 
-This design ensures:
+What stub does:
 
-- Zero behavioral change to existing application logic
-- Clear separation of concerns
-- Easy validation and regression testing
+Check if module loaded
 
----
+If not → load it
 
-## 8. Phase-1 Constraints and Enforcement
+Get real function pointer
 
-To guarantee correctness and determinism, Phase-1 enforces strict constraints:
+Call it
 
-- Modules contain executable code only
-- No `.data`, `.bss`, `.rodata`, or `.const` sections
-- No global or static variables inside modules
-- No heap usage by modules
-- No interrupts implemented inside modules
-- Single active module at a time
+This makes modules transparent to the main application.
 
-These constraints are enforced at **link time** using custom IAR linker scripts.
+Application code looks normal:
 
----
+Keypad_Init();
+Keypad_GetKey();
 
-## 9. Memory Utilization Results
 
-### 9.1 Internal Flash (256 KB)
+No need to know anything about loading.
 
-Internal flash usage is now bounded and predictable:
+4.3 Module Image (example: keypad module)
 
-- Core firmware and loader are permanently resident
-- A fixed-size execution window is reserved (e.g., 16 KB)
-- Internal flash usage does not grow with added features
+Each module is compiled separately.
 
----
+It contains:
 
-### 9.2 External Flash (4 MB)
+Sections
 
-External flash stores:
+.module_header
 
-- RFID module
-- Bootloader module
-- Diagnostics and service modules
-- Future expansion features
+.module_code
 
-This allows significant feature growth without internal flash pressure.
+.module_func_table
 
----
+Header
 
-## 10. Concrete Use Case: RFID Transaction
+Contains magic number to identify valid module.
 
-During normal operation, the RFID module is not loaded.
+Code
 
-When an RFID card is presented:
+All executable functions placed in:
 
-1. Core firmware detects card presence
-2. RFID stub function is called
-3. Loader loads the RFID module into the execution window
-4. RFID logic executes from internal flash
-5. Credit data is validated and passed to core firmware
-6. Execution window becomes available again
+.module_code
 
-RFID code occupies internal flash only during active use.
 
----
+These functions are copied to internal flash and executed.
 
-## 11. Toolchain Compatibility
+Function Table
 
-The entire design is compatible with:
+List of exported functions:
 
-- IAR Embedded Workbench for ARM
-- Standard IAR linker scripts
-- Map-file–based address verification
-- Cortex-M absolute addressing model
+typedef struct {
+    uint32_t addr;
+} func_entry_t;
 
-No ELF parsing, relocation records, or dynamic symbol resolution is required.
 
----
+Loader reads this table and builds pointers.
 
-## 12. Achievements of Phase-1
+4.4 Linker Scripts
+Main firmware linker
 
-Phase-1 successfully delivers:
+Reserves execution buffer:
 
-- A working dynamic module loading mechanism
-- Verified address correctness via linker map files
-- Deterministic runtime behavior
-- Minimal impact on existing firmware
-- A scalable foundation for future phases
+0x0003C000 – 0x0003FFFF (16 KB)
 
----
 
-## 13. Scope and Future Work
+Nothing else is placed there.
 
-Phase-1 intentionally limits functionality to establish correctness.
+Module linker
 
-Future phases may introduce:
+Places:
 
-- Controlled read-only data support
-- Module-local RAM
-- Multiple module coexistence
-- Versioning and integrity validation
+.module_code        → execution region
+.module_header     → metadata region
+.module_func_table → metadata region
 
-These enhancements will build upon the stable Phase-1 foundation.
 
----
+So:
 
-## 14. Conclusion
+only code goes to execution buffer
 
-This Phase-1 implementation demonstrates that dynamic firmware loading can be achieved in a prepaid electric meter without PIC, relocation, or invasive code changes.
+metadata stays in external flash
 
-By aligning architectural decisions with real operational behavior, the system achieves scalability, safety, and determinism within tight embedded constraints.
+5. Execution Flow Example
+Example: keypad used
+
+Application calls:
+
+Keypad_GetKey()
+
+
+Flow:
+
+Stub checks if keypad loaded
+
+Not loaded → loader_load_module(KEYPAD)
+
+Loader copies module to execution buffer
+
+Loader builds function table
+
+Stub calls real function
+
+Keypad code runs from internal flash
+
+Next calls use the already loaded module (no reload).
+
+6. Why Execute from Internal Flash (not RAM)
+
+Reasons:
+
+RAM is small
+
+code size is large
+
+Cortex-M0 executes reliably from flash
+
+avoids wasting RAM
+
+So internal flash execution is the safest option.
+
+7. Benefits of This Design
+Saves internal flash
+
+Only core firmware is permanent.
+
+Supports many features
+
+External flash can store many modules.
+
+Modular
+
+Each feature is separate and independent.
+
+Easy to update
+
+Modules can be replaced without touching core firmware.
+
+Reliable
+
+Core never changes.
+Modules are validated with CRC before execution.
+
+Simple runtime
+
+Only one small execution buffer is needed.
+
+Memory Usage Reduction
+
+The system reduces internal flash consumption by storing optional features in external flash and loading only one feature at runtime.
+
+Traditional approach
+
+All features are linked into the main firmware:
+
+Internal Flash =
+    Core
+  + Keypad
+  + Display tools
+  + Bootloader
+  + Diagnostics
+  + ...
+
+
+Memory usage grows as the sum of all features.
+
+Many of these functions are rarely used, so most of the flash remains idle during normal operation.
+
+Current approach (module loading)
+
+Only two parts are kept in internal flash:
+
+Internal Flash =
+    Core
+  + Execution buffer (max module size)
+
+
+Optional features are stored in external flash and copied into the execution buffer only when needed.
+
+Memory usage becomes:
+
+Core + largest module
+
+
+not
+
+Core + all modules
+
+Example
+
+If:
+
+Core              = 80 KB
+Largest module    = 20 KB
+Other modules sum = 60 KB
+
+
+Then:
+
+Traditional design:
+
+80 + 20 + 60 = 160 KB
+
+
+Module loading:
+
+80 + 20 = 100 KB
+
+
+Saved:
+
+60 KB (~37%)
+
+Engineering impact
+
+lower internal flash requirement
+
+supports more features without increasing MCU size
+
+better scalability
+
+no RAM cost (execution from flash)
+
+Only one module executes at a time, so sharing one execution buffer is sufficient.
+
+8. Limitations
+
+small delay while loading
+
+flash erase time
+
+only one module at a time
+
+Acceptable because modules are rarely used.
+
+9. Summary
+
+This project implements a simple module loading system:
+
+core firmware in internal flash
+
+optional features in external flash
+
+loader copies module when needed
+
+execution happens from internal flash
+
+stubs hide loading from application
+
+This allows the prepaid meter to support many features while using limited internal flash.

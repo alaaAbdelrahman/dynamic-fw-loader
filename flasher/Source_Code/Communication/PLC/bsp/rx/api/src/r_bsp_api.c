@@ -1,0 +1,1828 @@
+/*******************************************************************************
+* DISCLAIMER
+* This software is supplied by Renesas Electronics Corporation and is only
+* intended for use with Renesas products. No other uses are authorized. This
+* software is owned by Renesas Electronics Corporation and is protected under
+* all applicable laws, including copyright laws.
+* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
+* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT
+* LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+* AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED.
+* TO THE MAXIMUM EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS
+* ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES SHALL BE LIABLE
+* FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR
+* ANY REASON RELATED TO THIS SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE
+* BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+* Renesas reserves the right, without notice, to make changes to this software
+* and to discontinue the availability of this software. By using this software,
+* you agree to the additional terms and conditions found by accessing the
+* following link:
+* http://www.renesas.com/disclaimer
+* Copyright (C) 2018 Renesas Electronics Corporation. All rights reserved.
+*******************************************************************************/
+
+/******************************************************************************
+* File Name     : r_bsp_api.c
+* Device(s)     : RX631/RX651/RX231
+* Tool-chain    : KPIT GNURX-ELF 16.01 / CC-RX 2.06
+* H/W platform  : G-CPX3/B-CPX3/
+* Description   : Sample software
+******************************************************************************/
+
+/******************************************************************************
+   Includes   <System Includes> , "Project Includes"
+******************************************************************************/
+//#include <machine.h>
+#include "config.h"
+#include "iec62056_21_slave.h"
+#include "r_typedefs.h"
+#include "r_config.h"
+//#include "v94xx_tmr.h"
+//#include "platform.h"
+//#include "iodefine.h"
+#include "r_bsp_api.h"
+#include "r_app_timer.h"
+#include "GPIO_Interface.h"
+#include "GPIO_Config.h"
+//#include "v94xx_gpio.h"
+#include "Timer_Config.h"
+#include "v94xx_dma.h"
+#include "Flash.h"
+#include <../../../../cpx3_fw_new_v1/CPX3_booting.h>
+#include "r_c3sap_sys_thread.h"
+//#include "UART_program.h"
+//#include "r_gpio_rx_if.h"
+//#include "r_cmt_rx_if.h"
+//#include "r_sci_rx_if.h"
+//#include "r_sci_rx_platform.h"
+//#include "r_flash_rx_if.h"
+//#include "g3v2021_eap_g3both_cpx3_4band_none_v0600_28072022.h"
+#include "app_process_thread.h"
+extern const uint8_t *g_cpxprogtbl[];
+extern uint32_t symbol_flag;
+uint8_t plc_connected = 0;
+#if (R_BOARD_EEPROM==1)
+#include "r_eeprom_riic_rx_if.h"
+#endif
+
+/******************************************************************************
+   Macro definitions
+******************************************************************************/
+#if (R_BOARD_EEPROM==1)
+#define R_BSP_EEPROM_IIC_CH        (0u)
+#define R_BSP_EEPROM_DEV_ADDRESS   (0xAEu)
+#else
+#define R_BSP_FLASH_AREA_CODE      (0x0Cu)
+#define R_BSP_FLASH_AREA_DATA      (0x0Du)
+#define R_BSP_FLASH_AREA_INVALID   (0x0Eu)
+#define R_BSP_FLASH_02K_ERASE_SIZE (0x000007FFul)
+#define R_BSP_FLASH_04K_ERASE_SIZE (0x00000FFFul)
+#define R_BSP_FLASH_08K_ERASE_SIZE (0x00001FFFul)
+#define R_BSP_FLASH_16K_ERASE_SIZE (0x00003FFFul)
+#define R_BSP_FLASH_32K_ERASE_SIZE (0x00007FFFul)
+#define R_BSP_FLASH_64K_ERASE_SIZE (0x0000FFFFul)
+#endif
+#define BSP_PCLKB_HZ                13107200
+#define R_TIMER_IPR         (0x07u)     /* Free Run Timer priority */
+#define FW_SIZE                     (uint32_t)228964U
+
+
+//-------------------
+extern uint16_t DMA_The_last_Index;
+
+
+extern uint32_t tick_count;
+uint32_t timer_counter_old = 0;
+uint8_t uart_state = 0;
+uint8_t timer_flag =1;
+uint8_t uart_send_state = 0;
+
+
+#define TIMER_TIMEOUT 15
+#define UART_SEND_FAIL 0X01
+#define UART_SEND_SUCCESS 0X00
+#define UART_SEND_BUSY 0XF7
+
+
+//--------Modified-----------
+uint8_t DMA_Buffer[1536] = {0};
+
+//-----------------------
+
+
+/******************************************************************************
+   Typedef definitions
+******************************************************************************/
+//typedef struct
+//{
+//    sci_hdl_t   hdl;
+//    uint8_t*    p_tx_buff_ptr;
+//    uint32_t    tx_length;
+//} r_bsp_uart_ctrl_t;
+
+/******************************************************************************
+Exported global variables (to be accessed by other files)
+******************************************************************************/
+uint32_t t2 = 15, t1 = 440, t0 = 45;
+uint32_t flag_framend = 1, remaining = 0;
+uint8_t* remaining_addr = 0;
+uint8_t bsrc_rcv[1536] = {0};
+uint16_t DMA_last_index = 0;
+uint8_t LOCAL_FW_buff[256];
+/******************************************************************************
+Private global variables and functions
+******************************************************************************/
+/* variables */
+//static r_bsp_callback_t                 bsp_timer_callback[R_BSP_TIMER_ID_MAX]; // Timer callback pointer
+//static r_bsp_callback_t                 bsp_uart_tx_callback[R_BSP_UART_MAX] = {NULL,NULL};
+//static r_bsp_uart_rx_callback_t         bsp_uart_rx_callback[R_BSP_UART_MAX] = {NULL,NULL};
+//static uint32_t                         bsp_cm_timer_ch[R_BSP_TIMER_ID_MAX] = 
+//    {
+//        0xFF,
+//        0xFF,
+//        0xFF,
+//    };
+//static uint8_t                          bsp_cm_timer_ipr[R_BSP_TIMER_ID_MAX] = 
+//    {
+//        0,
+//        R_CMT_APP_IPR,
+//        R_CMT_CPX_IPR,
+//    };
+//static r_bsp_uart_ctrl_t                bsp_uart_ctrl[R_BSP_UART_MAX];
+//static uint8_t                          local_board_type = R_BOARD_NOT_SET;  // Locally used board type
+#define gpio_port_pin_t                  1                           // Equivalent to LED5 of J80D1 board
+//#define gpio_port_pin_t                  2                           // Equivalent to LED6 of J80D1 board
+//#define gpio_port_pin_t                  3
+//#define gpio_port_pin_t                  4
+#if (R_BOARD_EEPROM==1)
+static eeprom_riic_status_t             bsp_eep_event;
+#endif
+/* functions */
+static r_result_t bsp_configure_tau_timer(uint32_t pclk, uint32_t tick_ms, uint8_t priority);
+static uint8_t bsp_get_uart_ch(r_bsp_uart_t uart_type);
+static uint32_t bsp_get_uart_max_len(r_bsp_uart_t uart_type);
+#if (R_BOARD_EEPROM==1)
+static uint8_t bsp_flash_eep_write(uint16_t eep_dstaddr, uint8_t *src_buff, uint16_t size_byte);
+static uint8_t bsp_flash_eep_read(uint8_t *dst_buff, uint16_t eep_srcaddr, uint16_t size_byte);
+static void bsp_flash_eep_callback(void * p_eeprom_status);
+#else
+static uint8_t bsp_check_cf_erase_block_num(uint32_t startadr, uint32_t endadr, uint32_t  des_adr, uint32_t  end_adr, uint32_t block_size);
+#endif
+static void bsp_cmt_callback(void* pdata);
+static void bsp_uart_evt_cllback(void *p_args);
+void(*TMR0_CallBack)(void) = R_BSP_NOP;
+void(*TMR1_CallBack)(void) = R_BSP_NOP;
+void(*TMR2_CallBack)(void) = R_BSP_NOP;
+void(*TX1_CallBack)(void) = R_BSP_NOP;
+void(*RX1_CallBack)(uint8_t) = 0;
+void(*TX3_CallBack)(void);
+void(*RX3_CallBack)(uint8_t) = 0;
+/******************************************************************************
+* Function Name : R_BSP_SetBoardType
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+r_result_t R_BSP_SetBoardType(uint8_t board_type)
+{
+//    local_board_type = board_type;
+//    
+//    switch ( local_board_type )
+//    {
+//#if defined(BSP_MCU_RX231)
+//        case R_BOARD_RX231RSK:
+//            port_led4  = GPIO_PORT_5_PIN_1;
+//            port_led5  = GPIO_PORT_5_PIN_2;
+//            port_reset = GPIO_PORT_B_PIN_2;
+//            port_boot  = GPIO_PORT_D_PIN_2;
+//            break;
+//#endif
+//            
+//#if defined(BSP_MCU_RX651)
+//        case R_BOARD_J80D1:
+//            port_led4  = GPIO_PORT_2_PIN_3;
+//            port_led5  = GPIO_PORT_2_PIN_4;
+//            port_reset = GPIO_PORT_C_PIN_0;
+//            port_boot  = GPIO_PORT_C_PIN_5;
+//            break;
+//            
+//        case R_BOARD_G_HYBRID:
+//        case R_BOARD_G_HYBRID_TEST:
+//            port_led4  = GPIO_PORT_4_PIN_3;
+//            port_led5  = GPIO_PORT_2_PIN_4;
+//            port_reset = GPIO_PORT_C_PIN_0;
+//            port_boot  = (gpio_port_pin_t)0xFFFF; /* Not connected */
+//            break;
+//#endif
+//
+//#if defined(BSP_MCU_RX631)
+//        case R_BOARD_G_CPX3:
+//#endif
+//        default:
+//            port_led4  = GPIO_PORT_2_PIN_3;
+//            port_led5  = GPIO_PORT_2_PIN_4;
+//            port_reset = GPIO_PORT_C_PIN_0;
+//            port_boot  = GPIO_PORT_D_PIN_0;
+//            break;
+//    }
+//    
+    return R_RESULT_SUCCESS;
+}
+/******************************************************************************
+   End of function  R_BSP_SetBoardType
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_BSP_GetDipSwBit
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+//uint8_t R_BSP_GetDipSwBit(uint8_t bit)
+//{
+//    uint8_t port /*= R_BSP_GetDipSwByte()*/;
+//    
+//    return ((port >> (7-bit)) & 0x01 );
+//}
+/******************************************************************************
+   End of function  R_BSP_GetDipSwBit
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_BSP_GetDipSwByte
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+//uint8_t R_BSP_GetDipSwByte(void)
+//{
+//    uint8_t port;
+//    
+//    switch ( local_board_type )
+//    {
+//        case R_BOARD_G_CPX3:
+//        case R_BOARD_G_HYBRID:
+//        case R_BOARD_G_HYBRID_TEST:
+//            port = R_GPIO_PortRead(GPIO_PORT_E);
+//            break;
+//            
+//        case R_BOARD_J80D1:
+//            port = ( (uint8_t)((R_GPIO_PortRead(GPIO_PORT_B)&0x0F)<<4) | (uint8_t)(R_GPIO_PortRead(GPIO_PORT_4)&0x0F) ) ;
+//            break;
+//            
+//        case R_BOARD_RX231RSK:
+//            port = 0xFF;
+//            break;
+//            
+//        default:
+//            port = 0xFF;
+//            break;
+//    }
+//    
+//    return port;
+//}
+/******************************************************************************
+   End of function  R_BSP_GetDipSwByte
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_BSP_InitLeds
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+void R_BSP_InitLeds(void)
+{
+//    switch ( local_board_type )
+//    {
+//        case R_BOARD_G_HYBRID:
+//        case R_BOARD_G_HYBRID_TEST:
+//        {
+//            R_GPIO_PinWrite(port_led4, GPIO_LEVEL_LOW);                /* LED4 off */
+//            R_GPIO_PinWrite(port_led5, GPIO_LEVEL_LOW);                /* LED5 off */
+//        }
+//        break;
+//        default:
+//        {
+//            R_GPIO_PinWrite(port_led4, GPIO_LEVEL_HIGH);                /* LED4 off */
+//            R_GPIO_PinWrite(port_led5, GPIO_LEVEL_HIGH);                /* LED5 off */
+//        }
+//        break;
+//    }
+//    /* Initial LED */
+//    R_GPIO_PinDirectionSet(port_led4, GPIO_DIRECTION_OUTPUT);   /* Set to output. */
+//    R_GPIO_PinDirectionSet(port_led5, GPIO_DIRECTION_OUTPUT);   /* Set to output. */
+}
+/******************************************************************************
+   End of function  R_BSP_InitLeds
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_BSP_LedOn
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+void R_BSP_LedOn(r_bsp_led_t led)
+{
+//    switch ( local_board_type )
+//    {
+//        case R_BOARD_G_HYBRID:
+//        case R_BOARD_G_HYBRID_TEST:
+//        {
+//            switch (led)
+//            {
+//                case R_BSP_LED_4:
+//                    R_GPIO_PinWrite(port_led4, GPIO_LEVEL_HIGH);        /* LED4 off */
+//                    break;
+//                    
+//                case R_BSP_LED_5:
+//                    R_GPIO_PinWrite(port_led5, GPIO_LEVEL_HIGH);        /* LED5 off */
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+//        }
+//        break;
+//        default:
+//        {
+//            switch (led)
+//            {
+//                case R_BSP_LED_4:
+//                    R_GPIO_PinWrite(port_led4, GPIO_LEVEL_LOW);        /* LED4 off */
+//                    break;
+//                    
+//                case R_BSP_LED_5:
+//                    R_GPIO_PinWrite(port_led5, GPIO_LEVEL_LOW);        /* LED5 off */
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+//        }
+//        break;
+//    }
+}
+/******************************************************************************
+   End of function  R_BSP_LedOn
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_BSP_LedOff
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+void R_BSP_LedOff(r_bsp_led_t led)
+{
+//    switch ( local_board_type )
+//    {
+//        case R_BOARD_G_HYBRID:
+//        case R_BOARD_G_HYBRID_TEST:
+//        {
+//            switch (led)
+//            {
+//                case R_BSP_LED_4:
+//                    R_GPIO_PinWrite(port_led4, GPIO_LEVEL_LOW);        /* LED4 off */
+//                    break;
+//                    
+//                case R_BSP_LED_5:
+//                    R_GPIO_PinWrite(port_led5, GPIO_LEVEL_LOW);        /* LED5 off */
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+//        }
+//        break;
+//        default:
+//        {
+//            switch (led)
+//            {
+//                case R_BSP_LED_4:
+//                    R_GPIO_PinWrite(port_led4, GPIO_LEVEL_HIGH);        /* LED4 off */
+//                    break;
+//                    
+//                case R_BSP_LED_5:
+//                    R_GPIO_PinWrite(port_led5, GPIO_LEVEL_HIGH);        /* LED5 off */
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+//        }
+//        break;
+//    }
+//    
+}
+/******************************************************************************
+   End of function  R_BSP_LedOff
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_BSP_ToggleLed
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+void R_BSP_ToggleLed(r_bsp_led_t led)
+{
+//    uint8_t         led_state;
+//    gpio_port_pin_t port_led;
+//    
+//    switch (led)
+//    {
+//        case R_BSP_LED_4:
+//            port_led = port_led4;
+//            break;
+//            
+//        case R_BSP_LED_5:
+//        default:
+//            port_led = port_led5;
+//            break;
+//    }
+//    
+//    led_state = R_GPIO_PinRead(port_led);
+//    R_GPIO_PinWrite(port_led,(gpio_level_t)(led_state ^ 1u));   /* LED toggle */
+}
+/******************************************************************************
+   End of function  R_BSP_ToggleLed
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_BSP_SetBootMode
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+void R_BSP_SetBootMode(r_bsp_boot_t mode)
+{
+    /* Not supported */
+}
+/******************************************************************************
+   End of function  R_BSP_SetBootMode
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_BSP_Cpx3Reset
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+void R_BSP_Cpx3Reset(void)
+{
+  S_GPIO_Clear_Bits(S_PORT_E, S_GPIO_Pin_13);
+  S_GpioInit_PIN(S_PORT_E ,S_GPIO_Pin_13,GPIO_Mode_OUTPUT_CMOS );
+  S_GpioInit_PIN(S_PORT_A ,S_GPIO_Pin_14,GPIO_Mode_INPUT );
+  S_GpioInit_PIN(S_PORT_B ,S_GPIO_Pin_4,GPIO_Mode_OUTPUT_CMOS );
+  S_GpioInit_PIN(TMPR_LED_PORT ,TMPR_LED_PIN,GPIO_Mode_OUTPUT_CMOS );
+//    R_GPIO_PinWrite(port_reset, GPIO_LEVEL_LOW);                /* low */
+//    R_GPIO_PinDirectionSet(port_reset, GPIO_DIRECTION_OUTPUT);  /* output */
+//    
+//    /* Reset signal high time >25ms */
+    R_TIMER_BusyWait(30u);
+  //Delay_ms(100);
+//    
+//    R_GPIO_PinWrite(port_reset, GPIO_LEVEL_HIGH);               /* high */
+    
+    S_GPIO_Set_Bits(S_PORT_E, S_GPIO_Pin_13);
+
+}
+/******************************************************************************
+   End of function  R_BSP_Cpx3Reset
+******************************************************************************/
+
+
+/******************************************************************************
+* Function Name     : R_BSP_ConfigureTimer
+* Description       : Configure the PWM timers 
+* Arguments         : timer_id Id of the timer to be configured
+*                   : cycle_ms Cycle in which the callback function is notified
+*                   : callback p_callback Pointer to the timer callback function which
+*                   : will be caled every timer cycle
+* Return Value      : Either R_RESULT_SUCCESS ,R_RESULT_FAILED, R_RESULT_BAD_INPUT_ARGUMENTS
+******************************************************************************/
+r_result_t R_BSP_ConfigureTimer(r_bsp_timer_id_t timer_id, uint32_t cycle_ms, r_bsp_callback_t callback)
+{
+    r_result_t ret = R_RESULT_SUCCESS;
+    TMR_InitType TMR_InitStruct;
+
+    switch( timer_id )
+    {
+        case R_BSP_TIMER_ID_0:
+        {
+            ret = bsp_configure_tau_timer(BSP_PCLKB_HZ,cycle_ms,R_TIMER_IPR);
+            if(ret == R_RESULT_SUCCESS){
+              TMR0_CallBack = callback;
+            }
+        }
+        break;
+        case R_BSP_TIMER_ID_1:
+        {
+          TMR_DeInit(TMR1);
+          TMR_InitStruct.ClockSource = TMR_CLKSRC_INTERNAL;
+          TMR_InitStruct.EXTGT = TMR_EXTGT_DISABLE;
+          TMR_InitStruct.Period = (0x00280A00);
+          TMR_Init(TMR1, &TMR_InitStruct);
+          TMR1_CallBack = callback;
+        }
+        break;
+        case R_BSP_TIMER_ID_2:
+        {
+          TMR_DeInit(TMR2);
+          TMR_InitStruct.ClockSource = TMR_CLKSRC_INTERNAL;
+          TMR_InitStruct.EXTGT = TMR_EXTGT_DISABLE;
+          TMR_InitStruct.Period = (0x00013466);
+          TMR_Init(TMR2, &TMR_InitStruct);
+          TMR2_CallBack = callback;
+        }
+        break;
+        default:
+        {
+            ret = R_RESULT_BAD_INPUT_ARGUMENTS;
+        }
+        break;
+    }
+    
+//    if( R_RESULT_SUCCESS == ret )
+//    {
+//        bsp_timer_callback[timer_id] = callback;
+//    }
+    
+    return ret;
+}
+
+
+/******************************************************************************
+* Function Name     : R_BSP_TimerOn
+* Description       : Sets the compare match timer on
+* Argument          : none
+* Return Value      : none
+******************************************************************************/
+void R_BSP_TimerOn(r_bsp_timer_id_t timer_id)
+{   
+#ifdef __PLC__DEBUG__
+    //R_STDIO_Printf ("\n -> Timer on" );
+#endif
+    switch( timer_id )
+    {
+        case R_BSP_TIMER_ID_0:
+        {
+            TMR_INTConfig(TMR3, ENABLE);
+            CORTEX_SetPriority_ClearPending_EnableIRQ(TMR3_IRQn, 2);
+            TMR_Cmd(TMR3, ENABLE);
+#ifdef __PLC__DEBUG__
+            R_STDIO_Printf ("\n -> Timer on 0");
+#endif
+        }
+        break;
+        case R_BSP_TIMER_ID_1:
+        {
+          TMR_INTConfig(TMR1, ENABLE);
+          CORTEX_SetPriority_ClearPending_EnableIRQ(TMR1_IRQn, 7);
+          TMR_Cmd(TMR1, ENABLE);
+#ifdef __PLC__DEBUG__
+          //R_STDIO_Printf ("1");
+#endif
+        }
+        break;
+        case R_BSP_TIMER_ID_2:
+        {
+            TMR_INTConfig(TMR2, ENABLE);
+          CORTEX_SetPriority_ClearPending_EnableIRQ(TMR2_IRQn, 6);
+          TMR_Cmd(TMR2, ENABLE);
+#ifdef __PLC__DEBUG__
+          R_STDIO_Printf ("\n -> Timer on 2");
+#endif
+        }
+        break;
+        default:
+        break;
+    }
+}
+/******************************************************************************
+   End of function  R_BSP_TimerOn
+******************************************************************************/
+
+/******************************************************************************
+* Function Name     : R_BSP_TimerOff
+* Description       : Sets the compare match timer off
+* Argument          : none
+* Return Value      : none
+******************************************************************************/
+void R_BSP_TimerOff(r_bsp_timer_id_t timer_id)
+{
+#ifdef __PLC__DEBUG__
+    //R_STDIO_Printf ("\n -> Timer off" );
+#endif
+    switch( timer_id )
+    {
+        case R_BSP_TIMER_ID_0:
+        {
+            TMR_INTConfig(TMR3, DISABLE);
+            TMR_Cmd(TMR3, DISABLE);
+#ifdef __PLC__DEBUG__
+            R_STDIO_Printf ("\n -> Timer off 0");
+#endif
+        }
+        break;
+        case R_BSP_TIMER_ID_1:
+        {
+          TMR_INTConfig(TMR1, DISABLE);
+          TMR_Cmd(TMR1, DISABLE);
+#ifdef __PLC__DEBUG__
+          //R_STDIO_Printf ("1");
+#endif
+        }
+        break;
+        case R_BSP_TIMER_ID_2:
+        {
+            TMR_INTConfig(TMR2, DISABLE);
+          TMR_Cmd(TMR2, DISABLE);
+#ifdef __PLC__DEBUG__
+          R_STDIO_Printf ("\n -> Timer off 2");
+#endif
+        }
+        break;
+        default:
+        break;
+    }
+}
+/******************************************************************************
+   End of function  R_BSP_TimerOff
+******************************************************************************/
+
+/******************************************************************************
+* Function Name     : R_BSP_ConfigureUart
+* Description       : Configure the desired UART channel
+* Arguments         : uart_id Id of the uart to be configured
+*                   : tx_finished_cb Pointer to the uart callback function which
+*                   : will be notified when transmission is finished
+*                   : rx_finished_cb A pointer to the uart callback function whch
+*                   : will be notified when uart data is received
+* Return Value      : Either R_RESULT_SUCCESS ,R_RESULT_FAILED, 
+*                   : R_RESULT_BAD_INPUT_ARGUMENTS
+******************************************************************************/
+r_result_t R_BSP_ConfigureUart(r_bsp_uart_t uart_id, uint32_t baud_rate , r_bsp_callback_t tx_finished_cb, r_bsp_uart_rx_callback_t rx_finished_cb )
+{
+  //    sci_ch_t   sci_ch;
+  //    sci_mode_t sci_mode;
+  //    sci_cfg_t  sci_cfg;
+  //    sci_err_t  sci_err;
+  r_result_t ret = R_RESULT_SUCCESS;
+  int8_t baudrate_char = '7';
+  baudrate_char = (baud_rate != 115200) ? '8' :  baudrate_char;
+  switch( uart_id )
+  {
+  case R_BSP_UART_MCU_CPX:
+    {
+      S_UART_INIT((UART_TypeDef*)UART2, baudrate_char, UART_WORDLEN_8B, Dlms_NoParity);
+      S_UART_INTConfig(UART2, UART_INT_RX, DISABLE);
+      //S_UART_INTConfig(UART3, UART_INT_TXDONE, ENABLE);
+      CORTEX_SetPriority_ClearPending_EnableIRQ(UART2_IRQn, 1);
+      if(tx_finished_cb != 0)
+        TX1_CallBack = tx_finished_cb;
+      RX1_CallBack = rx_finished_cb;
+      DMA_InitType DMA_InitStruct;
+//      UART_InitType UART_InitStruct;
+//      UART_DeInit(UART2);
+//      UART_InitStruct.Baudrate = 115200;
+//      UART_InitStruct.FirstBit = UART_FIRSTBIT_LSB;
+//      UART_InitStruct.Mode = UART_MODE_TX | UART_MODE_RX;
+//      UART_InitStruct.Parity = UART_PARITY_NONE;
+//      UART_Init(UART2, &UART_InitStruct);
+//      UART_INTConfig(UART2, UART_INT_TXOV, ENABLE);
+//      UART_INTConfig(UART2, UART_INT_RXOV, ENABLE);
+//      /* Enable DMA NVIC interrupt */
+//      NVIC_ClearPendingIRQ(UART2_IRQn);
+//      NVIC_EnableIRQ(UART2_IRQn);
+      
+      DMA_DeInit(DMA_CHANNEL_1);
+    DMA_InitStruct.DestAddr = (uint32_t)&DMA_Buffer[0];
+      DMA_InitStruct.SrcAddr = (uint32_t)&UART2->DATA;
+      DMA_InitStruct.FrameLen = 6 - 1;
+      DMA_InitStruct.PackLen = 256 - 1;
+      DMA_InitStruct.ContMode = DMA_CONTMODE_ENABLE;
+      DMA_InitStruct.TransMode = DMA_TRANSMODE_SINGLE;
+      DMA_InitStruct.ReqSrc = DMA_REQSRC_UART2RX;
+      DMA_InitStruct.DestAddrMode = DMA_DESTADDRMODE_FEND;
+      DMA_InitStruct.SrcAddrMode = DMA_SRCADDRMODE_FIX;
+      DMA_InitStruct.TransSize = DMA_TRANSSIZE_BYTE;
+      DMA_Init(&DMA_InitStruct, DMA_CHANNEL_1);
+      DMA_last_index = DMA_GetPackLenTransferred(1) + DMA_GetFrameLenTransferred(1)*256;
+      DMA_Cmd(DMA_CHANNEL_1, ENABLE);
+      //DMA_INTConfig(DMA_INT_C3FE,ENABLE);
+      NVIC_ClearPendingIRQ(DMA_IRQn);
+      NVIC_EnableIRQ(DMA_IRQn);
+    }
+    break;
+  case R_BSP_UART_MCU_HOST:
+    {
+#ifdef __PLC__DEBUG__
+      S_UART_INIT((UART_TypeDef*)UART3, '7', UART_WORDLEN_8B, Dlms_NoParity);
+      S_UART_INTConfig(UART3, UART_INT_RX, ENABLE);
+      CORTEX_SetPriority_ClearPending_EnableIRQ(UART3_IRQn, 1);
+      TX3_CallBack = tx_finished_cb;
+      RX3_CallBack = rx_finished_cb;
+#endif
+    }
+    break;
+  case R_BSP_UART_MCU_DEBUG:
+    {
+      
+    }
+    break;
+  default:
+    {
+      ret = R_RESULT_BAD_INPUT_ARGUMENTS;
+    }
+  }
+  
+  
+  //    sci_cfg.async.baud_rate     = baud_rate;
+  //    sci_cfg.async.clk_src       = SCI_CLK_INT;
+  //    sci_cfg.async.data_size     = SCI_DATA_8BIT;
+  //    sci_cfg.async.parity_en     = SCI_PARITY_OFF;
+  //    sci_cfg.async.parity_type   = SCI_EVEN_PARITY;
+  //    sci_cfg.async.stop_bits     = SCI_STOPBITS_1;
+  //    sci_cfg.async.int_priority  = R_UART_IPR;
+  //    
+  //    switch( uart_id )
+  //    {
+  //        case R_BSP_UART_MCU_CPX:
+  //        case R_BSP_UART_MCU_HOST:
+  //        case R_BSP_UART_MCU_DEBUG:
+  //        {
+  //            sci_ch  = (sci_ch_t)bsp_get_uart_ch(uart_id);
+  //        }
+  //        break;
+  //
+  //        default:
+  //        {
+  //            ret = R_RESULT_BAD_INPUT_ARGUMENTS;
+  //        }
+  //    }
+  //    
+  //    if( R_RESULT_SUCCESS == ret )
+  //    {
+  //        if( NULL != bsp_uart_ctrl[uart_id].hdl )
+  //        {
+  //            R_SCI_Close(bsp_uart_ctrl[uart_id].hdl);
+  //        }
+  //        sci_err = R_SCI_Open(sci_ch, SCI_MODE_ASYNC, &sci_cfg, bsp_uart_evt_cllback, &bsp_uart_ctrl[uart_id].hdl);
+  //        if (SCI_SUCCESS != sci_err)
+  //        {
+  //            ret = R_RESULT_FAILED;
+  //        }
+  //    }
+  //    
+  //    if( R_RESULT_SUCCESS == ret )
+  //    {
+  //        bsp_uart_tx_callback[uart_id] = tx_finished_cb;
+  //        bsp_uart_rx_callback[uart_id] = rx_finished_cb;
+  //        bsp_uart_ctrl[uart_id].p_tx_buff_ptr = NULL;
+  //    }
+  
+  return ret;
+}
+/******************************************************************************
+   End of function  R_BSP_ConfigureUart
+******************************************************************************/
+
+/******************************************************************************
+* Function Name     : R_BSP_UartSetBaudrate
+* Description       : Change UART baudrate setting
+* Arguments         : uart_id Id of the uart to be configured
+*                   : baud_rate new baudrate
+* Return Value      : Either R_RESULT_SUCCESS ,R_RESULT_FAILED,
+*                   : R_RESULT_BAD_INPUT_ARGUMENTS
+******************************************************************************/
+r_result_t R_BSP_UartSetBaudrate(r_bsp_uart_t uart_id, uint32_t baud_rate)
+{
+  r_result_t ret = R_RESULT_SUCCESS;
+  
+//  S_UART_INIT((UART_TypeDef*)UART2, '7', UART_WORDLEN_8B, Dlms_NoParity);
+//  S_UART_INTConfig(UART2, UART_INT_RX, ENABLE);
+//  CORTEX_SetPriority_ClearPending_EnableIRQ(UART2_IRQn, 0);
+  int8_t baudrate_char = '7';
+  baudrate_char = (baud_rate != 115200) ? '8' :  baudrate_char;
+  switch( uart_id )
+  {
+  case R_BSP_UART_MCU_CPX:
+    {
+      //Delay_ms(300);
+      S_UART_INIT((UART_TypeDef*)UART2, baudrate_char, UART_WORDLEN_8B, Dlms_NoParity);
+      S_UART_INTConfig(UART2, UART_INT_RX, DISABLE);
+      //S_UART_INIT((UART_TypeDef*)UART2, '7', UART_WORDLEN_8B, Dlms_NoParity);
+      //S_UART_INTConfig(UART2, UART_INT_RX, ENABLE);
+      //S_UART_INTConfig(UART3, UART_INT_TXDONE, ENABLE);
+      CORTEX_SetPriority_ClearPending_EnableIRQ(UART2_IRQn, 1);
+    }
+    break;
+  case R_BSP_UART_MCU_HOST:
+    {
+#ifdef __PLC__DEBUG__
+      S_UART_INIT((UART_TypeDef*)UART3, '7', UART_WORDLEN_8B, Dlms_NoParity);
+      S_UART_INTConfig(UART3, UART_INT_RX, ENABLE);
+      //S_UART_INTConfig(UART3, UART_INT_TXDONE, ENABLE);
+      CORTEX_SetPriority_ClearPending_EnableIRQ(UART3_IRQn, 1);
+#endif
+    }
+    break;
+  case R_BSP_UART_MCU_DEBUG:
+    {
+      
+    }
+    break;
+  default:
+    {
+      ret = R_RESULT_BAD_INPUT_ARGUMENTS;
+    }
+  }
+  
+  return R_RESULT_SUCCESS;
+}
+/******************************************************************************
+   End of function  R_BSP_UartSetBaudrate
+******************************************************************************/
+
+void Send_DMA_UART(uint32_t tx_size, uint8_t* buff){
+  uint32_t PackLen,FrameLen;
+  uint16_t counter = 0;
+  if(0){
+    
+  }
+  else{
+    PackLen = (tx_size > 256) ? 256 : tx_size;
+    FrameLen = (PackLen != 256) ? (((tx_size/256)) + 1) : ((tx_size/256));
+    FrameLen = (FrameLen > 1) ? 1 : FrameLen;
+    remaining = (tx_size > 256) ? (tx_size - (PackLen * (FrameLen))) : 0;
+    remaining_addr = buff + tx_size - remaining;
+  }
+  if(buff >= (uint8_t*)g_cpxprogtbl + 80 && buff < ((uint8_t*)g_cpxprogtbl + FW_SIZE)){
+    uint8_t flash_addr[4];
+    memset(flash_addr, 0, 4);
+    ConvertUint32ToBytes(flash_addr, (800*4096 + (uint32_t)(buff - (uint8_t*)g_cpxprogtbl)));
+    FLASH_gRead(flash_addr,LOCAL_FW_buff, (uint16_t)(tx_size - remaining));
+    buff = LOCAL_FW_buff;
+  }
+  /* Waiting for DMA channel2 frame end interrupt */
+  //Delay_ms(10);
+ // while (flag_framend == 0 && ++counter < 10000);
+  /* Waiting for UART2 transmit(via DMA channel) complete */
+  //while(UART_GetFlag(UART2, 0x80) == 1);
+  
+  DMA_InitType DMA_InitStruct;
+    /* DMA channel2 initialization */
+  DMA_DeInit(DMA_CHANNEL_2);
+  DMA_InitStruct.DestAddr = (uint32_t)&UART2->DATA;
+  DMA_InitStruct.SrcAddr = (uint32_t)&buff[0];
+  DMA_InitStruct.FrameLen = (uint8_t)FrameLen - 1;
+  DMA_InitStruct.PackLen = (uint8_t)PackLen - 1;
+  DMA_InitStruct.ContMode = DMA_CONTMODE_DISABLE;
+  DMA_InitStruct.TransMode = DMA_TRANSMODE_SINGLE;
+  DMA_InitStruct.ReqSrc = DMA_REQSRC_UART2TX;
+  DMA_InitStruct.DestAddrMode = DMA_DESTADDRMODE_FIX;
+  DMA_InitStruct.SrcAddrMode = DMA_SRCADDRMODE_FEND;
+  DMA_InitStruct.TransSize = DMA_TRANSSIZE_BYTE;
+  DMA_Init(&DMA_InitStruct, DMA_CHANNEL_2);
+  
+  /* Enable DMA channel2 frame end interrupt */
+  DMA_INTConfig(DMA_INT_C2FE, ENABLE);
+  /* Enable DMA NVIC interrupt */
+  CORTEX_SetPriority_ClearPending_EnableIRQ(DMA_IRQn,0);
+  NVIC_EnableIRQ(DMA_IRQn);
+  
+  flag_framend = 0;
+  //flag_uarterr = 0;
+  DMA_Cmd(DMA_CHANNEL_2, ENABLE);
+
+  /***************** */
+    timer_counter_old = tick_count;
+/************************** */
+  
+  //UART_ClearFlag(UART2, 0x80);
+
+  /* DMA channel2, UART2 resource release */
+//  DMA_DeInit(DMA_CHANNEL_2);
+//  NVIC_DisableIRQ(DMA_IRQn);
+}
+
+/******************************************************************************
+* Function Name     : R_BSP_UartSend
+* Description       : Send uart data
+* Arguments         : p_data Pointer to the uart data
+*                   : size Send data size
+*                   : uart_id Id of the uart to be configured
+* Return Value      : R_RESULT_SUCCESS ,R_RESULT_FAILED, R_RESULT_BAD_INPUT_ARGUMENTS
+******************************************************************************/
+r_result_t R_BSP_UartSend(r_bsp_uart_t uart_id, const uint8_t* p_data, uint32_t length)
+{
+//    sci_ch_t   sci_ch;
+//    uint32_t   max_transfer_length;
+  
+    r_result_t ret = R_RESULT_SUCCESS;
+    
+    switch( uart_id )
+    {
+        case R_BSP_UART_MCU_CPX:
+          {
+            //R_BSP_UartSetBaudrate(R_BSP_UART_MCU_CPX, 0);
+            //Delay_ms(1);
+            Send_DMA_UART(length,(uint8_t*)p_data);
+            //S_UART_SEND_FRAME(S_UART2,(uint8_t*)p_data,length); 
+            //(*TX3_CallBack)();
+          }
+          break;
+        case R_BSP_UART_MCU_HOST:
+        {
+#ifdef __PLC__DEBUG__
+          //R_BSP_UartSetBaudrate(R_BSP_UART_MCU_HOST, 0);
+          //Delay_ms(1);
+          S_UART_SEND_FRAME(S_UART3,(uint8_t*)p_data,length); 
+          //(*TX1_CallBack)();
+#endif
+        }
+        break;
+        case R_BSP_UART_MCU_DEBUG:
+        {
+          
+        }
+        break;
+        default:
+        {
+            ret = R_RESULT_BAD_INPUT_ARGUMENTS;
+        }
+    }
+    
+//    if( R_RESULT_SUCCESS == ret )
+//    {
+//        if( NULL == bsp_uart_ctrl[uart_id].p_tx_buff_ptr )
+//        {
+//            if( length > max_transfer_length )
+//            {
+//                bsp_uart_ctrl[uart_id].tx_length = length - max_transfer_length;
+//                bsp_uart_ctrl[uart_id].p_tx_buff_ptr = (uint8_t*)(p_data + max_transfer_length);
+//                length = max_transfer_length;
+//            }
+//            else
+//            {
+//                bsp_uart_ctrl[uart_id].tx_length = 0;
+//            }
+//            if (R_SCI_Send(bsp_uart_ctrl[uart_id].hdl, (uint8_t*)p_data, (uint16_t)length) != SCI_SUCCESS)
+//            {
+//                ret = R_RESULT_FAILED;
+//            }
+//        }
+//        else
+//        {
+//            ret = R_RESULT_INVALID_REQUEST;
+//        }
+//    }
+    return ret;
+}
+/******************************************************************************
+   End of function  R_BSP_UartSend
+******************************************************************************/
+
+/******************************************************************************
+* Function Name     : R_BSP_ConfigureFlash
+* Description       : Configure the Flash access api
+* Arguments         : p_data Pointer to the uart data
+*                   : none
+* Return Value      : R_RESULT_SUCCESS ,R_RESULT_FAILED
+******************************************************************************/
+r_result_t R_BSP_ConfigureFlash( void )
+{
+//#if (R_BOARD_EEPROM==1)
+//    eeprom_riic_return_t ret;
+//    
+//    ret = R_EEPROM_RIIC_Open(R_BSP_EEPROM_IIC_CH);
+//    if( EEPROM_RIIC_SUCCESS != ret )
+//    {
+//        return R_RESULT_FAILED;
+//    }
+//#else /* (R_BOARD_EEPROM==1) */
+//    flash_err_t flash_ret;
+//    flash_ret = R_FLASH_Open();
+//    if( FLASH_SUCCESS != flash_ret )
+//    {
+//        return R_RESULT_FAILED;
+//    }
+//    
+//#if (1==FLASH_HAS_DF_ACCESS_WINDOW)
+//    {
+//        flash_access_window_config_t df_access_flag;
+//        
+//        /* DF all area Read/Erase/Write enable */
+//        df_access_flag.read_en_mask = 0xFFFF;
+//        df_access_flag.write_en_mask = 0xFFFF;
+//        flash_ret = R_FLASH_Control(FLASH_CMD_ACCESSWINDOW_SET, (void *)&df_access_flag);
+//        if( FLASH_SUCCESS != flash_ret )
+//        {
+//            return R_RESULT_FAILED;
+//        }
+//    }
+//#endif /* FLASH_HAS_DF_ACCESS_WINDOW */
+//    
+//#endif /* (R_BOARD_EEPROM==1) */
+
+    return R_RESULT_SUCCESS;
+}
+/******************************************************************************
+   End of function  R_BSP_ConfigureFlash
+******************************************************************************/
+
+/******************************************************************************
+* Function Name     : R_BSP_FlashWrite
+* Description       : Write data flash
+* Arguments         : dst_addr destination flash address
+*                   : src_buff source address
+*                   : size_byte write size
+* Return Value      : R_RESULT_SUCCESS ,R_RESULT_FAILED
+******************************************************************************/
+r_result_t R_BSP_FlashWrite( uint32_t dst_addr, uint8_t *src_buff, uint32_t size_byte )
+{
+//#if (R_BOARD_EEPROM==1)
+    uint8_t ret;
+    uint8_t flash_addr[4];
+//    ret = bsp_flash_eep_write( (uint16_t)dst_addr, src_buff, size_byte );
+//    
+//    return ret;
+//#else /* (R_BOARD_EEPROM==1) */
+//    flash_err_t ret = FLASH_SUCCESS;
+//    
+      R_BSP_DI();
+      ConvertUint32ToBytes(flash_addr, dst_addr);
+      ret = FLASH_gWrite(flash_addr,src_buff, (uint16_t)size_byte);
+      R_BSP_EI();
+//    
+    if(0 == ret)
+    {
+        return R_RESULT_SUCCESS;
+    }
+    else
+    {
+        return R_RESULT_FAILED;
+    }
+//#endif /* (R_BOARD_EEPROM==1) */
+
+}
+/******************************************************************************
+   End of function  R_BSP_FlashWrite
+******************************************************************************/
+
+/******************************************************************************
+* Function Name     : R_BSP_FlashRead
+* Description       : Read data flash
+* Arguments         : dst_buff destination ram address
+*                   : src_addr source flash address
+*                   : size_byte read size
+* Return Value      : R_RESULT_SUCCESS ,R_RESULT_FAILED
+******************************************************************************/
+r_result_t R_BSP_FlashRead( uint8_t *dst_buff, uint32_t src_addr, uint32_t size_byte )
+{
+//#if (R_BOARD_EEPROM==1)
+//    bsp_flash_eep_read( dst_buff, (uint16_t)src_addr, size_byte );
+//#else
+//    R_memcpy( (void*)dst_buff, (void*)src_addr, size_byte );
+//#endif
+  uint8_t flash_addr[4];
+    ConvertUint32ToBytes(flash_addr, src_addr);
+    return FLASH_gRead(flash_addr,dst_buff, (uint16_t)size_byte);
+}
+/******************************************************************************
+   End of function  R_BSP_FlashRead
+******************************************************************************/
+
+/******************************************************************************
+* Function Name     : R_BSP_FlashErase
+* Description       : Erase data flash
+* Arguments         : dst_addr erasing flash address (64byte alignment) for Data flash.
+*                   : size_byte erase size
+* Return Value      : R_RESULT_SUCCESS ,R_RESULT_FAILED,R_RESULT_BAD_INPUT_ARGUMENTS
+******************************************************************************/
+r_result_t R_BSP_FlashErase( uint32_t dst_addr, uint32_t size_byte )
+{
+//#if (R_BOARD_EEPROM == 0)
+//    flash_err_t ret;
+//    uint8_t   flash_area;
+//    uint32_t  num_blocks;
+//    uint32_t  end_addr;
+//
+//    end_addr = (dst_addr + size_byte - 1);
+//
+//    if (( dst_addr >= (FLASH_DF_BLOCK_0)) && ((end_addr < FLASH_DF_BLOCK_INVALID)))
+//    {
+//        /* data flash erase address check */
+//        if (dst_addr & (FLASH_DF_BLOCK_SIZE-1))
+//        {
+//            flash_area = R_BSP_FLASH_AREA_INVALID;
+//        }
+//        else
+//        {
+//            flash_area = R_BSP_FLASH_AREA_DATA;
+//            if( size_byte & (FLASH_DF_BLOCK_SIZE-1))
+//            {
+//                num_blocks = (size_byte / FLASH_DF_BLOCK_SIZE) + 1;
+//            }
+//            else
+//            {
+//                num_blocks = size_byte / FLASH_DF_BLOCK_SIZE;
+//            }
+//        }
+//    }
+//    else
+//    {
+//        dst_addr &= 0x00FFFFFFul;
+//        end_addr &= 0x00FFFFFFul;
+//
+//        if ((dst_addr > (FLASH_CF_BLOCK_INVALID & 0x00FFFFFFul)) && (end_addr <= 0x00FFFFFFul))
+//        {
+//            uint8_t flash_type = FLASH_TYPE;
+//            uint32_t addr;
+//            uint8_t tmp_nofblock;
+//
+//            flash_area = R_BSP_FLASH_AREA_CODE;
+//
+//#if    (FLASH_TYPE == FLASH_TYPE_1)
+//            /* RX23x */
+//            if ((dst_addr & R_BSP_FLASH_02K_ERASE_SIZE) || (size_byte & R_BSP_FLASH_02K_ERASE_SIZE))
+//            {
+//                flash_area = R_BSP_FLASH_AREA_INVALID;
+//            }
+//            else
+//            {
+//                /* convaert size to block */
+//                num_blocks = ((size_byte) >> 11);
+//            }
+//#elif  (FLASH_TYPE == FLASH_TYPE_2)
+//            /* RX63x */
+//            end_addr = (dst_addr + size_byte - 1);
+//            if (end_addr > 0x00FFFFFFul)
+//            {
+//                flash_area = R_BSP_FLASH_AREA_INVALID;
+//            }
+//            else
+//            if (dst_addr < (FLASH_CF_BLOCK_53 & 0x00FFFFFFul))
+//            {
+//                /* 64K */
+//                if (dst_addr & R_BSP_FLASH_64K_ERASE_SIZE)
+//                {
+//                    flash_area = R_BSP_FLASH_AREA_INVALID;
+//                }
+//                else
+//                {
+//                    num_blocks = bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_69, FLASH_CF_BLOCK_53, dst_addr, end_addr, (R_BSP_FLASH_64K_ERASE_SIZE + 1));
+//                    num_blocks += bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_53, FLASH_CF_BLOCK_37, dst_addr, end_addr, (R_BSP_FLASH_32K_ERASE_SIZE + 1));
+//                    num_blocks += bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_37, FLASH_CF_BLOCK_7, dst_addr, end_addr, (R_BSP_FLASH_16K_ERASE_SIZE + 1));
+//                    num_blocks += bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_7, 0x00FFFFFFul, dst_addr, end_addr, (R_BSP_FLASH_04K_ERASE_SIZE + 1));
+//                }
+//            }
+//            else
+//            if (dst_addr < (FLASH_CF_BLOCK_37 & 0x00FFFFFFul))
+//            {
+//                /* 32K */
+//                if (dst_addr & R_BSP_FLASH_32K_ERASE_SIZE)
+//                {
+//                    flash_area = R_BSP_FLASH_AREA_INVALID;
+//                }
+//                else
+//                {
+//                    num_blocks = bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_53, FLASH_CF_BLOCK_37, dst_addr, end_addr, (R_BSP_FLASH_32K_ERASE_SIZE + 1));
+//                    num_blocks += bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_37, FLASH_CF_BLOCK_7, dst_addr, end_addr, (R_BSP_FLASH_16K_ERASE_SIZE + 1));
+//                    num_blocks += bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_7, 0x00FFFFFFul, dst_addr, end_addr, (R_BSP_FLASH_04K_ERASE_SIZE + 1));
+//                }
+//            }
+//            else
+//            if (dst_addr < (FLASH_CF_BLOCK_7 & 0x00FFFFFFul))
+//            {
+//                /* 16K */
+//                if (dst_addr & R_BSP_FLASH_16K_ERASE_SIZE)
+//                {
+//                    flash_area = R_BSP_FLASH_AREA_INVALID;
+//                }
+//                else
+//                {
+//                    num_blocks = bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_37, FLASH_CF_BLOCK_7, dst_addr, end_addr, (R_BSP_FLASH_16K_ERASE_SIZE + 1));
+//                    num_blocks += bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_7, 0x00FFFFFFul, dst_addr, end_addr, (R_BSP_FLASH_04K_ERASE_SIZE + 1));
+//                }
+//            }
+//            else
+//            {
+//                /* 4K */
+//                if (dst_addr & R_BSP_FLASH_04K_ERASE_SIZE)
+//                {
+//                    flash_area = R_BSP_FLASH_AREA_INVALID;
+//                }
+//                else
+//                {
+//                    num_blocks = bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_7, 0x00FFFFFFul, dst_addr, end_addr, (R_BSP_FLASH_04K_ERASE_SIZE + 1));
+//                }
+//            }
+//        
+//#elif  (FLASH_TYPE == FLASH_TYPE_4)
+//            /* RX65x */
+//            if (end_addr > 0x00FFFFFFul)
+//            {
+//                flash_area = R_BSP_FLASH_AREA_INVALID;
+//            }
+//            else
+//            if (dst_addr < (FLASH_CF_BLOCK_7 & 0x00FFFFFFul))
+//            {
+//                /* 32K */
+//                if (dst_addr & R_BSP_FLASH_32K_ERASE_SIZE)
+//                {
+//                    flash_area = R_BSP_FLASH_AREA_INVALID;
+//                }
+//                else
+//                {
+//                    num_blocks = bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_69, FLASH_CF_BLOCK_8, dst_addr, end_addr, (R_BSP_FLASH_32K_ERASE_SIZE + 1));
+//                    num_blocks += bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_8, 0x00FFFFFFul, dst_addr, end_addr, (R_BSP_FLASH_32K_ERASE_SIZE + 1));
+//                }
+//            }
+//            else
+//            {
+//                /* 8K */
+//                if (dst_addr & R_BSP_FLASH_08K_ERASE_SIZE)
+//                {
+//                    flash_area = R_BSP_FLASH_AREA_INVALID;
+//                }
+//                else
+//                {
+//                    num_blocks = bsp_check_cf_erase_block_num(FLASH_CF_BLOCK_8, 0x00FFFFFFul, dst_addr, end_addr, (R_BSP_FLASH_08K_ERASE_SIZE + 1));
+//                }
+//            }
+//#else  /* FLASH_TYPE */
+//#error "An unsupported FLASH_TYPE is specified."
+//#endif /* FLASH_TYPE */
+//            dst_addr |= 0xFF000000ul;
+//        }
+//        else
+//        {
+//            flash_area = R_BSP_FLASH_AREA_INVALID;
+//        }
+//    }
+//    if (R_BSP_FLASH_AREA_INVALID == flash_area)
+//    {
+//        return R_RESULT_BAD_INPUT_ARGUMENTS;
+//    }
+//
+//    R_BSP_DI();
+//    ret = R_FLASH_Erase((flash_block_address_t)dst_addr, num_blocks);
+//    R_BSP_EI();
+//    if(FLASH_SUCCESS != ret)
+//    {
+//        return R_RESULT_FAILED;
+//    }
+//#endif /* (R_BOARD_EEPROM == 0) */
+    //uint8_t flash_addr[4];
+    //ConvertUint32ToBytes(flash_addr, dst_addr);
+    FLASH_gEraseSector_ByIndex(dst_addr/4096,80);
+    return R_RESULT_SUCCESS;
+}
+/******************************************************************************
+   End of function  R_BSP_FlashErase
+******************************************************************************/
+
+#if (R_BOARD_EEPROM == 0)
+/******************************************************************************
+* Function Name:bsp_check_cf_erase_block_num
+* Description :
+* Arguments : 
+* Return Value : 
+******************************************************************************/
+//static uint8_t bsp_check_cf_erase_block_num(uint32_t startadr, uint32_t endadr, uint32_t  des_adr, uint32_t  end_adr, uint32_t block_size)
+//{
+//    uint32_t faddr;
+    uint8_t tmp_nofblock;
+//
+//    startadr &= 0x00FFFFFFul;
+//    endadr   &= 0x00FFFFFFul;
+//
+//    for (faddr = startadr, tmp_nofblock = 0; faddr < endadr; faddr += block_size)
+//    {
+//        if (faddr > end_adr) break;
+//        if (faddr >= des_adr)
+//        {
+//            tmp_nofblock++;
+//        }
+//    }
+//    return tmp_nofblock;
+//}
+/******************************************************************************
+   End of function  bsp_check_cf_erase_block_num
+******************************************************************************/
+#endif /* (R_BOARD_EEPROM == 0) */
+
+/******************************************************************************
+* Function Name:R_BSP_CheckInStack
+* Description :
+* Arguments : 
+* Return Value : 
+******************************************************************************/
+r_result_t R_BSP_CheckInStack(const uint8_t* pparameter)
+{
+    uint8_t* pstack_begin;
+    uint8_t* pstack_end;
+//    
+#if defined(__RENESAS__)
+    pstack_begin = (uint8_t*)__sectop("SU");
+    pstack_end   = (uint8_t*)__sectop("SI");
+#else
+    pstack_begin = (uint8_t*)0x20000704;
+    pstack_end   = (uint8_t*)0x200035E4;
+#endif
+
+//   pstack_begin = (uint8_t*)g_ustack;
+//   pstack_end   = (uint8_t*)g_istack;
+    if ((pparameter >= (uint8_t*)0x20007018) && (pparameter <= (uint8_t*)0x20007db8))
+    {
+        return R_RESULT_SUCCESS;
+    }
+    else
+    {
+        return R_RESULT_FAILED;
+    }
+}
+/******************************************************************************
+   End of function  R_BSP_CheckInStack
+******************************************************************************/
+
+/******************************************************************************
+* Function Name:R_BSP_SoftReset
+* Description :
+* Arguments : 
+* Return Value : 
+******************************************************************************/
+void R_BSP_SoftReset(void)
+{
+//    /* Protection off */
+//    SYSTEM.PRCR.WORD = 0xA503u;
+//
+//    /* Write soft reset register */
+//    SYSTEM.SWRR = 0xA501u;
+//
+//    /* Protection on */
+//    SYSTEM.PRCR.WORD = 0xA500u;
+}
+/******************************************************************************
+   End of function  R_BSP_SoftReset
+******************************************************************************/
+
+
+/******************************************************************************
+* Function Name : bsp_get_uart_ch
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+//static uint8_t bsp_get_uart_ch(r_bsp_uart_t uart_type)
+//{
+//    uint8_t ch /*= (uint8_t)SCI_CH9*/;
+//
+//    switch ( local_board_type )
+//    {
+//        case R_BOARD_G_CPX3:
+//        case R_BOARD_J80D1:
+//        case R_BOARD_G_HYBRID:
+//            switch(uart_type)
+//            {
+//                case R_BSP_UART_MCU_CPX:
+//                    ch = (uint8_t)SCI_CH9;
+//                    break;
+//                case R_BSP_UART_MCU_HOST:
+//                    ch = (uint8_t)SCI_CH0;
+//                    break;
+//                case R_BSP_UART_MCU_DEBUG:
+//                    ch = (uint8_t)SCI_CH5;
+//                    break;
+//                default:
+//                    break;
+//            }
+//            break;
+//        case R_BOARD_G_HYBRID_TEST:
+//            switch(uart_type)
+//            {
+//                case R_BSP_UART_MCU_CPX:
+//                    ch = (uint8_t)SCI_CH9;
+//                    break;
+//                case R_BSP_UART_MCU_HOST:
+//                    ch = (uint8_t)SCI_CH1;
+//                    break;
+//                case R_BSP_UART_MCU_DEBUG:
+//                    ch = (uint8_t)SCI_CH5;
+//                    break;
+//                default:
+//                    break;
+//            }
+//            break;
+//        case R_BOARD_RX231RSK:
+//            switch(uart_type)
+//            {
+//                case R_BSP_UART_MCU_CPX:
+//                    ch = (uint8_t)SCI_CH9;
+//                    break;
+//                case R_BSP_UART_MCU_HOST:
+//                    ch = (uint8_t)SCI_CH5;
+//                    break;
+//                case R_BSP_UART_MCU_DEBUG:
+//                    ch = (uint8_t)SCI_CH1;
+//                    break;
+//                default:
+//                    break;
+//            }
+//            break;
+//        default:
+//            break;
+//    }
+//    return ch;
+//}
+/******************************************************************************
+   End of function  bsp_get_uart_ch
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : bsp_get_uart_max_len
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+//static uint32_t bsp_get_uart_max_len(r_bsp_uart_t uart_type)
+//{
+//    uint32_t size /*= SCI_CFG_CH9_TX_BUFSIZ*/;
+//    
+//    switch ( local_board_type )
+//    {
+//        case R_BOARD_G_CPX3:
+//        case R_BOARD_J80D1:
+//        case R_BOARD_G_HYBRID:
+//            switch(uart_type)
+//            {
+//                case R_BSP_UART_MCU_CPX:
+//                    size = SCI_CFG_CH9_TX_BUFSIZ;
+//                    break;
+//                case R_BSP_UART_MCU_HOST:
+//                    size = SCI_CFG_CH0_TX_BUFSIZ;
+//                    break;
+//                case R_BSP_UART_MCU_DEBUG:
+//                    size = SCI_CFG_CH5_TX_BUFSIZ;
+//                    break;
+//                default:
+//                    break;
+//            }
+//            break;
+//        case R_BOARD_G_HYBRID_TEST:
+//            switch(uart_type)
+//            {
+//                case R_BSP_UART_MCU_CPX:
+//                    size = SCI_CFG_CH9_TX_BUFSIZ;
+//                    break;
+//                case R_BSP_UART_MCU_HOST:
+//                    size = SCI_CFG_CH1_TX_BUFSIZ;
+//                    break;
+//                case R_BSP_UART_MCU_DEBUG:
+//                    size = SCI_CFG_CH5_TX_BUFSIZ;
+//                    break;
+//                default:
+//                    break;
+//            }
+//            break;
+//        case R_BOARD_RX231RSK:
+//            switch(uart_type)
+//            {
+//                case R_BSP_UART_MCU_CPX:
+//                    size = SCI_CFG_CH9_TX_BUFSIZ;
+//                    break;
+//                case R_BSP_UART_MCU_HOST:
+//                    size = SCI_CFG_CH5_TX_BUFSIZ;
+//                    break;
+//                case R_BSP_UART_MCU_DEBUG:
+//                    size = SCI_CFG_CH1_TX_BUFSIZ;
+//                    break;
+//                default:
+//                    break;
+//            }
+//            break;
+//        default:
+//            break;
+//    }
+//    return size;
+//}
+/******************************************************************************
+   End of function  bsp_get_uart_max_len
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : bsp_configure_tau_timer
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+static r_result_t bsp_configure_tau_timer(uint32_t pclk, uint32_t tick_ms, uint8_t priority)
+{
+    r_result_t ret = R_RESULT_SUCCESS;
+    TMR_InitType TMR_InitStruct;
+    uint32_t       timer_ms_count;
+    uint32_t       timer_period;
+//    const uint16_t timer_divider[7] = { 1 };
+//    const uint8_t  timer_div_val[7] = { 0x08u };
+//    uint16_t       idx;
+//    
+//    /* Start divider search algorithm */
+//    timer_ms_count  = pclk / 1000u;
+//    timer_ms_count *= tick_ms;
+//    idx             = 0;
+//    
+//    do
+//    {
+//        timer_period = timer_ms_count / timer_divider[idx];
+//        idx++;
+//    } while ((idx < 7u) && (timer_period > 65535u));
+//    
+//    /* Check whether divider found is valid */
+//    if (timer_period > 65535u)
+//    {
+//        ret = R_RESULT_FAILED;
+//    }
+//    else
+//    {
+//        idx--;
+//        ret = R_RESULT_SUCCESS;
+//    }
+    
+    /* Proceed to timer configuration */
+    if (R_RESULT_SUCCESS == ret )
+    {
+          TMR_DeInit(TMR3);
+          TMR_InitStruct.ClockSource = TMR_CLKSRC_INTERNAL;
+          TMR_InitStruct.EXTGT = TMR_EXTGT_DISABLE;
+          TMR_InitStruct.Period = (0x000400FF);
+          TMR_Init(TMR3, &TMR_InitStruct); 
+//        
+//        /* Configure the timer, cascading TMR0-TMR1 */
+//        TMR01.TCNT        = 0x0000u;                        //Clear the counter
+//        TMR01.TCORA       = (uint16_t)(timer_period);       //Initialize compare register A
+//        TMR01.TCORB       = (uint16_t)(timer_period / 10u); //Initialize compare register B
+//        TMR1.TCCR.BYTE    = timer_div_val[idx];             //Uses internal clock calculated divider
+//        TMR0.TCCR.BYTE    = 0x18u;                          //Counts at TMR1.TCNT overflow signal
+//        TMR0.TCR.BIT.CCLR = 1;                              //Cleared by compare match A
+//        TMR0.TCSR.BIT.OSA = 2;                              //High is output when compare match A occurs
+//        TMR0.TCSR.BIT.OSB = 1;                              //Low is output when compare match B occurs
+    }
+    
+    return ret;
+}
+/******************************************************************************
+   End of function  bsp_configure_tau_timer
+******************************************************************************/
+#if (R_BOARD_EEPROM==1)
+/******************************************************************************
+* Function Name : bsp_flash_eep_write
+* Description   :
+* Arguments     :
+* Return Value  :
+******************************************************************************/
+static uint8_t bsp_flash_eep_write(uint16_t eep_dstaddr, uint8_t *src_buff, uint16_t size_byte)
+{
+    eeprom_riic_return_t  ret;
+//    eeprom_riic_wr_info_t eep_w;
+//
+//    bsp_eep_event = EEPROM_RIIC_NONE;
+//
+//    /* Set Informations */
+//    eep_w.ch_no             = R_BSP_EEPROM_IIC_CH;
+//    eep_w.callbackfunc      = &bsp_flash_eep_callback;
+//    eep_w.size_wr_blk_byte  = 4;
+//    eep_w.size_mem_adr_byte = 2;
+//    eep_w.cnt_all_wr_data   = size_byte;
+//    eep_w.p_wr_data         = src_buff;
+//    eep_w.mem_adr           = (uint16_t)eep_dstaddr;
+//    eep_w.dev_adr           = (R_BSP_EEPROM_DEV_ADDRESS>>1);
+//
+//    /* Start reading from EEPROM */
+//    ret = R_EEPROM_RIIC_Write(&eep_w);
+//    if( EEPROM_RIIC_SUCCESS == ret )
+//    {
+//        while(EEPROM_RIIC_NONE == bsp_eep_event)
+//        {
+//            /* Proceeds with reading an EEPROM (refer to section 3.4) */
+//            ret = R_EEPROM_RIIC_Advance(eep_w.ch_no);
+//        }
+//    }
+
+    return (uint8_t)ret;
+}
+/******************************************************************************
+   End of function  demo_flash_eep_write
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : bsp_flash_eep_read
+* Description   :
+* Arguments     :
+* Return Value  :
+******************************************************************************/
+static uint8_t bsp_flash_eep_read(uint8_t *dst_buff, uint16_t eep_srcaddr, uint16_t size_byte)
+{
+    eeprom_riic_return_t ret;
+//    eeprom_riic_rd_info_t eep_r;
+//
+//    bsp_eep_event = EEPROM_RIIC_NONE;
+//
+//    /* Set Informations */
+//    eep_r.ch_no             = R_BSP_EEPROM_IIC_CH;
+//    eep_r.callbackfunc      = &bsp_flash_eep_callback;
+//    eep_r.size_rd_blk_byte  = 4;
+//    eep_r.size_mem_adr_byte = 2;
+//    eep_r.cnt_all_rd_data   = size_byte;
+//    eep_r.p_rd_data         = dst_buff;
+//    eep_r.mem_adr           = (uint16_t)eep_srcaddr;
+//    eep_r.dev_adr           = (R_BSP_EEPROM_DEV_ADDRESS>>1);
+//
+//    /* Start reading from EEPROM */
+//    ret = R_EEPROM_RIIC_Read(&eep_r);
+//    if( EEPROM_RIIC_SUCCESS == ret )
+//    {
+//        while(EEPROM_RIIC_NONE == bsp_eep_event)
+//        {
+//            /* Proceeds with reading an EEPROM (refer to section 3.4) */
+//            ret = R_EEPROM_RIIC_Advance(eep_r.ch_no);
+//        }
+//    }
+
+    return (uint8_t)ret;
+}
+/******************************************************************************
+   End of function  demo_flash_eep_read
+******************************************************************************/
+
+/******************************************************************************
+* Function Name: demo_flash_callback_eeprom
+* Description :
+* Arguments :
+* Return Value :
+******************************************************************************/
+static void bsp_flash_eep_callback(void * p_eeprom_status)
+{
+//    bsp_eep_event = *(eeprom_riic_status_t *)p_eeprom_status;
+}
+/******************************************************************************
+   End of function  demo_flash_callback_eeprom
+******************************************************************************/
+#endif /* (R_BOARD_EEPROM==1) */
+
+/******************************************************************************
+* Function Name : bsp_cmt_callback
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+static void bsp_cmt_callback(void* p_data)
+{
+//    uint32_t ch = *(uint32_t*)p_data;
+//    uint8_t  i;
+//    uint8_t  id;
+//    
+//    for( i=0l; i<R_BSP_TIMER_ID_MAX ;i++)
+//    {
+//        if( bsp_cm_timer_ch[i] == ch )
+//        {
+//            id = i;
+//            break;
+//        }
+//    }
+//    
+//    if (NULL != bsp_timer_callback[id])
+//    {
+//        bsp_timer_callback[id]();
+//    }
+}
+/******************************************************************************
+   End of function  bsp_cmt_callback
+******************************************************************************/
+
+/******************************************************************************
+* Function Name     : bsp_uart_evt_cllback
+* Description       : UART Tx finished handling function and
+*                     UART Rx notify function
+* Argument          : p_args : 
+* Return Value      : none
+******************************************************************************/
+static void bsp_uart_evt_cllback(void *p_args)
+{
+//    sci_cb_args_t   *p_csi_args = (sci_cb_args_t*)p_args;
+//    r_bsp_uart_t    uart_id;
+//    
+//    if( p_csi_args->hdl == bsp_uart_ctrl[R_BSP_UART_MCU_CPX].hdl )
+//    {
+//        uart_id = R_BSP_UART_MCU_CPX;
+//    }
+//    else if( p_csi_args->hdl == bsp_uart_ctrl[R_BSP_UART_MCU_HOST].hdl )
+//    {
+//        uart_id = R_BSP_UART_MCU_HOST;
+//    }
+//    else
+//    {
+//        return;
+//    }
+//    
+//    if ( (SCI_EVT_RX_CHAR == p_csi_args->event) || (SCI_EVT_RXBUF_OVFL == p_csi_args->event) )
+//    {
+//        if( NULL != bsp_uart_rx_callback[uart_id] )
+//        {
+//            bsp_uart_rx_callback[uart_id](p_csi_args->byte);
+//        }
+//    }
+//    else if (SCI_EVT_TEI == p_csi_args->event)
+//    {
+//        if( 0 == bsp_uart_ctrl[uart_id].tx_length )
+//        {
+//            bsp_uart_ctrl[uart_id].p_tx_buff_ptr = NULL;
+//            if( NULL != bsp_uart_tx_callback[uart_id] )
+//            {
+//                bsp_uart_tx_callback[uart_id]();
+//            }
+//        }
+//        else
+//        {
+//            uint32_t transfer_length;
+//            uint32_t max_transfer_length = bsp_get_uart_max_len(uart_id);
+//            
+//            if( bsp_uart_ctrl[uart_id].tx_length > max_transfer_length )
+//            {
+//                transfer_length = max_transfer_length;
+//                bsp_uart_ctrl[uart_id].tx_length -= max_transfer_length;
+//            }
+//            else
+//            {
+//                transfer_length = bsp_uart_ctrl[uart_id].tx_length;
+//                bsp_uart_ctrl[uart_id].tx_length = 0;
+//            }
+//            
+//            R_SCI_Send(p_csi_args->hdl, bsp_uart_ctrl[uart_id].p_tx_buff_ptr, (uint16_t)transfer_length);
+//            bsp_uart_ctrl[uart_id].p_tx_buff_ptr = (uint8_t*)((uint32_t)bsp_uart_ctrl[uart_id].p_tx_buff_ptr + transfer_length);
+//        }
+//    }
+//    else
+//    {
+//        /* Do Nothing */
+//    }
+}
+void PLC_sync(void){
+  uint32_t size = DMA_GetPackLenTransferred(1) + DMA_GetFrameLenTransferred(1)*256;
+  while(size != DMA_last_index){
+    if(RX1_CallBack != 0){
+      (*RX1_CallBack)(bsrc_rcv[DMA_last_index]);
+      DMA_last_index++;
+      DMA_last_index = DMA_last_index % 512;
+    }
+  }
+  //(*TMR2_CallBack)();
+  thread_processing();
+  if(plc_connected)
+    symbol_flag |= 0x20000;
+}
+
+void PLC_process(void){
+  PLC_sync();
+  //(*TMR1_CallBack)();
+  app_process_thread();
+}
+void R_BSP_NOP(void)
+{
+    __NOP();
+      /*! - tarrif task.*/
+//    trf_pymt_task();
+//    /*! - Display task.*/
+//    display_task();  
+//    /*! - Metering task.*/
+//    mtr_task();
+//    /*! - Communication task containing all communication interfaces.*/
+//    comm_task();
+//    /*! - Control task.*/
+//    ctrl_task();
+}
+/******************************************************************************
+* Interupt handlers
+******************************************************************************/
+
+/******************************************************************************
+* Function Name : R_EXCEP_Tmr0Cmia0
+* Description   : 
+* Arguments     : 
+* Return Value  : 
+******************************************************************************/
+/* TMR0_CMIA0 */
+//#pragma interrupt (R_EXCEP_Tmr0Cmia0(vect=VECT(TMR0,CMIA0)))
+//void R_EXCEP_Tmr0Cmia0(void)
+//{
+//    if (NULL != bsp_timer_callback[R_BSP_TIMER_ID_0])
+//    {
+//        bsp_timer_callback[R_BSP_TIMER_ID_0]();
+//    }
+//}
+/******************************************************************************
+   End of function  R_EXCEP_Tmr0Cmia0
+******************************************************************************/
