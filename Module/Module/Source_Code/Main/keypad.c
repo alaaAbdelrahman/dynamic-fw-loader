@@ -13,7 +13,7 @@
 /* ===== MODULE HEADER ===== */
 
 #pragma location = ".module_header"
-__root const uint32_t module_magic = 0x4D4D4D4D;
+__root const uint32_t module_magic = 0x4D4D;
 
 /* ===== FUNCTION PROTOTYPES ===== */
 
