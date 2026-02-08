@@ -1,363 +1,329 @@
-External Flash Module Loader
-Prepaid Meter – V94 (Cortex-M0)
-1. Purpose
+# Dynamic Module Loader
+### External Flash Overlay Execution System (Cortex-M0 / V94XX)
 
-The VX94 microcontroller has limited internal flash.
+---
 
-The prepaid meter firmware contains:
+## Overview
 
-core features (always running)
+This project implements a **dynamic module loading (overlay) system** to overcome **limited internal flash memory** on Cortex-M0 based prepaid meters.
 
-optional features (used occasionally like keypad, display tools, printer, bootloader, etc.)
+Optional features are stored in **external flash** and loaded **on demand** into a small **internal flash execution buffer**.
 
-Keeping all features permanently in internal flash wastes space and may exceed memory.
+Only the active module occupies internal flash at runtime.
 
-To solve this, optional features are stored in external flash and loaded into a small internal flash execution area only when needed.
+---
 
-2. Approach Used
+## Problem
 
-This system uses:
+Traditional firmware links all features permanently:
 
-Code Overlay / Dynamic Module Loading
+Internal Flash =
+Core + Keypad + Display + Bootloader + Diagnostics + ...
 
-Meaning:
+Problems:
+- Flash exhausted quickly
+- Rarely-used features waste memory
+- Hard to scale
+- Requires larger MCU
 
-modules are stored outside (external flash)
+---
 
-copied to internal flash when required
+## Solution
 
-executed
+Store optional features in **external flash** and load only one module at runtime.
 
-replaced later by another module
+Principle:
 
-Only one module is active at a time.
+Internal flash = core + largest module  
+NOT  
+Internal flash = core + sum(all modules)
 
-3. Memory Layout
-Internal Flash
-+----------------------------------+
-| Main firmware (core + loader)    |
-| Drivers / services               |
-|----------------------------------|
-| Execution buffer (16 KB)         |  <-- modules copied here
-| 0x0003C000 – 0x0003FFFF          |
-+----------------------------------+
+---
 
-External Flash
-+----------------------------------+
-| Keypad module image              |
-| Display module image             |
-| Printer module image             |
-| Bootloader module (future)       |
-+----------------------------------+
+# Architecture
 
-4. System Components
-4.1 Loader (loader.c)
+## Internal Flash (execution)
 
-Responsible for:
+```
+0x00000000  +-------------------------------+
+            | Core firmware                 |
+            | loader + drivers + stubs      |
+            +-------------------------------+
+0x0003C000  | Module execution buffer       |
+            | (copied here at runtime)      |
+0x0003FFFF  +-------------------------------+
+```
 
-reading module from external flash
+---
 
-validating header
+## External Flash (storage only)
 
-CRC check
+```
+Slot N:
 
-erasing internal flash
++------------------+
+| header           |
+| module code      |
+| function table   |
++------------------+
+```
 
-copying code to execution buffer
+External flash is **never executed directly**.
 
-building function pointer table
+---
 
-giving access to module functions
+# Runtime Flow
 
-Main APIs
-loader_init()
-loader_load_module()
-loader_unload_current()
-loader_get_function()
-loader_is_loaded()
+```
+Application call
+      ↓
+Stub function
+      ↓
+Loader checks module
+      ↓
+If not loaded:
+    - read header
+    - verify CRC
+    - erase execution buffer
+    - copy code to internal flash
+    - build function pointers
+      ↓
+Jump to real function
+```
 
-Loading steps
+---
 
-When loader_load_module(id) is called:
+# Key Design Choices
 
-Read module header
+## 1. Execute from internal flash (not RAM)
 
-Check magic number
+Reasons:
+- RAM is limited
+- Flash execution is stable
+- No relocation needed
+- Deterministic timing
 
-Check size and function count
+---
 
-Erase execution buffer
+## 2. Link modules at execution address
 
-Copy code in chunks
+Modules are linked at:
 
-Calculate CRC
-
-Verify CRC
-
-Read function table
-
-Build function pointer list
-
-After this, functions are ready to call.
-
-4.2 Stub Layer (example: keypad_stub.c)
-
-The application never calls module code directly.
-
-Instead it calls stub functions.
-
-Example:
-
-void Keypad_Init(void)
-
-
-What stub does:
-
-Check if module loaded
-
-If not → load it
-
-Get real function pointer
-
-Call it
-
-This makes modules transparent to the main application.
-
-Application code looks normal:
-
-Keypad_Init();
-Keypad_GetKey();
-
-
-No need to know anything about loading.
-
-4.3 Module Image (example: keypad module)
-
-Each module is compiled separately.
-
-It contains:
-
-Sections
-
-.module_header
-
-.module_code
-
-.module_func_table
-
-Header
-
-Contains magic number to identify valid module.
-
-Code
-
-All executable functions placed in:
-
-.module_code
-
-
-These functions are copied to internal flash and executed.
-
-Function Table
-
-List of exported functions:
-
-typedef struct {
-    uint32_t addr;
-} func_entry_t;
-
-
-Loader reads this table and builds pointers.
-
-4.4 Linker Scripts
-Main firmware linker
-
-Reserves execution buffer:
-
-0x0003C000 – 0x0003FFFF (16 KB)
-
-
-Nothing else is placed there.
-
-Module linker
-
-Places:
-
-.module_code        → execution region
-.module_header     → metadata region
-.module_func_table → metadata region
-
+0x0003C000
 
 So:
 
-only code goes to execution buffer
+link address == execution address
 
-metadata stays in external flash
+Benefits:
+- No relocation
+- Absolute addresses valid
+- Simpler loader
+- Faster loading
 
-5. Execution Flow Example
-Example: keypad used
+Loader only needs:
 
-Application calls:
+copy → run
 
-Keypad_GetKey()
+---
 
+## 3. Stub Functions (important)
+
+### Problem
+Calling a module directly would crash if not loaded.
+
+### Solution
+Provide stub wrappers inside main firmware.
 
 Flow:
 
-Stub checks if keypad loaded
+```
+Application
+    ↓
+Stub
+    ↓
+Load module if needed
+    ↓
+Call real function
+```
 
-Not loaded → loader_load_module(KEYPAD)
+### Example
 
-Loader copies module to execution buffer
+```c
+void Keypad_Init(void)
+{
+    if (!loader_is_loaded(MODULE_KEYPAD))
+        loader_load_module(MODULE_KEYPAD);
 
-Loader builds function table
+    ((void(*)(void))loader_get_function(MODULE_KEYPAD, 0))();
+}
+```
 
-Stub calls real function
+Benefits:
+- Transparent to application
+- Automatic loading
+- Safe
+- Clean API
 
-Keypad code runs from internal flash
+---
 
-Next calls use the already loaded module (no reload).
+# Module Format
 
-6. Why Execute from Internal Flash (not RAM)
+## External Flash Layout
 
-Reasons:
+```
+[ header ][ code ][ function table ]
+```
 
-RAM is small
+---
 
-code size is large
+## Header (12 bytes)
 
-Cortex-M0 executes reliably from flash
+```c
+typedef struct {
+    uint16_t magic;
+    uint16_t code_size;
+    uint16_t crc16;
+    uint8_t  func_count;
+    uint8_t  module_id;
+    uint32_t reserved;
+} module_header_t;
+```
 
-avoids wasting RAM
+---
 
-So internal flash execution is the safest option.
+## Function Table
 
-7. Benefits of This Design
-Saves internal flash
+```c
+typedef struct {
+    uint32_t addr;
+} func_entry_t;
+```
 
-Only core firmware is permanent.
+Absolute addresses are used because modules are linked at the execution address.
 
-Supports many features
+---
 
-External flash can store many modules.
+# Build Flow
 
-Modular
+## Step 1 — Build module
 
-Each feature is separate and independent.
+Produces:
 
-Easy to update
+module.bin
 
-Modules can be replaced without touching core firmware.
+Contains:
+code + function table only
 
-Reliable
+(No header inside C)
 
-Core never changes.
-Modules are validated with CRC before execution.
+---
 
-Simple runtime
+## Step 2 — Post-build script
 
-Only one small execution buffer is needed.
+Location:
 
-Memory Usage Reduction
+Module/Module/Compiler/Debug/Exe/make_module_image.py
 
-The system reduces internal flash consumption by storing optional features in external flash and loading only one feature at runtime.
+Script:
+- calculates code_size
+- calculates CRC16
+- sets metadata
+- prepends header
 
-Traditional approach
+Produces:
 
-All features are linked into the main firmware:
+module_image.bin
 
-Internal Flash =
-    Core
-  + Keypad
-  + Display tools
-  + Bootloader
-  + Diagnostics
-  + ...
+---
 
+## Step 3 — Flash
 
-Memory usage grows as the sum of all features.
+Program:
 
-Many of these functions are rarely used, so most of the flash remains idle during normal operation.
+module_image.bin
 
-Current approach (module loading)
+to external flash.
 
-Only two parts are kept in internal flash:
+Loader handles everything automatically.
 
-Internal Flash =
-    Core
-  + Execution buffer (max module size)
+---
 
+# Adding a New Module
 
-Optional features are stored in external flash and copied into the execution buffer only when needed.
+1. Put functions in `.module_code`
+2. Create function table
+3. Build
+4. Run script
+5. Flash image
+6. Add stubs
 
-Memory usage becomes:
+Done.
 
-Core + largest module
+---
 
+# Memory Saving Principle
 
-not
+Without loader:
 
-Core + all modules
+Flash = core + all modules
 
-Example
+With loader:
 
-If:
+Flash = core + largest module only
 
-Core              = 80 KB
-Largest module    = 20 KB
-Other modules sum = 60 KB
+---
 
+## Example
 
-Then:
+Without:
+Core 80 KB + Modules 60 KB = 140 KB
 
-Traditional design:
+With:
+Core 80 KB + Largest 20 KB = 100 KB
 
-80 + 20 + 60 = 160 KB
+Saved: 40 KB
 
+---
 
-Module loading:
+# Advantages
 
-80 + 20 = 100 KB
+- Reduces internal flash usage
+- Scalable
+- Supports many optional features
+- No RAM execution
+- No relocation
+- Simple design
+- Deterministic behavior
 
+---
 
-Saved:
+# Limitations
 
-60 KB (~37%)
+- Only one module active at a time
+- Small load latency when switching
+- Requires external flash
 
-Engineering impact
+---
 
-lower internal flash requirement
+# Project Structure
 
-supports more features without increasing MCU size
+```
+loader.c / loader.h        → module loader
+stubs/                    → stub wrappers
+modules/                  → module sources (code only)
+make_module_image.py      → header injection script
+```
 
-better scalability
+---
 
-no RAM cost (execution from flash)
+# Status
 
-Only one module executes at a time, so sharing one execution buffer is sufficient.
+Implemented:
+- loader
+- CRC verification
+- stub system
+- post-build header injection
+- module execution from flash
 
-8. Limitations
-
-small delay while loading
-
-flash erase time
-
-only one module at a time
-
-Acceptable because modules are rarely used.
-
-9. Summary
-
-This project implements a simple module loading system:
-
-core firmware in internal flash
-
-optional features in external flash
-
-loader copies module when needed
-
-execution happens from internal flash
-
-stubs hide loading from application
-
-This allows the prepaid meter to support many features while using limited internal flash.
+Ready for hardware validation.
