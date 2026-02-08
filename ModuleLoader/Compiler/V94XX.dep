@@ -1,0 +1,1947 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <fileVersion>2</fileVersion>
+    <fileChecksum>824436178</fileChecksum>
+    <configuration>
+        <name>Debug</name>
+        <outputs>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_iso7816.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_clk.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_adc.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_LoadNVR.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_misc.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_pmu.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_rtc.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_cortex.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_tmr.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_u32k.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_lcd.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_version.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_wdt.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_spi.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_ana.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\System_V94XX.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_pwm.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_uart.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_ADC.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_adc_tiny.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_crypt.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_flash.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_comp.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_dma.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_i2c.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\Driver_ISO7816_V85XX.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_isr.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_gpio.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\Common_Drivers\inc\Driver_ISO7816.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\Common_Drivers\inc\Driver_Common.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Config\config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\Common_Drivers\inc\type_def.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_tmr.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_TMR.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_iso7816.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ISO7816.o</file>
+            <file>$PROJ_DIR$\cmsis\core_cmFunc.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_pwm.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\string.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\Flash.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_RTC.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_uart.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\RTC_Program.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_iso7816.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_WDT.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_CRYPT.pbi</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_PMU.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_Version.o</file>
+            <file>$PROJ_DIR$\..\Source_Code\Services\Soft_Spi_Intf\SOFT_SPI_DRV\soft_spi_drv.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_crypt.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\Driver_ISO7816_V94XX.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_cortex.o</file>
+            <file>$PROJ_DIR$\cmsis\core_cmInstr.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_i2c.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_U32K.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_adc.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_clk.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ISO7816.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\startup_V94XX.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Main.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\basic_srv.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\Flash_app.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\CLK_Program.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX.pbd</file>
+            <file>$PROJ_DIR$\Debug\Obj\SPI_Program.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_COMP.pbi</file>
+            <file>$PROJ_DIR$\Debug\Exe\V94XX.out</file>
+            <file>$PROJ_DIR$\Debug\Obj\Flash.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_CodeRAM.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\UART_Program.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\UART_Program.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_SPI.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ADC_Tiny.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_adc_tiny.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_GPIO.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_LoadNVR.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Driver_ISO7816_V94XX.pbi</file>
+            <file>$TOOLKIT_DIR$\inc\c\stddef.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_comp.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_CLK.o</file>
+            <file>$TOOLKIT_DIR$\config\linker\VANGO\V94XX_flash.icf</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_flash.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_comp.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_misc.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_CodeRAM.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_pmu.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_ana.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\SPI_Program.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ADC.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_rtc.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_adc_tiny.o</file>
+            <file>$TOOLKIT_DIR$\lib\rt6M_tl.a</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\ISO7816_Program.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ISR.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\Timer_Program.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_pmu.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_FLASH.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_DMA.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\loader.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Driver_ISO7816_V85XX.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\System_V94XX.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_dma.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_SPI.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_spi.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_version.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\basic_srv.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Keypad._stub.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_isr.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_GPIO.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_CRYPT.o</file>
+            <file>$PROJ_DIR$\Debug\List\V94XX.map</file>
+            <file>$PROJ_DIR$\Debug\Obj\ADC_Program.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_TMR.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_CORTEX.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_cortex.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_CORTEX.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_wdt.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_WDT.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Timer_Program.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_LoadNVR.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\file_sys.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\EEPROM.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_LCD.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\loader.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\meter_init.o</file>
+            <file>$PROJ_DIR$\Debug\Exe\V94XX.hex</file>
+            <file>$PROJ_DIR$\Debug\Obj\Main.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ADC_Tiny.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_rtc.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\CLK_Program.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_u32k.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Flash_app.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ANA.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_spi.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_DMA.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_adc.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\RTC_Program.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\SystemTick_Program.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\I2C_Program.pbi</file>
+            <file>$TOOLKIT_DIR$\inc\c\time32.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\EEPROM.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_PWM.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_LCD.pbi</file>
+            <file>$PROJ_DIR$\..\Source_Code\Services\Soft_Spi_Intf\soft_spi_intf.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_RTC.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Task_priority.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\I2C_Program.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_UART.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Keypad._stub.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\meter_init.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ANA.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_crypt.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_lcd.pbi</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_MISC.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_wdt.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_isr.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\System_V94XX.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_pwm.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_Version.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_LoadNVR.o</file>
+            <file>$TOOLKIT_DIR$\lib\dl6M_tln.a</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_MISC.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_lcd.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_dma.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_gpio.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_ana.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_PWM.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_clk.pbi</file>
+            <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_PMU.pbi</file>
+            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_tmr.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_misc.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\iccarm_builtin.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_CLK.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\GPIO_Program.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_U32K.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_flash.pbi</file>
+            <file>$PROJ_DIR$\..\Source_Code\Services\SW_Timer\OS_Itf.h</file>
+            <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ADC.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_u32k.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_i2c.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_FLASH.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\ADC_Program.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\ISO7816_Program.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\Task_priority.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_gpio.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_LoadNVR.pbi</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\CLK_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_LCD.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_PMU.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\ADC_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_I2C.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_CLK.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_RTC.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\GPIO_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_FLASH.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\I2C_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_CRYPT.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_PWM.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_CORTEX.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_SPI.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_DMA.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ISO7816.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ISR.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_Version.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\ADC_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\CLK_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\GPIO_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_CodeRAM.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_WDT.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\I2C_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\ISO7816_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_UART.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_GPIO.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_LoadNVR.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_TMR.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_U32K.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_COMP.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_MISC.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\System_V94XX.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_I2C.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ADC.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ADC_Tiny.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ANA.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_ISR.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_CLK.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_ADC_Tiny.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_GPIO.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_LoadNVR.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_ISO7816.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_MISC.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_PWM.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_COMP.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_EnergyMetering.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_RTC.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_TMR.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_CodeRAM.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_CORTEX.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_ANA.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_CRYPT.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_LCD.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_FLASH.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_SPI.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_U32K.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_UART.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_PMU.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_Version.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_DMA.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_WDT.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\Driver_ISO7816_V94XX.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Main\loader.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\GPIO_Program.o</file>
+            <file>$PROJ_DIR$\..\Source_Code\Inc\main.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Main\Task_priority.c</file>
+            <file>$PROJ_DIR$\12S.eww</file>
+            <file>$PROJ_DIR$\..\Source_Code\Main\Keypad._stub.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_version.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\file_sys.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_I2C.o</file>
+            <file>$PROJ_DIR$\..\Source_Code\Inc\keypad.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\cmsis_iar.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Inc\task_priority.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_COMP.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_ISR.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\SystemTick_Program.pbi</file>
+            <file>$PROJ_DIR$\cmsis\core_cm0.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\export_table.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Inc\meter_init.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Main\loader.c</file>
+            <file>$PROJ_DIR$\startup_V94XX.s</file>
+            <file>$TOOLKIT_DIR$\lib\m6M_tl.a</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_I2C.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\v85xx_uart.o</file>
+            <file>$PROJ_DIR$\..\Source_Code\Main\meter_init.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Services\basic_srv.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\V94XX_UART.pbi</file>
+            <file>$PROJ_DIR$\..\Source_Code\Inc\math.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Main\Main.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Services\basic_srv.c</file>
+            <file>$PROJ_DIR$\V94XX_flash.icf</file>
+            <file>$PROJ_DIR$\Debug\Obj\Driver_ISO7816_V85XX.o</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\RTC_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\I2C_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\SPI_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\GPIO_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\App\file_sys.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\App\file_sys.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\EEPROM\EEPROM.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\EEPROM\EEPROM.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\ADC_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\EEPROM\EEPROM_Addresses.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\Flash\Flash.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\Flash\Flash.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\Flash\FLASH_Addresses.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\Flash\Flash_app.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\File_System\Flash\Flash_app.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\Timer_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\Timer_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\SystemTick_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\RTC_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\SystemTick_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\SPI_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\UART_Config.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\UART_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\ISO7816_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\Timer_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\SystemTick_Interface.h</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\CLK_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\RTC_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\SPI_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\UART_Program.c</file>
+            <file>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\inc\ISO7816_Interface.h</file>
+        </outputs>
+        <file>
+            <name>[ROOT_NODE]</name>
+            <outputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 68 113</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_iso7816.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 44</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 35</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_clk.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 58</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 174</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_adc.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 139</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 57</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_LoadNVR.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 165</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 122</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_misc.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 179</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 85</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_pmu.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 98</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 87</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_rtc.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 131</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 91</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_cortex.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 53</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 117</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_tmr.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 33</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 178</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_u32k.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 133</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 189</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_lcd.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 168</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 157</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_version.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 266</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 107</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_wdt.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 160</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 119</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_spi.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 136</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 106</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_ana.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 171</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 88</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_pwm.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 38</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 163</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_uart.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 283</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 42</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_adc_tiny.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 92</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 75</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_crypt.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 156</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 51</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_flash.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 83</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 185</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_comp.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 84</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 80</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_dma.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 169</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 104</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_i2c.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 55</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 190</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\Driver_ISO7816_V85XX.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 291</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 102</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_isr.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 110</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 161</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V85XX\src\v85xx_gpio.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 170</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 195</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 32 31 254 18 314 54 206 220 15 276 172 270 247 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Debug\Exe\V94XX.out</name>
+            <outputs>
+                <tool>
+                    <name>OBJCOPY</name>
+                    <file> 128</file>
+                </tool>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 113</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 82 192 108 64 291 52 145 267 40 134 261 151 193 153 101 61 127 140 89 60 162 141 194 121 71 139 92 171 58 84 53 156 169 83 170 55 44 110 168 165 179 98 38 131 136 33 133 283 266 160 188 130 135 81 70 272 118 112 137 191 76 268 36 274 125 77 159 48 173 149 73 34 56 152 49 120 187 93 281 166</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_LCD.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 125</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 147</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 250 238 237</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_PMU.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 48</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 176</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 255 237 246 258</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_I2C.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 268</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 282</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_CLK.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 81</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 182</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 244</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_RTC.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 149</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 41</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 244</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_FLASH.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 191</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 99</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 251</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_CRYPT.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 112</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 46</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 249</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_PWM.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 173</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 146</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 241</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_CORTEX.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 118</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 116</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 237</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_SPI.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 73</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 105</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 252</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_DMA.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 137</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 100</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 257</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ISO7816.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 36</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 59</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 239 29 30 79 138 39 180</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ISR.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 274</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 96</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 278 216 255 197 204 250 237 285 292 244 310 39 138 180 217 312 252 294 215 19 238 236 242 200 248 258 234 245 257 271 316 308 251 239 29 30 79 317 311</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_Version.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 49</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 164</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 256</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 15 230 220 94 273 313 276 177 18 256 314 32 158 37 142 270 181 31 235 54 172 206 254 247</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_CodeRAM.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 70</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 86</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 246</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_WDT.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 120</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 45</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 258</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 18 276 177 220 15 94 273 230 313 258 314 32 158 37 142 270 181 31 235 54 172 206 254 247</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_UART.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 152</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 286</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 31 235 276 254 220 15 54 206 18 314 32 172 270 247 158 37 177 142 94 181 230 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_GPIO.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 76</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 111</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 237</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_LoadNVR.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 77</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 196</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 238 244</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_TMR.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 34</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 115</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 245</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_U32K.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 56</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 184</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 253</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_COMP.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 272</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 67</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 242</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_MISC.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 159</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 167</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 240</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\System_V94XX.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 162</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 103</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 244</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ADC.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 188</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 90</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 19 238</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ADC_Tiny.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 130</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 74</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 236</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ANA.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 135</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 155</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 248</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\MCAL\V94XX\src\Driver_ISO7816_V94XX.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 52</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 78</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 29 30 79 138 39 180</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Main\Task_priority.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 194</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 150</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 271 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 273 31 32 254 18 314 54 206 220 15 276 172 270 247 271 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Main\Keypad._stub.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 153</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 109</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 260 158 177 273 172 142 94 47</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 172 177 158 273 260 47 142 94</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Main\loader.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 101</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 126</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 260 158 177 273 172 142 94 47 302 31 18 15 32 276 54 270 181 37 220 230 206 314 254 235 247 313 304 312 252 294 251 39 138 180</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 254 177 172 312 31 220 276 54 206 251 158 15 32 270 313 252 180 302 39 47 273 142 94 304 18 314 37 181 230 235 138 260 247 294</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\startup_V94XX.s</name>
+            <outputs>
+                <tool>
+                    <name>AARM</name>
+                    <file> 60</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Main\meter_init.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 127</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 154</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 278 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 216 255 197 204 250 237 285 292 244 310 39 138 180 217 312 252 294 215 19 238 236 242 200 248 297 299 301 304 186 302 306</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 276 248 235 312 220 142 270 181 206 31 273 306 314 255 217 236 299 186 216 215 285 15 32 158 37 94 254 250 310 18 301 297 302 204 292 247 54 177 172 237 294 19 304 278 230 313 197 39 244 138 180 252 238 242 200</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Main\Main.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 61</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 129</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 302 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 304 312 252 294 204 255 250 237 285 292 244 310 39 138 180 217 251</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 31 304 244 177 172 250 39 251 18 314 32 158 37 235 217 285 180 204 312 220 15 276 54 273 142 94 270 181 230 313 252 237 247 138 302 206 254 294 255 292 310</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Services\basic_srv.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 108</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 62</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 285 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 292 244 255 310 39 138 180</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 177 172 254 31 310 292 18 314 32 158 37 206 235 180 39 220 15 276 54 273 142 94 270 181 247 255 138 285 230 313 244</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\I2C_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 151</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 143</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 204 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 255 250 237 285 292 244 310 39 138 180 217</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 220 273 285 54 94 313 138 276 230 255 18 247 31 15 32 142 270 181 235 250 237 217 314 158 37 177 172 206 254 292 244 180 204 39 310</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\GPIO_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 261</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 183</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 204 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 255 250 237 285 292 244 310 39 138 180 217</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 250 18 138 158 235 31 217 314 32 37 247 237 177 172 292 255 285 220 15 276 54 273 142 94 270 181 230 313 244 180 204 206 254 39 310</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\File_System\App\file_sys.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 267</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 123</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 297 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 299 301 285 292 244 255 310 39 138 180 304 302 312 252 294 306 251</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 304 138 177 172 18 31 292 302 285 314 32 158 37 273 230 313 255 294 39 306 251 299 301 220 15 276 54 142 94 270 181 235 310 180 297 206 254 247 244 312 252</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\File_System\EEPROM\EEPROM.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 145</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 124</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 299 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 301 175 39 138 180 297 285 292 244 255 310 304 204 250 237 217</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 314 273 54 204 32 206 31 18 297 177 172 235 250 175 285 301 254 304 310 217 276 39 220 15 158 37 142 94 270 181 247 292 255 237 299 230 313 138 180 244</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\ADC_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 192</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 114</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 215 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 19 238 236 242 237 200 144 138</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 18 19 237 220 177 172 270 236 247 138 144 31 238 242 200 314 32 158 37 206 254 215 15 276 54 273 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\File_System\Flash\Flash.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 40</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 69</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 237 204 255 250 285 292 244 310 39 138 180 217 302 304 312 252 294 148 50 278 216 197 215 19 238 236 242 200 248</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 31 32 19 285 148 314 18 204 254 180 304 39 206 247 244 177 294 220 237 302 278 15 276 54 172 270 255 138 292 236 158 37 273 142 94 181 230 235 313 250 217 310 312 252 50 216 215 248 197 238 242 200</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\File_System\Flash\Flash_app.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 134</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 63</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 306 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 302 304 312 252 294 297 299 301 285 292 244 255 310 39 138 180 316 245 308 234</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 18 31 234 158 316 314 32 254 247 235 39 304 37 206 252 285 273 297 302 220 15 276 177 172 270 312 244 308 306 54 142 94 181 230 313 294 299 301 292 255 310 138 180 245</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\Timer_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 121</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 97</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 316 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 245 308</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 247 220 18 15 245 276 32 172 270 31 235 308 314 54 273 206 254 316 158 37 177 142 94 181 230 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\SystemTick_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 141</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 275</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 317 285 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 292 244 255 310 39 138 180 216 197 311</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 254 18 31 39 158 310 314 32 37 206 235 180 285 247 177 172 270 255 216 311 292 220 15 276 54 273 142 94 181 230 313 244 138 197 317</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\ISO7816_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 193</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 95</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 322 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 239 29 30 79 138 39 180 221 285 292 244 255 310</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 177 247 29 273 239 172 270 18 79 285 314 32 158 37 31 206 254 30 180 244 221 220 15 276 54 142 94 181 230 235 313 39 138 292 322 255 310</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\CLK_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 64</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 132</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 292 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 244 255 285 39 138 180 310 216 197</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 230 276 285 220 54 94 273 313 255 244 18 31 138 247 15 32 142 270 181 235 39 177 180 216 310 314 158 37 172 206 254 292 197</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\RTC_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 140</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 43</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 292 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 244 255 285 39 138 180 310</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 244 18 273 285 220 276 54 94 230 313 292 247 15 32 142 270 181 31 235 255 310 314 158 37 177 172 206 254 39 138 180</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\SPI_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 89</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 66</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 312 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 252 294</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 172 270 18 252 220 276 32 31 15 247 314 294 54 273 206 254 312 158 37 177 142 94 181 230 235 313</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Source_Code\Drivers\Service_Layer\src\UART_Program.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 71</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 72</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 31 18 15 32 276 158 177 273 172 142 94 54 270 181 37 220 230 206 314 254 235 247 313 285 292 244 255 310 39 138 180 204 250 237 217 316 245 308</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 247 316 177 172 270 18 285 237 314 32 158 37 31 206 254 39 244 204 220 15 276 54 273 142 94 181 230 235 313 250 217 245 292 255 310 138 180 308</file>
+                </tool>
+            </inputs>
+        </file>
+    </configuration>
+    <configuration>
+        <name>Release</name>
+        <outputs />
+        <forcedrebuild>
+            <name>[MULTI_TOOL]</name>
+            <tool>ILINK</tool>
+        </forcedrebuild>
+        <forcedrebuild>
+            <name>[REBUILD_ALL]</name>
+        </forcedrebuild>
+    </configuration>
+</project>

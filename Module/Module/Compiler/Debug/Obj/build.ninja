@@ -1,0 +1,175 @@
+#Generating source browse information for project V94XX
+
+
+#Abbreviations
+cc = C$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.3\common\bin\SourceIndexer.exe
+ll = C$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.3\common\bin\PbdLink.exe
+bd = C$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.3\common\bin\makeBrowseData.exe
+
+
+
+#Rules
+rule index
+  depfile = $out.dep
+  command = $cc -out=$out -f $in
+rule link
+  command = $ll -M $out $in
+rule browsedata
+  command = $bd $in -output  $out
+
+
+
+#Build steps
+build r_demo_nvm_process.pbi : index r_demo_nvm_process.xcl
+build r_demo_print.pbi : index r_demo_print.xcl
+build r_flash_lib.pbi : index r_flash_lib.xcl
+build r_check_sum.pbi : index r_check_sum.xcl
+build r_icmp_v6.pbi : index r_icmp_v6.xcl
+build r_ipv6_headers.pbi : index r_ipv6_headers.xcl
+build r_udp_headers.pbi : index r_udp_headers.xcl
+build PLC_App.pbi : index PLC_App.xcl
+build r_demo_api.pbi : index r_demo_api.xcl
+build r_demo_app.pbi : index r_demo_app.xcl
+build r_demo_app_thread.pbi : index r_demo_app_thread.xcl
+build r_demo_bootstrap.pbi : index r_demo_bootstrap.xcl
+build r_demo_common.pbi : index r_demo_common.xcl
+build r_demo_config.pbi : index r_demo_config.xcl
+build r_demo_eap.pbi : index r_demo_eap.xcl
+build r_demo_g3_cb.pbi : index r_demo_g3_cb.xcl
+build r_demo_ib_access.pbi : index r_demo_ib_access.xcl
+build r_demo_main.pbi : index r_demo_main.xcl
+build r_demo_metric_computation.pbi : index r_demo_metric_computation.xcl
+build r_demo_os_wrapper.pbi : index r_demo_os_wrapper.xcl
+build r_demo_parameters.pbi : index r_demo_parameters.xcl
+build r_demo_statistics.pbi : index r_demo_statistics.xcl
+build r_demo_sys.pbi : index r_demo_sys.xcl
+build r_demo_sys_cb.pbi : index r_demo_sys_cb.xcl
+build r_demo_tools.pbi : index r_demo_tools.xcl
+build r_bsp_api.pbi : index r_bsp_api.xcl
+build r_c3sap_adp.pbi : index r_c3sap_adp.xcl
+build r_c3sap_adp_convert.pbi : index r_c3sap_adp_convert.xcl
+build r_c3sap_eap.pbi : index r_c3sap_eap.xcl
+build r_c3sap_eap_convert.pbi : index r_c3sap_eap_convert.xcl
+build r_c3sap_g3.pbi : index r_c3sap_g3.xcl
+build r_c3sap_g3_depend.pbi : index r_c3sap_g3_depend.xcl
+build r_c3sap_g3ctrl_convert.pbi : index r_c3sap_g3ctrl_convert.xcl
+build r_c3sap_g3mac.pbi : index r_c3sap_g3mac.xcl
+build r_c3sap_g3mac_convert.pbi : index r_c3sap_g3mac_convert.xcl
+build r_c3sap_g3rfmac.pbi : index r_c3sap_g3rfmac.xcl
+build r_c3sap_g3rfmac_convert.pbi : index r_c3sap_g3rfmac_convert.xcl
+build r_c3sap_sys.pbi : index r_c3sap_sys.xcl
+build r_c3sap_sys_convert.pbi : index r_c3sap_sys_convert.xcl
+build r_c3sap_sys_depend.pbi : index r_c3sap_sys_depend.xcl
+build r_c3sap_sys_thread.pbi : index r_c3sap_sys_thread.xcl
+build r_uif_buff_declared.pbi : index r_uif_buff_declared.xcl
+build r_uif_data_manage.pbi : index r_uif_data_manage.xcl
+build r_uif_hdlc_process.pbi : index r_uif_hdlc_process.xcl
+build r_uif_intc.pbi : index r_uif_intc.xcl
+build r_uif_rx_process.pbi : index r_uif_rx_process.xcl
+build r_uif_tx_process.pbi : index r_uif_tx_process.xcl
+build r_c3sap_uif.pbi : index r_c3sap_uif.xcl
+build r_c3sap_uif_drv.pbi : index r_c3sap_uif_drv.xcl
+build r_fw_download.pbi : index r_fw_download.xcl
+build r_cmn_param2text.pbi : index r_cmn_param2text.xcl
+build r_g3_param2text.pbi : index r_g3_param2text.xcl
+build r_sys_param2text.pbi : index r_sys_param2text.xcl
+build CPX3_booting.pbi : index CPX3_booting.xcl
+build cpx3_switch.pbi : index cpx3_switch.xcl
+build r_checksum.pbi : index r_checksum.xcl
+build r_byte_swap.pbi : index r_byte_swap.xcl
+build r_io_vec.pbi : index r_io_vec.xcl
+build r_mem_tools.pbi : index r_mem_tools.xcl
+build r_crc32_api.pbi : index r_crc32_api.xcl
+build r_led_api.pbi : index r_led_api.xcl
+build r_memory_api.pbi : index r_memory_api.xcl
+build r_queue_api.pbi : index r_queue_api.xcl
+build r_stdio_api.pbi : index r_stdio_api.xcl
+build r_app_timer.pbi : index r_app_timer.xcl
+build Driver_ISO7816_V85XX.pbi : index Driver_ISO7816_V85XX.xcl
+build v85xx_adc.pbi : index v85xx_adc.xcl
+build v85xx_adc_tiny.pbi : index v85xx_adc_tiny.xcl
+build v85xx_ana.pbi : index v85xx_ana.xcl
+build v85xx_clk.pbi : index v85xx_clk.xcl
+build v85xx_comp.pbi : index v85xx_comp.xcl
+build v85xx_cortex.pbi : index v85xx_cortex.xcl
+build v85xx_crypt.pbi : index v85xx_crypt.xcl
+build v85xx_dma.pbi : index v85xx_dma.xcl
+build v85xx_flash.pbi : index v85xx_flash.xcl
+build v85xx_gpio.pbi : index v85xx_gpio.xcl
+build v85xx_i2c.pbi : index v85xx_i2c.xcl
+build v85xx_iso7816.pbi : index v85xx_iso7816.xcl
+build v85xx_isr.pbi : index v85xx_isr.xcl
+build v85xx_lcd.pbi : index v85xx_lcd.xcl
+build v85xx_LoadNVR.pbi : index v85xx_LoadNVR.xcl
+build v85xx_misc.pbi : index v85xx_misc.xcl
+build v85xx_pmu.pbi : index v85xx_pmu.xcl
+build v85xx_pwm.pbi : index v85xx_pwm.xcl
+build v85xx_rtc.pbi : index v85xx_rtc.xcl
+build v85xx_spi.pbi : index v85xx_spi.xcl
+build v85xx_tmr.pbi : index v85xx_tmr.xcl
+build v85xx_u32k.pbi : index v85xx_u32k.xcl
+build v85xx_uart.pbi : index v85xx_uart.xcl
+build v85xx_version.pbi : index v85xx_version.xcl
+build v85xx_wdt.pbi : index v85xx_wdt.xcl
+build Driver_ISO7816_V94XX.pbi : index Driver_ISO7816_V94XX.xcl
+build System_V94XX.pbi : index System_V94XX.xcl
+build V94XX_ADC.pbi : index V94XX_ADC.xcl
+build V94XX_ADC_Tiny.pbi : index V94XX_ADC_Tiny.xcl
+build V94XX_ANA.pbi : index V94XX_ANA.xcl
+build V94XX_CLK.pbi : index V94XX_CLK.xcl
+build V94XX_CodeRAM.pbi : index V94XX_CodeRAM.xcl
+build V94XX_COMP.pbi : index V94XX_COMP.xcl
+build V94XX_CORTEX.pbi : index V94XX_CORTEX.xcl
+build V94XX_CRYPT.pbi : index V94XX_CRYPT.xcl
+build V94XX_DMA.pbi : index V94XX_DMA.xcl
+build V94XX_FLASH.pbi : index V94XX_FLASH.xcl
+build V94XX_GPIO.pbi : index V94XX_GPIO.xcl
+build V94XX_I2C.pbi : index V94XX_I2C.xcl
+build V94XX_ISO7816.pbi : index V94XX_ISO7816.xcl
+build V94XX_ISR.pbi : index V94XX_ISR.xcl
+build V94XX_LCD.pbi : index V94XX_LCD.xcl
+build V94XX_LoadNVR.pbi : index V94XX_LoadNVR.xcl
+build V94XX_MISC.pbi : index V94XX_MISC.xcl
+build V94XX_PMU.pbi : index V94XX_PMU.xcl
+build V94XX_PWM.pbi : index V94XX_PWM.xcl
+build V94XX_RTC.pbi : index V94XX_RTC.xcl
+build V94XX_SPI.pbi : index V94XX_SPI.xcl
+build V94XX_TMR.pbi : index V94XX_TMR.xcl
+build V94XX_U32K.pbi : index V94XX_U32K.xcl
+build V94XX_UART.pbi : index V94XX_UART.xcl
+build V94XX_Version.pbi : index V94XX_Version.xcl
+build V94XX_WDT.pbi : index V94XX_WDT.xcl
+build ADC_Program.pbi : index ADC_Program.xcl
+build CLK_Program.pbi : index CLK_Program.xcl
+build GPIO_Program.pbi : index GPIO_Program.xcl
+build I2C_Program.pbi : index I2C_Program.xcl
+build ISO7816_Program.pbi : index ISO7816_Program.xcl
+build RTC_Program.pbi : index RTC_Program.xcl
+build SPI_Program.pbi : index SPI_Program.xcl
+build SystemTick_Program.pbi : index SystemTick_Program.xcl
+build Timer_Program.pbi : index Timer_Program.xcl
+build UART_Program.pbi : index UART_Program.xcl
+build file_sys.pbi : index file_sys.xcl
+build EEPROM.pbi : index EEPROM.xcl
+build Flash.pbi : index Flash.xcl
+build Flash_app.pbi : index Flash_app.xcl
+build Main.pbi : index Main.xcl
+build meter_init.pbi : index meter_init.xcl
+build Task_priority.pbi : index Task_priority.xcl
+build basic_srv.pbi : index basic_srv.xcl
+build V94XX_part0.pbi : link r_demo_nvm_process.pbi r_demo_print.pbi r_flash_lib.pbi r_check_sum.pbi r_icmp_v6.pbi r_ipv6_headers.pbi r_udp_headers.pbi PLC_App.pbi r_demo_api.pbi r_demo_app.pbi r_demo_app_thread.pbi r_demo_bootstrap.pbi
+build V94XX_part1.pbi : link r_demo_common.pbi r_demo_config.pbi r_demo_eap.pbi r_demo_g3_cb.pbi r_demo_ib_access.pbi r_demo_main.pbi r_demo_metric_computation.pbi r_demo_os_wrapper.pbi r_demo_parameters.pbi r_demo_statistics.pbi r_demo_sys.pbi r_demo_sys_cb.pbi
+build V94XX_part2.pbi : link r_demo_tools.pbi r_bsp_api.pbi r_c3sap_adp.pbi r_c3sap_adp_convert.pbi r_c3sap_eap.pbi r_c3sap_eap_convert.pbi r_c3sap_g3.pbi r_c3sap_g3_depend.pbi r_c3sap_g3ctrl_convert.pbi r_c3sap_g3mac.pbi r_c3sap_g3mac_convert.pbi r_c3sap_g3rfmac.pbi
+build V94XX_part3.pbi : link r_c3sap_g3rfmac_convert.pbi r_c3sap_sys.pbi r_c3sap_sys_convert.pbi r_c3sap_sys_depend.pbi r_c3sap_sys_thread.pbi r_uif_buff_declared.pbi r_uif_data_manage.pbi r_uif_hdlc_process.pbi r_uif_intc.pbi r_uif_rx_process.pbi r_uif_tx_process.pbi r_c3sap_uif.pbi
+build V94XX_part4.pbi : link r_c3sap_uif_drv.pbi r_fw_download.pbi r_cmn_param2text.pbi r_g3_param2text.pbi r_sys_param2text.pbi CPX3_booting.pbi cpx3_switch.pbi r_checksum.pbi r_byte_swap.pbi r_io_vec.pbi r_mem_tools.pbi r_crc32_api.pbi
+build V94XX_part5.pbi : link r_led_api.pbi r_memory_api.pbi r_queue_api.pbi r_stdio_api.pbi r_app_timer.pbi Driver_ISO7816_V85XX.pbi v85xx_adc.pbi v85xx_adc_tiny.pbi v85xx_ana.pbi v85xx_clk.pbi v85xx_comp.pbi v85xx_cortex.pbi
+build V94XX_part6.pbi : link v85xx_crypt.pbi v85xx_dma.pbi v85xx_flash.pbi v85xx_gpio.pbi v85xx_i2c.pbi v85xx_iso7816.pbi v85xx_isr.pbi v85xx_lcd.pbi v85xx_LoadNVR.pbi v85xx_misc.pbi v85xx_pmu.pbi v85xx_pwm.pbi
+build V94XX_part7.pbi : link v85xx_rtc.pbi v85xx_spi.pbi v85xx_tmr.pbi v85xx_u32k.pbi v85xx_uart.pbi v85xx_version.pbi v85xx_wdt.pbi Driver_ISO7816_V94XX.pbi System_V94XX.pbi V94XX_ADC.pbi V94XX_ADC_Tiny.pbi V94XX_ANA.pbi
+build V94XX_part8.pbi : link V94XX_CLK.pbi V94XX_CodeRAM.pbi V94XX_COMP.pbi V94XX_CORTEX.pbi V94XX_CRYPT.pbi V94XX_DMA.pbi V94XX_FLASH.pbi V94XX_GPIO.pbi V94XX_I2C.pbi V94XX_ISO7816.pbi V94XX_ISR.pbi V94XX_LCD.pbi
+build V94XX_part9.pbi : link V94XX_LoadNVR.pbi V94XX_MISC.pbi V94XX_PMU.pbi V94XX_PWM.pbi V94XX_RTC.pbi V94XX_SPI.pbi V94XX_TMR.pbi V94XX_U32K.pbi V94XX_UART.pbi V94XX_Version.pbi V94XX_WDT.pbi ADC_Program.pbi
+build V94XX_part10.pbi : link CLK_Program.pbi GPIO_Program.pbi I2C_Program.pbi ISO7816_Program.pbi RTC_Program.pbi SPI_Program.pbi SystemTick_Program.pbi Timer_Program.pbi UART_Program.pbi file_sys.pbi EEPROM.pbi Flash.pbi
+build V94XX_part11.pbi : link Flash_app.pbi Main.pbi meter_init.pbi Task_priority.pbi basic_srv.pbi
+build V94XX.pbd : link V94XX_part0.pbi V94XX_part1.pbi V94XX_part2.pbi V94XX_part3.pbi V94XX_part4.pbi V94XX_part5.pbi V94XX_part6.pbi V94XX_part7.pbi V94XX_part8.pbi V94XX_part9.pbi V94XX_part10.pbi V94XX_part11.pbi
+build V94XX.pbw : browsedata V94XX.pbd
+
+

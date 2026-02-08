@@ -160,6 +160,8 @@ loader_status_t loader_load_module(module_id_t id)
     /* ---------- Read header ---------- */
 
     module_header_t header;
+//uint32_t header_addr = base + MODULE_MAX_SIZE - sizeof(module_header_t);
+//read_ext(header_addr, &header, sizeof(header));
 
     if (read_ext(base, (uint8_t*)&header, sizeof(header)) != LOADER_OK)
         return LOADER_ERR_FLASH_READ;

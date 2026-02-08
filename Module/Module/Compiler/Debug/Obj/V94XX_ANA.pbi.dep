@@ -1,0 +1,27 @@
+V94XX_ANA.pbi: \
+  D:\sewedy\source\ code\vango_plc\Source_Code\Drivers\MCAL\V94XX\src\V94XX_ANA.c \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Config\config.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\V94XX\inc/System_V94XX.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\Common_Drivers\inc\type_def.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\cmsis\core_cm0.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Defaults.h \
+  C:\\Program\ Files\ (x86)\\IAR\ Systems\\Embedded\ Workbench\ 8.3\\arm\\inc\\c\\DLib_Config_Normal.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\cmsis/core_cmInstr.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\cmsis_iar.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c/iccarm_builtin.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\cmsis/core_cmFunc.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\Service_Layer\inc\I2C_Interface.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_I2C.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\V94XX\inc/V94XX.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\Service_Layer\inc/I2C_Config.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\Service_Layer\inc\UART_Interface.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_UART.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_CLK.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_CORTEX.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\Service_Layer\inc/UART_Config.h \
+  D:\sewedy\source\ code\vango_plc\Compiler\..\Source_Code\Drivers\MCAL\V94XX\inc\V94XX_ANA.h

@@ -1,0 +1,15 @@
+/*==========================================================
+  PHASE-1 MODULE LINKER SCRIPT (IAR)
+==========================================================*/
+
+define memory mem with size = 4G;
+define region EXEC_region =
+    mem:[from 0x0003C000 to 0x0003FFFF];
+
+place in EXEC_region
+{
+    readonly section .module_header,
+    readonly section .module_code,
+    readonly section .module_func_table
+};
+
